@@ -14,6 +14,9 @@ ScriptsOnlyBuild:
     - UnityEngine.InputSystem.RemoteInputPlayerConnection
     Unity.ProBuilder.Editor.dll:
     - UnityEditor.ProBuilder.ProBuilderEditor
+    - UnityEditor.ProBuilder.ProbuilderMoveTool
+    - UnityEditor.ProBuilder.ProbuilderRotateTool
+    - UnityEditor.ProBuilder.ProbuilderScaleTool
     Unity.RenderPipelines.Core.Runtime.dll:
     - UnityEngine.Rendering.UI.DebugUIHandlerBitField
     - UnityEngine.Rendering.UI.DebugUIHandlerButton
@@ -48,6 +51,12 @@ ScriptsOnlyBuild:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.ShaderGraph.Editor.dll:
     - UnityEditor.ShaderGraph.SubGraphAsset
+    Unity.TextMeshPro.dll:
+    - TMPro.TMP_FontAsset
+    - TMPro.TMP_Settings
+    - TMPro.TMP_SpriteAsset
+    - TMPro.TMP_StyleSheet
+    - TMPro.TextMeshPro
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -70,11 +79,31 @@ ScriptsOnlyBuild:
   serializedClasses:
     Unity.RenderPipelines.Core.Runtime:
     - UnityEngine.Rendering.UI.DebugUIPrefabBundle
+    Unity.TextMeshPro:
+    - TMPro.FaceInfo_Legacy
+    - TMPro.FontAssetCreationSettings
+    - TMPro.KerningTable
+    - TMPro.TMP_Character
+    - TMPro.TMP_FontFeatureTable
+    - TMPro.TMP_FontWeightPair
+    - TMPro.TMP_GlyphAdjustmentRecord
+    - TMPro.TMP_GlyphPairAdjustmentRecord
+    - TMPro.TMP_GlyphValueRecord
+    - TMPro.TMP_Sprite
+    - TMPro.TMP_SpriteCharacter
+    - TMPro.TMP_SpriteGlyph
+    - TMPro.TMP_Style
+    - TMPro.VertexGradient
     UnityEngine.CoreModule:
     - UnityEngine.Events.ArgumentCache
     - UnityEngine.Events.PersistentCallGroup
     - UnityEngine.Events.PersistentListenerMode
     - UnityEngine.RectOffset
+    UnityEngine.TextCoreFontEngineModule:
+    - UnityEngine.TextCore.FaceInfo
+    - UnityEngine.TextCore.Glyph
+    - UnityEngine.TextCore.GlyphMetrics
+    - UnityEngine.TextCore.GlyphRect
     UnityEngine.UI:
     - UnityEngine.EventSystems.EventTrigger/Entry
     - UnityEngine.EventSystems.EventTrigger/TriggerEvent
@@ -142,6 +171,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 89
@@ -175,6 +206,10 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3632}
     - Class: 114
+      Script: {instanceID: 3686}
+    - Class: 114
+      Script: {instanceID: 4212}
+    - Class: 114
       Script: {instanceID: 4796}
     - Class: 114
       Script: {instanceID: 5092}
@@ -199,6 +234,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 8190}
     - Class: 114
+      Script: {instanceID: 8484}
+    - Class: 114
       Script: {instanceID: 8544}
     - Class: 114
       Script: {instanceID: 8690}
@@ -215,9 +252,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10626}
     - Class: 114
+      Script: {instanceID: 10648}
+    - Class: 114
       Script: {instanceID: 10718}
     - Class: 114
       Script: {instanceID: 11342}
+    - Class: 114
+      Script: {instanceID: 11400}
     - Class: 114
       Script: {instanceID: 11588}
     - Class: 114
@@ -239,9 +280,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13532}
     - Class: 114
-      Script: {instanceID: 14036}
+      Script: {instanceID: 13920}
     - Class: 114
-      Script: {instanceID: 30034}
+      Script: {instanceID: 14038}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2603,6 +2644,12 @@ ScriptsOnlyBuild:
     className: Reward
   - hash:
       serializedVersion: 2
+      Hash: 86e324bece3f1a1fae8e096b94f12ec2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MyNetworkPlayer
+  - hash:
+      serializedVersion: 2
       Hash: 36025d42bf23fda83a55bf1429201821
     assemblyName: Unity.RenderPipelines.Core.Runtime.dll
     namespaceName: UnityEngine.Rendering.UI
@@ -2637,12 +2684,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: dcd354cf8631937cd056dab8436f117f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: MyNetworkPlayer
   platform: 19
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
