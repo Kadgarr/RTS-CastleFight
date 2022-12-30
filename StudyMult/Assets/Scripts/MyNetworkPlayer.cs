@@ -24,34 +24,35 @@ public class MyNetworkPlayer : NetworkBehaviour
     [Server]
     public void SetDisplayName(string newDisplayName)
     {
-        if (newDisplayName.Length <= 10)
-        {
-            bool check = true;
-            for (int i = 0; i < newDisplayName.Length; i++)
-            {
-                if (newDisplayName[i] == '?' || newDisplayName[i] == '/' || newDisplayName[i] == '!' || newDisplayName[i] == ' ')
-                {
-                    check = false;
-                    break;
-                }
-            }
+        //if (newDisplayName.Length <= 10)
+        //{
+        //    bool check = true;
+        //    for (int i = 0; i < newDisplayName.Length; i++)
+        //    {
+        //        if (newDisplayName[i] == '?' || newDisplayName[i] == '/' || newDisplayName[i] == '!' || newDisplayName[i] == ' ')
+        //        {
+        //            check = false;
+        //            break;
+        //        }
+        //    }
 
-            if (check)
-            {
-                if (!newDisplayName.Contains("dick"))
-                {
-                    displayNameText.text = newDisplayName;
-                }
-                else
-                    Debug.Log("Player name contains blacklist word!");
-                
-            }
-            else
-                Debug.Log("Player name contains special characters!");
-        }
-        else
-            Debug.Log("Player name is too long!");
-       // RpcLogNewName(displayName);
+        //    if (check)
+        //    {
+        //        if (!newDisplayName.Contains("dick"))
+        //        {
+        //            displayNameText.text = newDisplayName;
+        //        }
+        //        else
+        //            Debug.Log("Player name contains blacklist word!");
+
+        //    }
+        //    else
+        //        Debug.Log("Player name contains special characters!");
+        //}
+        //else
+        //    Debug.Log("Player name is too long!");
+        displayName = newDisplayName;
+        RpcLogNewName(displayName);
     }
 
     [Server]
@@ -75,9 +76,9 @@ public class MyNetworkPlayer : NetworkBehaviour
         displayColorRenderer.material.SetColor("_Color", newColor);
     }
 
-    private void HandleDisplayPlayerNameUpdated(string oldName, string newName)
+    private void HandleDisplayPlayerNameUpdated(string oldName, string newDisplayName)
     {
-        displayNameText.SetText(newName);
+        displayNameText.SetText(newDisplayName);
     }
 
     [ContextMenu("SetMyName")]
