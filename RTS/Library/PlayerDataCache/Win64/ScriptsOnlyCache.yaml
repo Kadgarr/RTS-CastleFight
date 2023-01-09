@@ -7,13 +7,13 @@ ScriptsOnlyBuild:
     - Targeter
     - Unit
     - UnitCommandGiver
+    - UnitFiring
     - UnitMovement
+    - UnitProjectile
     - UnitSelectionHandler
     - UnitSpawner
     Mirror.Components.dll:
     - Mirror.NetworkTransformReliable
-    Mirror.Editor.dll:
-    - Mirror.NetworkBehaviourInspector
     Mirror.Transports.dll:
     - Mirror.TelepathyTransport
     Mirror.dll:
@@ -178,6 +178,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
     - Class: 81
@@ -230,7 +232,13 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13404}
     - Class: 114
       Script: {instanceID: 13520}
+    - Class: 114
+      Script: {instanceID: 30236}
+    - Class: 114
+      Script: {instanceID: 31380}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 135
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -268,6 +276,8 @@ ScriptsOnlyBuild:
     - Class: 43
       Script: {instanceID: 0}
     - Class: 48
+      Script: {instanceID: 0}
+    - Class: 54
       Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
@@ -383,9 +393,15 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13538}
     - Class: 114
       Script: {instanceID: 14048}
+    - Class: 114
+      Script: {instanceID: 30236}
+    - Class: 114
+      Script: {instanceID: 31380}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
+      Script: {instanceID: 0}
+    - Class: 135
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -2828,6 +2844,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 6701d41bb8daf450e8532a658049bc65
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UnitFiring
+  - hash:
+      serializedVersion: 2
+      Hash: aa086f95ed0ebfe9d37f31398cfa51ab
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UnitProjectile
   platform: 19
   scenePathNames:
   - Assets/Scenes/Scene_Menu.unity
