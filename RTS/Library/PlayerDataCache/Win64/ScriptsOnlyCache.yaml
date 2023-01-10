@@ -1,6 +1,8 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - Health
+    - HealthDisplay
     - RTSNetworkManager
     - RTSPlayer
     - Targetable
@@ -71,6 +73,7 @@ ScriptsOnlyBuild:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.EventTrigger
     - UnityEngine.EventSystems.PhysicsRaycaster
+    - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.ContentSizeFitter
@@ -191,7 +194,7 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1760}
+      Script: {instanceID: 1758}
     - Class: 114
       Script: {instanceID: 1958}
     - Class: 114
@@ -209,33 +212,37 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6548}
     - Class: 114
-      Script: {instanceID: 8180}
+      Script: {instanceID: 7138}
     - Class: 114
-      Script: {instanceID: 8880}
+      Script: {instanceID: 8182}
     - Class: 114
-      Script: {instanceID: 9990}
+      Script: {instanceID: 8882}
     - Class: 114
-      Script: {instanceID: 10364}
+      Script: {instanceID: 9982}
     - Class: 114
-      Script: {instanceID: 10618}
+      Script: {instanceID: 9994}
     - Class: 114
-      Script: {instanceID: 10710}
+      Script: {instanceID: 10266}
     - Class: 114
-      Script: {instanceID: 11952}
+      Script: {instanceID: 10370}
     - Class: 114
-      Script: {instanceID: 12188}
+      Script: {instanceID: 10624}
     - Class: 114
-      Script: {instanceID: 13056}
+      Script: {instanceID: 10716}
     - Class: 114
-      Script: {instanceID: 13322}
+      Script: {instanceID: 11788}
     - Class: 114
-      Script: {instanceID: 13404}
+      Script: {instanceID: 11960}
     - Class: 114
-      Script: {instanceID: 13520}
+      Script: {instanceID: 12196}
     - Class: 114
-      Script: {instanceID: 30236}
+      Script: {instanceID: 13064}
     - Class: 114
-      Script: {instanceID: 31380}
+      Script: {instanceID: 13330}
+    - Class: 114
+      Script: {instanceID: 13412}
+    - Class: 114
+      Script: {instanceID: 13528}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 135
@@ -340,63 +347,71 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6538}
     - Class: 114
-      Script: {instanceID: 7480}
+      Script: {instanceID: 7138}
     - Class: 114
-      Script: {instanceID: 8180}
+      Script: {instanceID: 7482}
     - Class: 114
-      Script: {instanceID: 8536}
+      Script: {instanceID: 8182}
     - Class: 114
-      Script: {instanceID: 8684}
+      Script: {instanceID: 8538}
     - Class: 114
-      Script: {instanceID: 9560}
+      Script: {instanceID: 8686}
     - Class: 114
-      Script: {instanceID: 9876}
+      Script: {instanceID: 8882}
     - Class: 114
-      Script: {instanceID: 10156}
+      Script: {instanceID: 9562}
     - Class: 114
-      Script: {instanceID: 10282}
+      Script: {instanceID: 9878}
     - Class: 114
-      Script: {instanceID: 10558}
+      Script: {instanceID: 9982}
     - Class: 114
-      Script: {instanceID: 10618}
+      Script: {instanceID: 10160}
     - Class: 114
-      Script: {instanceID: 10710}
+      Script: {instanceID: 10266}
     - Class: 114
-      Script: {instanceID: 11332}
+      Script: {instanceID: 10288}
     - Class: 114
-      Script: {instanceID: 11580}
+      Script: {instanceID: 10564}
     - Class: 114
-      Script: {instanceID: 11854}
+      Script: {instanceID: 10624}
     - Class: 114
-      Script: {instanceID: 11952}
+      Script: {instanceID: 10716}
     - Class: 114
-      Script: {instanceID: 12188}
+      Script: {instanceID: 11338}
     - Class: 114
-      Script: {instanceID: 12206}
+      Script: {instanceID: 11586}
     - Class: 114
-      Script: {instanceID: 12342}
+      Script: {instanceID: 11788}
     - Class: 114
-      Script: {instanceID: 12448}
+      Script: {instanceID: 11862}
     - Class: 114
-      Script: {instanceID: 12542}
+      Script: {instanceID: 11960}
     - Class: 114
-      Script: {instanceID: 12690}
+      Script: {instanceID: 12196}
     - Class: 114
-      Script: {instanceID: 13056}
+      Script: {instanceID: 12214}
     - Class: 114
-      Script: {instanceID: 13154}
+      Script: {instanceID: 12350}
     - Class: 114
-      Script: {instanceID: 13322}
+      Script: {instanceID: 12444}
     - Class: 114
-      Script: {instanceID: 13404}
+      Script: {instanceID: 12456}
     - Class: 114
-      Script: {instanceID: 13538}
+      Script: {instanceID: 12550}
     - Class: 114
-      Script: {instanceID: 14048}
+      Script: {instanceID: 12698}
     - Class: 114
-      Script: {instanceID: 30236}
+      Script: {instanceID: 13064}
     - Class: 114
-      Script: {instanceID: 31380}
+      Script: {instanceID: 13162}
+    - Class: 114
+      Script: {instanceID: 13330}
+    - Class: 114
+      Script: {instanceID: 13412}
+    - Class: 114
+      Script: {instanceID: 13546}
+    - Class: 114
+      Script: {instanceID: 14056}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -434,16 +449,16 @@ ScriptsOnlyBuild:
     className: Toggle
   - hash:
       serializedVersion: 2
-      Hash: ae83e830e7a90c0aff918c4c2e520825
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: GraphicRaycaster
-  - hash:
-      serializedVersion: 2
       Hash: a6e561615949734e9f12f9b61661f43e
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Image
+  - hash:
+      serializedVersion: 2
+      Hash: ae83e830e7a90c0aff918c4c2e520825
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: GraphicRaycaster
   - hash:
       serializedVersion: 2
       Hash: 699619b86d9359741a4f58540298c80b
@@ -1454,6 +1469,12 @@ ScriptsOnlyBuild:
     className: LightAnchor
   - hash:
       serializedVersion: 2
+      Hash: 1cdc4b0b3be9ad442763b453556cdfb3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: HealthDisplay
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -1976,6 +1997,12 @@ ScriptsOnlyBuild:
     className: SceneInterestManagement
   - hash:
       serializedVersion: 2
+      Hash: c6f3314b14886dc1841dffa9aaf53cc5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Health
+  - hash:
+      serializedVersion: 2
       Hash: d79be48f820686024dd0d9e080d7733b
     assemblyName: Unity.InputSystem.dll
     namespaceName: UnityEngine.InputSystem
@@ -2022,6 +2049,12 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachineGroupComposer
+  - hash:
+      serializedVersion: 2
+      Hash: 6701d41bb8daf450e8532a658049bc65
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UnitFiring
   - hash:
       serializedVersion: 2
       Hash: 9ac327467393cb6c8045a2fd90ff67e2
@@ -2382,6 +2415,12 @@ ScriptsOnlyBuild:
     assemblyName: Mirror.Examples.dll
     namespaceName: Mirror.Examples.CCU
     className: Monster
+  - hash:
+      serializedVersion: 2
+      Hash: d881f2290d4faa06fee78b509e8e4335
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UnitProjectile
   - hash:
       serializedVersion: 2
       Hash: d85b490177c3124d2335460060a2b807
@@ -2844,18 +2883,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 6701d41bb8daf450e8532a658049bc65
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: UnitFiring
-  - hash:
-      serializedVersion: 2
-      Hash: aa086f95ed0ebfe9d37f31398cfa51ab
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: UnitProjectile
   platform: 19
   scenePathNames:
   - Assets/Scenes/Scene_Menu.unity
