@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ProBuilder.Shapes;
 
 public class Health : NetworkBehaviour
 {
@@ -12,7 +13,7 @@ public class Health : NetworkBehaviour
     private int currentHealth;
 
     public event Action ServerOnDie;
-
+    public static event Action<int> ServerOnPlayerDie;
     public event Action<int, int> ClientOnHealthUpdated;
 
     #region Server
@@ -20,7 +21,23 @@ public class Health : NetworkBehaviour
     public override void OnStartServer()
     {
         currentHealth = maxHealth;
+        UnitBase.ServerOnPlayerDie+=ServerOnHandlePlayerDie;
     }
+    public override void OnStopServer()
+    {
+        UnitBase.ServerOnPlayerDie -= ServerOnHandlePlayerDie;
+    }
+
+    [Server]
+    private void ServerOnHandlePlayerDie(int connectionId)
+    {
+        if(connectionToClient.connectionId!=connectionId) return;
+
+        DealDamage(currentHealth);
+
+       // ServerOnPlayerDie?.Invoke(connectionId);
+    }
+
 
 
     [Server]
@@ -34,7 +51,7 @@ public class Health : NetworkBehaviour
 
         ServerOnDie?.Invoke();
 
-        Debug.Log("We Died");
+        //Debug.Log("We Died");
     }
 
     #endregion

@@ -1,4 +1,5 @@
 using Mirror;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,22 @@ public class UnitMovement : NetworkBehaviour
     //private Camera mainCamera;
 
     #region Server
+
+    public override void OnStartServer()
+    {
+        GameOverHandler.ServerOnGameOver += ServerHandleGameOver;
+    }
+
+    public override void OnStopServer()
+    {
+        GameOverHandler.ServerOnGameOver -= ServerHandleGameOver;
+    }
+
+    [Server]
+    private void ServerHandleGameOver()
+    {
+        agent.ResetPath();
+    }
 
     [ServerCallback]
     private void Update()
