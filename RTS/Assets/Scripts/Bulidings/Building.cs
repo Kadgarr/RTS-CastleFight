@@ -22,6 +22,7 @@ public class Building : NetworkBehaviour
         return buildingPreview;
     }
 
+   
     public Sprite GetIcon()
     {
         return icon;

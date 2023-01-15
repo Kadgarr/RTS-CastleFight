@@ -2,10 +2,11 @@ using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
+//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.ProBuilder.Shapes;
 using UnityEngine.UI;
 
 public class BuildingButton : MonoBehaviour//,IPointerUpHandler,IPointerDownHandler
@@ -24,7 +25,7 @@ public class BuildingButton : MonoBehaviour//,IPointerUpHandler,IPointerDownHand
     private void Start()
     {
         mainCamera = Camera.main;
-
+       
         iconImage.sprite = building.GetIcon();
         priceText.text = building.GetPrice().ToString();
     }
@@ -49,10 +50,14 @@ public class BuildingButton : MonoBehaviour//,IPointerUpHandler,IPointerDownHand
         //    return;
         //if (!Mouse.current.leftButton.wasPressedThisFrame) return;
 
+        
         buildingPreviewInstance = Instantiate(building.GetBuildingPreview());
+
         buildingRendererInstance = buildingPreviewInstance.GetComponentInChildren<Renderer>();
 
+
         buildingPreviewInstance.SetActive(false);
+        
     }
 
     public void PlaceBuilding()
@@ -67,7 +72,7 @@ public class BuildingButton : MonoBehaviour//,IPointerUpHandler,IPointerDownHand
             
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, floorMask))
             {
-                //place building
+               player.CmdTryPlaceBuilding(building.GetId(), hit.point);
             }
 
             Destroy(buildingPreviewInstance);
