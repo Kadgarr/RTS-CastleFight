@@ -10,6 +10,8 @@ ScriptsOnlyBuild:
     - HealthDisplay
     - RTSNetworkManager
     - RTSPlayer
+    - ResourceGenerator
+    - ResourcesDisplay
     - Targetable
     - Targeter
     - Unit
@@ -191,6 +193,9 @@ ScriptsOnlyBuild:
     fullTypeName: BuildingButton
     methodName: Build
   - assembly: Assembly-CSharp
+    fullTypeName: BuildingButton
+    methodName: Build
+  - assembly: Assembly-CSharp
     fullTypeName: GameOverDisplay
     methodName: LeaveGame
   - assembly: UnityEngine.CoreModule
@@ -272,6 +277,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10030}
     - Class: 114
+      Script: {instanceID: 10196}
+    - Class: 114
       Script: {instanceID: 10302}
     - Class: 114
       Script: {instanceID: 10406}
@@ -297,6 +304,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13564}
     - Class: 114
       Script: {instanceID: 14224}
+    - Class: 114
+      Script: {instanceID: 30962}
+    - Class: 114
+      Script: {instanceID: 31746}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -399,6 +410,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5892}
     - Class: 114
+      Script: {instanceID: 5898}
+    - Class: 114
       Script: {instanceID: 5972}
     - Class: 114
       Script: {instanceID: 6036}
@@ -488,6 +501,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13582}
     - Class: 114
       Script: {instanceID: 14092}
+    - Class: 114
+      Script: {instanceID: 31746}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -653,7 +668,7 @@ ScriptsOnlyBuild:
     className: NetworkStatistics
   - hash:
       serializedVersion: 2
-      Hash: 619723cb73f19f4f800f35972e01a8bc
+      Hash: a528e3abe5f10e8f752601482df08dfb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Unit
@@ -1547,7 +1562,7 @@ ScriptsOnlyBuild:
     className: PlayerScore
   - hash:
       serializedVersion: 2
-      Hash: 7c6cfffaf6add4fc7b38f79e7b3ccc68
+      Hash: 1cfa8064f8b5494e653ac7c553745dbc
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Building
@@ -2615,7 +2630,7 @@ ScriptsOnlyBuild:
     className: MatchNetworkManager
   - hash:
       serializedVersion: 2
-      Hash: 16c386692c982f31f4e3cff4c4366a2c
+      Hash: 64d2849e312c4ef46db4b35f739ec1cc
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UnitSpawner
@@ -2997,6 +3012,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: d75d2779eed4be772a3eb5550ce8854d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ResourcesDisplay
+  - hash:
+      serializedVersion: 2
+      Hash: bbd67054bb3ea6684c11e6ecfc00f8c7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ResourceGenerator
   platform: 19
   scenePathNames:
   - Assets/Scenes/Scene_Menu.unity
