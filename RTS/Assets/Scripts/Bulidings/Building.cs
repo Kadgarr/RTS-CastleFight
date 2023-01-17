@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Building : NetworkBehaviour
 {
+    [SerializeField] private GameObject redPreview = null;
     [SerializeField] private GameObject buildingPreview = null;
     [SerializeField] private Sprite icon = null;
     [SerializeField] private int id = -1;
@@ -21,8 +22,11 @@ public class Building : NetworkBehaviour
     {
         return buildingPreview;
     }
+    public GameObject GetBuildingRedPreview()
+    {
+        return redPreview;
+    }
 
-   
     public Sprite GetIcon()
     {
         return icon;

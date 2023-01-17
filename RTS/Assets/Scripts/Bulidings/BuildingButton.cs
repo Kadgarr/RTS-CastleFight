@@ -22,7 +22,6 @@ public class BuildingButton : MonoBehaviour//,IPointerUpHandler,IPointerDownHand
     private Renderer buildingRendererInstance;
     private Color normColor;
 
-
     private void Start()
     {
         mainCamera = Camera.main;
@@ -41,7 +40,7 @@ public class BuildingButton : MonoBehaviour//,IPointerUpHandler,IPointerDownHand
         }
 
         if (buildingPreviewInstance == null) return;
-
+        
         UpdateBuildingPreview();
         PlaceBuilding();
 
@@ -58,7 +57,9 @@ public class BuildingButton : MonoBehaviour//,IPointerUpHandler,IPointerDownHand
 
         buildingRendererInstance = buildingPreviewInstance.GetComponentInChildren<MeshRenderer>();
 
+
         buildingPreviewInstance.SetActive(false);
+
 
         normColor = buildingRendererInstance.material.color;
     }
@@ -66,7 +67,6 @@ public class BuildingButton : MonoBehaviour//,IPointerUpHandler,IPointerDownHand
     public void PlaceBuilding()
     {
         if (buildingPreviewInstance == null) return;
-
 
 
         if (Mouse.current.leftButton.wasPressedThisFrame)
@@ -80,7 +80,7 @@ public class BuildingButton : MonoBehaviour//,IPointerUpHandler,IPointerDownHand
 
             Destroy(buildingPreviewInstance);
         }
-
+       
         if (Mouse.current.rightButton.wasPressedThisFrame)
         {
             Destroy(buildingPreviewInstance);
@@ -101,16 +101,17 @@ public class BuildingButton : MonoBehaviour//,IPointerUpHandler,IPointerDownHand
             buildingPreviewInstance.SetActive(true);
         }
 
-        Debug.Log($"color: {buildingRendererInstance.material.color}");
-
-        
-        Color color = player.CanPlaceBuilding(buildingCollider, hit.point) ? normColor : Color.red;
-
-        buildingRendererInstance.material.SetColor("_Color", color);
+        //смена цвета при размещении здания (корректно ли размещается)
 
 
+        //  Debug.Log($"color: {buildingRendererInstance.material.color}");
+
+        //Color color = player.CanPlaceBuilding(buildingCollider, hit.point) ? normColor : Color.red;
+
+        //buildingRendererInstance.material.SetColor("_Color", color);
     }
 
+   
     //public void OnPointerDown(PointerEventData eventData)
     //{
     //    if (eventData.button != PointerEventData.InputButton.Left) return;
