@@ -18,7 +18,8 @@ public class RTSPlayer : NetworkBehaviour
 
     private Color teamColor = new Color();
     private List<Unit> myUnits = new List<Unit>();
-    private List<Building> myBuildings = new List<Building>();
+
+   private List<Building> myBuildings = new List<Building>();
 
     public Color GetTeamColor()
     {
@@ -53,6 +54,7 @@ public class RTSPlayer : NetworkBehaviour
             return false;
         }
 
+    
 
         foreach (Building building in myBuildings)
         {
@@ -118,8 +120,10 @@ public class RTSPlayer : NetworkBehaviour
 
         BoxCollider buildingCollider = buildingToPlace.GetComponent<BoxCollider>();
 
+        
         if (!CanPlaceBuilding(buildingCollider,point)) return;
 
+        
         GameObject buildingInstance=
             Instantiate(buildingToPlace.gameObject, point, buildingToPlace.transform.rotation);
         
@@ -147,6 +151,7 @@ public class RTSPlayer : NetworkBehaviour
         if (building.connectionToClient.connectionId != connectionToClient.connectionId) return;
 
         myBuildings.Add(building);
+
     }
 
     private void ServerHandleBuildingDespawned(Building building)
@@ -199,12 +204,12 @@ public class RTSPlayer : NetworkBehaviour
 
     private void AuthorityHandleBuildingDespawned(Building building)
     {
-        myBuildings.Add(building);
+        myBuildings.Remove(building);
     }
 
     private void AuthorityHandleBuildingSpawned(Building building)
     {
-        myBuildings.Remove(building);
+        myBuildings.Add(building);
     }
     #endregion
 }

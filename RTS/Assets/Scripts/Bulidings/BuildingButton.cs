@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.ProBuilder.Shapes;
 using UnityEngine.UI;
 
-public class BuildingButton : MonoBehaviour//,IPointerUpHandler,IPointerDownHandler
+public class BuildingButton : MonoBehaviour
 {
     [SerializeField] private Building building = null;
     [SerializeField] private Image iconImage=null;
@@ -42,6 +42,7 @@ public class BuildingButton : MonoBehaviour//,IPointerUpHandler,IPointerDownHand
         if (buildingPreviewInstance == null) return;
         
         UpdateBuildingPreview();
+
         PlaceBuilding();
 
     }
@@ -103,37 +104,12 @@ public class BuildingButton : MonoBehaviour//,IPointerUpHandler,IPointerDownHand
 
         //смена цвета при размещении здания (корректно ли размещается)
 
+        //Debug.Log(player.CanPlaceBuilding(buildingCollider, hit.point).ToString());
 
-        //  Debug.Log($"color: {buildingRendererInstance.material.color}");
+        Color color = player.CanPlaceBuilding(buildingCollider, hit.point) ? normColor : Color.red;
 
-        //Color color = player.CanPlaceBuilding(buildingCollider, hit.point) ? normColor : Color.red;
-
-        //buildingRendererInstance.material.SetColor("_Color", color);
+        buildingRendererInstance.material.SetColor("_Color", color);
     }
 
    
-    //public void OnPointerDown(PointerEventData eventData)
-    //{
-    //    if (eventData.button != PointerEventData.InputButton.Left) return;
-
-    //    buildingPreviewInstance = Instantiate(building.GetBuildingPreview());
-    //    buildingRendererInstance = buildingPreviewInstance.GetComponentInChildren<Renderer>();
-
-    //    buildingPreviewInstance.SetActive(false);
-    //}
-
-    //public void OnPointerUp(PointerEventData eventData)
-    //{
-    //    if (buildingPreviewInstance == null) return;
-
-    //    Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
-
-    //    if(Physics.Raycast(ray,out RaycastHit hit, Mathf.Infinity, floorMask))
-    //    {
-    //        //place building
-    //    }
-
-    //    Destroy(buildingPreviewInstance);
-    //}
-
 }
