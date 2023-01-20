@@ -89,7 +89,7 @@ Transform:
   m_GameObject: {fileID: 5322895865860103118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2092158228722836962}
@@ -123,7 +123,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -315,10 +315,22 @@ PrefabInstance:
       propertyPath: m_RenderMode
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2564573056642614191, guid: 2a057b32aad46d6428504595ff946ab7, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3210836779179453368, guid: 2a057b32aad46d6428504595ff946ab7, type: 3}
       propertyPath: aimAtPoint
       value: 
       objectReference: {fileID: 929845718038691269}
+    - target: {fileID: 4047905024406864193, guid: 2a057b32aad46d6428504595ff946ab7, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450643132216215313, guid: 2a057b32aad46d6428504595ff946ab7, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5450643132216215313, guid: 2a057b32aad46d6428504595ff946ab7, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -480,6 +492,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UnitSpawningCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1147314019402779124, guid: 2fe1d0af3647ccd40a8d35819836366e, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1341024200759562192, guid: 2fe1d0af3647ccd40a8d35819836366e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -563,6 +579,22 @@ PrefabInstance:
     - target: {fileID: 1341024200759562192, guid: 2fe1d0af3647ccd40a8d35819836366e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3756717407991106314, guid: 2fe1d0af3647ccd40a8d35819836366e, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4645148166674580887, guid: 2fe1d0af3647ccd40a8d35819836366e, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6168132427169891834, guid: 2fe1d0af3647ccd40a8d35819836366e, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7114335001997342390, guid: 2fe1d0af3647ccd40a8d35819836366e, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fe1d0af3647ccd40a8d35819836366e, type: 3}
