@@ -28,7 +28,7 @@ public class BuildingButton : MonoBehaviour
        
         iconImage.sprite = building.GetIcon();
         priceText.text = building.GetPrice().ToString();
-
+     
         buildingCollider = building.GetComponent<BoxCollider>();
     }
 
@@ -76,7 +76,9 @@ public class BuildingButton : MonoBehaviour
             
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, floorMask))
             {
-               player.CmdTryPlaceBuilding(building.GetId(), hit.point);
+                Debug.Log($"Buidling Id: {building.GetId()}");
+                player.CmdTryPlaceBuilding(building.GetId(), hit.point);
+               
             }
 
             Destroy(buildingPreviewInstance);
