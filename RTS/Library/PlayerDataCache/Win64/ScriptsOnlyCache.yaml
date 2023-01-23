@@ -9,6 +9,9 @@ ScriptsOnlyBuild:
     - GameOverHandler
     - Health
     - HealthDisplay
+    - JoinLobbyMenu
+    - LobbyMenu
+    - MainMenu
     - Minimap
     - RTSNetworkManager
     - RTSPlayer
@@ -35,7 +38,6 @@ ScriptsOnlyBuild:
     - Mirror.TelepathyTransport
     Mirror.dll:
     - Mirror.NetworkIdentity
-    - Mirror.NetworkManagerHUD
     - Mirror.NetworkStartPosition
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridBrush
@@ -100,6 +102,7 @@ ScriptsOnlyBuild:
     - UnityEditor.ShaderGraph.SubGraphAsset
     Unity.TextMeshPro.dll:
     - TMPro.TMP_FontAsset
+    - TMPro.TMP_InputField
     - TMPro.TMP_Settings
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
@@ -122,6 +125,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.LayoutElement
     - UnityEngine.UI.Mask
     - UnityEngine.UI.RawImage
+    - UnityEngine.UI.RectMask2D
     - UnityEngine.UI.ScrollRect
     - UnityEngine.UI.Scrollbar
     - UnityEngine.UI.Text
@@ -159,6 +163,11 @@ ScriptsOnlyBuild:
     - TMPro.TMP_GlyphAdjustmentRecord
     - TMPro.TMP_GlyphPairAdjustmentRecord
     - TMPro.TMP_GlyphValueRecord
+    - TMPro.TMP_InputField/OnChangeEvent
+    - TMPro.TMP_InputField/SelectionEvent
+    - TMPro.TMP_InputField/SubmitEvent
+    - TMPro.TMP_InputField/TextSelectionEvent
+    - TMPro.TMP_InputField/TouchScreenKeyboardEvent
     - TMPro.TMP_Sprite
     - TMPro.TMP_SpriteCharacter
     - TMPro.TMP_SpriteGlyph
@@ -201,6 +210,24 @@ ScriptsOnlyBuild:
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.Renderer
     methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.GameObject
+    methodName: SetActive
+  - assembly: UnityEngine.UI
+    fullTypeName: UnityEngine.UI.Selectable
+    methodName: set_interactable
+  - assembly: Assembly-CSharp
+    fullTypeName: JoinLobbyMenu
+    methodName: Join
+  - assembly: Assembly-CSharp
+    fullTypeName: LobbyMenu
+    methodName: LeaveLobby
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.GameObject
+    methodName: SetActive
+  - assembly: Assembly-CSharp
+    fullTypeName: MainMenu
+    methodName: HostLobby
   - assembly: Unity.RenderPipelines.Core.Runtime
     fullTypeName: UnityEngine.Rendering.UI.DebugUIHandlerPanel
     methodName: OnScrollbarClicked
@@ -523,13 +550,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11474}
     - Class: 114
+      Script: {instanceID: 11612}
+    - Class: 114
       Script: {instanceID: 11770}
     - Class: 114
       Script: {instanceID: 11836}
     - Class: 114
       Script: {instanceID: 11860}
     - Class: 114
-      Script: {instanceID: 11934}
+      Script: {instanceID: 12436}
     - Class: 114
       Script: {instanceID: 12594}
     - Class: 114
@@ -572,6 +601,12 @@ ScriptsOnlyBuild:
       Script: {instanceID: 15048}
     - Class: 114
       Script: {instanceID: 15612}
+    - Class: 114
+      Script: {instanceID: 33408}
+    - Class: 114
+      Script: {instanceID: 34286}
+    - Class: 114
+      Script: {instanceID: 34374}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -3315,6 +3350,24 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 25990ac6bd92164b3279fc87d3bcd8f4
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MainMenu
+  - hash:
+      serializedVersion: 2
+      Hash: 72d1cc4201092ef6dc67c8020194800f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: JoinLobbyMenu
+  - hash:
+      serializedVersion: 2
+      Hash: 90d444d073481490f8833f67445bc283
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LobbyMenu
   platform: 19
   scenePathNames:
   - Assets/Scenes/Scene_Menu.unity

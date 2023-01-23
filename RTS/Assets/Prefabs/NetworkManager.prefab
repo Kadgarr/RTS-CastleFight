@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7934333400601530517}
   - component: {fileID: 7934333400601530507}
   - component: {fileID: 7934333400601530519}
-  - component: {fileID: 7934333400601530506}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -61,12 +60,15 @@ MonoBehaviour:
   autoCreatePlayer: 1
   playerSpawnMethod: 1
   spawnPrefabs:
-  - {fileID: 2451727418419438733, guid: 8a7e418e3da987e4a94ba05e2b7d1943, type: 3}
   - {fileID: 1905891232863627887, guid: f4b5b24bcea76554db8afc5808afb634, type: 3}
-  - {fileID: 8289431160343697598, guid: 5d2a87ed6c3bd2a48a8cc793aed4f908, type: 3}
   - {fileID: 4982498120403502231, guid: e3f46da3ba790a9438f1565264bc115d, type: 3}
-  - {fileID: 1905891232863627887, guid: 1e8086d8ca1d7b94cbd3489dd7b7917f, type: 3}
   - {fileID: 1905891232863627887, guid: b22de163656621442b015d4a6f66f4f8, type: 3}
+  - {fileID: 581234687218935162, guid: 8a7280f81847faf4eb175bc96bb56687, type: 3}
+  - {fileID: 3752885508300374430, guid: cebdccfc11f19ed47b26465c90a8b805, type: 3}
+  - {fileID: 2966875511319284634, guid: a7ceb1cfd4fb07043885acfb13982924, type: 3}
+  - {fileID: 2350876118148983483, guid: 7f98eab97eb6151459402fe4a4383171, type: 3}
+  - {fileID: 3428152308824618021, guid: 2c556f07c59f91d459e9ba55933e6f55, type: 3}
+  - {fileID: 1007537482734789767, guid: 975578b081dabfd49a2ef5d740c04734, type: 3}
   timeInterpolationGui: 0
   unitSpawnerPrefab: {fileID: 1905891232863627887, guid: f4b5b24bcea76554db8afc5808afb634, type: 3}
   gameOverHandlerPrefab: {fileID: 2096890459027525324, guid: e3f46da3ba790a9438f1565264bc115d, type: 3}
@@ -94,17 +96,3 @@ MonoBehaviour:
   clientMaxReceivesPerTick: 1000
   clientSendQueueLimit: 10000
   clientReceiveQueueLimit: 10000
---- !u!114 &7934333400601530506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7934333400601530513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetX: 0
-  offsetY: 0
