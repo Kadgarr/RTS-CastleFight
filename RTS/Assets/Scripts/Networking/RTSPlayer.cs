@@ -17,10 +17,12 @@ public class RTSPlayer : NetworkBehaviour
     private int resources = 500;
     [SyncVar(hook=nameof(AuthorityHandlePartyOwnerStateUpdated))]
     private bool isPartyOwner=false;
-
+    [SyncVar(hook =nameof(ClientHandleDisplayNameUpdated))]
+    private string displayName;
 
     public event Action<int> ClientOnResourcesUpdated;
     public static event Action<bool> AuthorityOnPartyOwnerStateUpdated;
+    public static event Action ClientOnInfoUpdated;
 
     private Color teamColor = new Color();
     private List<Unit> myUnits = new List<Unit>();
@@ -28,7 +30,10 @@ public class RTSPlayer : NetworkBehaviour
     private List<Building> myBuildings = new List<Building>();
 
 
-
+    public string GetDisplayName()
+    {
+        return displayName;
+    }
     public bool GetIsPartyOwenr()
     {
         return isPartyOwner;
@@ -88,6 +93,12 @@ public class RTSPlayer : NetworkBehaviour
     #region Server
 
     [Server]
+    public void SetDisplayName(string displayName)
+    {
+        this.displayName = displayName;
+    }
+
+    [Server]
     public void SetPartyOwner(bool state)
     {
         isPartyOwner = state;
@@ -107,6 +118,8 @@ public class RTSPlayer : NetworkBehaviour
         Unit.ServerOnUnitDespawned += ServerHandleUnitDespawned;
         Building.ServerOnBuildingSpawned += ServerHandleBuildingSpawned;
         Building.ServerOnBuildingDespawned += ServerHandleBuildingDespawned;
+
+        DontDestroyOnLoad(gameObject);
     }
 
     public override void OnStopServer()
@@ -197,10 +210,7 @@ public class RTSPlayer : NetworkBehaviour
 
     #region Client
      
-    private void ClientHandleResourcesUpdated(int oldResources, int newResources)
-    {
-        ClientOnResourcesUpdated?.Invoke(newResources);
-    }
+ 
     public override void OnStartAuthority()
     {
         if (NetworkServer.active)  return; 
@@ -214,12 +224,17 @@ public class RTSPlayer : NetworkBehaviour
     public override void OnStartClient()
     {
         if (NetworkServer.active) return;
+
+        DontDestroyOnLoad(gameObject);
        
         ((RTSNetworkManager)NetworkManager.singleton).Players.Add(this); 
+
     }
 
     public override void OnStopClient()
     {
+        ClientOnInfoUpdated?.Invoke();
+
         if (!isClientOnly || !hasAuthority) return;
 
         ((RTSNetworkManager)NetworkManager.singleton).Players.Remove(this);
@@ -230,6 +245,14 @@ public class RTSPlayer : NetworkBehaviour
         Building.AuthorityOnBuildingDespawned -= AuthorityHandleBuildingDespawned;
     }
 
+    private void ClientHandleDisplayNameUpdated(string oldDisplayName, string newDisplayName)
+    {
+        ClientOnInfoUpdated?.Invoke();
+    }
+    private void ClientHandleResourcesUpdated(int oldResources, int newResources)
+    {
+        ClientOnResourcesUpdated?.Invoke(newResources);
+    }
 
     private void AuthorityHandlePartyOwnerStateUpdated(bool oldState, bool newState)
     {

@@ -25,6 +25,7 @@ public class UnitSelectionHandler : MonoBehaviour
         mainCamera = Camera.main;
 
         Unit.AuthorityOnUnitDespawned += AuthorityHadnleUnitDespawned;
+        player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
         GameOverHandler.ClientOnGameOver += ClientHandleGameOver;
     }
 
@@ -73,11 +74,7 @@ public class UnitSelectionHandler : MonoBehaviour
     }
     private void Update()
     {
-        if(player == null)
-        {
-            //it's for lobby system
-            player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
-        }
+      
 
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
