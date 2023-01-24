@@ -221,6 +221,9 @@ ScriptsOnlyBuild:
     methodName: Join
   - assembly: Assembly-CSharp
     fullTypeName: LobbyMenu
+    methodName: StartGame
+  - assembly: Assembly-CSharp
+    fullTypeName: LobbyMenu
     methodName: LeaveLobby
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.GameObject
@@ -379,19 +382,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12656}
     - Class: 114
-      Script: {instanceID: 13110}
+      Script: {instanceID: 13114}
     - Class: 114
-      Script: {instanceID: 13266}
+      Script: {instanceID: 13272}
     - Class: 114
-      Script: {instanceID: 13304}
+      Script: {instanceID: 13310}
     - Class: 114
-      Script: {instanceID: 13562}
+      Script: {instanceID: 13568}
     - Class: 114
-      Script: {instanceID: 14900}
+      Script: {instanceID: 14906}
     - Class: 114
-      Script: {instanceID: 15028}
+      Script: {instanceID: 15034}
     - Class: 114
-      Script: {instanceID: 15764}
+      Script: {instanceID: 15770}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -566,47 +569,47 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12878}
     - Class: 114
-      Script: {instanceID: 13110}
+      Script: {instanceID: 12890}
     - Class: 114
-      Script: {instanceID: 13194}
+      Script: {instanceID: 12980}
     - Class: 114
-      Script: {instanceID: 13304}
+      Script: {instanceID: 13114}
     - Class: 114
-      Script: {instanceID: 13562}
+      Script: {instanceID: 13170}
     - Class: 114
-      Script: {instanceID: 13582}
+      Script: {instanceID: 13200}
     - Class: 114
-      Script: {instanceID: 13738}
+      Script: {instanceID: 13310}
     - Class: 114
-      Script: {instanceID: 13812}
+      Script: {instanceID: 13568}
     - Class: 114
-      Script: {instanceID: 13840}
+      Script: {instanceID: 13588}
     - Class: 114
-      Script: {instanceID: 13852}
+      Script: {instanceID: 13744}
     - Class: 114
-      Script: {instanceID: 13954}
+      Script: {instanceID: 13818}
     - Class: 114
-      Script: {instanceID: 14116}
+      Script: {instanceID: 13846}
     - Class: 114
-      Script: {instanceID: 14416}
+      Script: {instanceID: 13858}
     - Class: 114
-      Script: {instanceID: 14516}
+      Script: {instanceID: 13960}
     - Class: 114
-      Script: {instanceID: 14626}
+      Script: {instanceID: 14122}
     - Class: 114
-      Script: {instanceID: 14816}
+      Script: {instanceID: 14422}
     - Class: 114
-      Script: {instanceID: 14900}
+      Script: {instanceID: 14522}
     - Class: 114
-      Script: {instanceID: 15048}
+      Script: {instanceID: 14632}
     - Class: 114
-      Script: {instanceID: 15612}
+      Script: {instanceID: 14822}
     - Class: 114
-      Script: {instanceID: 33408}
+      Script: {instanceID: 14906}
     - Class: 114
-      Script: {instanceID: 34286}
+      Script: {instanceID: 15054}
     - Class: 114
-      Script: {instanceID: 34374}
+      Script: {instanceID: 15618}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2800,10 +2803,22 @@ ScriptsOnlyBuild:
     className: DebugUIHandlerFloatField
   - hash:
       serializedVersion: 2
+      Hash: 1dd0e466e78132bd7e93a7102e2a7271
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LobbyMenu
+  - hash:
+      serializedVersion: 2
       Hash: b4f5b310d99119533fe0861635f2f96f
     assemblyName: Mirror.Examples.dll
     namespaceName: Mirror.Examples.Chat
     className: Player
+  - hash:
+      serializedVersion: 2
+      Hash: 72d1cc4201092ef6dc67c8020194800f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: JoinLobbyMenu
   - hash:
       serializedVersion: 2
       Hash: d17f8a6c5382f5422b60b87552ec75d1
@@ -2840,6 +2855,12 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine.PostFX
     className: CinemachinePostProcessing
+  - hash:
+      serializedVersion: 2
+      Hash: 25990ac6bd92164b3279fc87d3bcd8f4
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MainMenu
   - hash:
       serializedVersion: 2
       Hash: fc169718e5fd24cea7425f24908c0418
@@ -3118,7 +3139,7 @@ ScriptsOnlyBuild:
     className: PlayModeRunnerCallback
   - hash:
       serializedVersion: 2
-      Hash: 43801c68ebf40e832d54d06c5e78d0d5
+      Hash: 862c125e64dcf3912cc29b9f40b24d7b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RTSNetworkManager
@@ -3350,24 +3371,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 25990ac6bd92164b3279fc87d3bcd8f4
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: MainMenu
-  - hash:
-      serializedVersion: 2
-      Hash: 72d1cc4201092ef6dc67c8020194800f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: JoinLobbyMenu
-  - hash:
-      serializedVersion: 2
-      Hash: 90d444d073481490f8833f67445bc283
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: LobbyMenu
   platform: 19
   scenePathNames:
   - Assets/Scenes/Scene_Menu.unity
