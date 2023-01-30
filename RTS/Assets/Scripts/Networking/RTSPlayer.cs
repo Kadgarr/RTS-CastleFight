@@ -105,7 +105,6 @@ public class RTSPlayer : NetworkBehaviour
     }
 
     [Command]
-
     public void CmdStartGame()
     {
         if (!isPartyOwner) return;

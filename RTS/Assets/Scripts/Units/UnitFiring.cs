@@ -1,6 +1,8 @@
 using Mirror;
+
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
 
@@ -13,17 +15,34 @@ public class UnitFiring : NetworkBehaviour
     [SerializeField] private float fireRate = 1f;
     [SerializeField] private float rotationSpeed = 20f;
 
+    private List<GameObject> unitBases = new List<GameObject>();
+
     private float lastFireTime;
+    private Targetable target;
+
+    private void Start()
+    {
+        for(int i = 0; i < 2; i++)
+        {
+            unitBases.Add(GameObject.Find($"UnitBase(Clone) {i+1}"));
+        }
+    }
 
     [ServerCallback]
     private void Update()
     {
-        Targetable target = targeter.GetTarget();
+        target = targeter.GetTarget();
 
-        if (target == null) return;
+        if (target == null)
+        {
+           // TargetUnitBase();
+
+            return;
+        }
 
         if(!CanFireAtTarget()) return;
 
+       
         Quaternion targetRotation = Quaternion.LookRotation(
             target.transform.position - transform.position);
 
@@ -43,10 +62,58 @@ public class UnitFiring : NetworkBehaviour
         }
     }
 
+    [ServerCallback]
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.TryGetComponent<NetworkIdentity>(out NetworkIdentity networkIdentity))
+        {
+            if (networkIdentity.connectionToClient.connectionId == connectionToClient.connectionId)
+            { return; }
+        }
+     
+
+        if (target != null) return;
+
+        targeter.AttackUnit(other.gameObject);
+
+        target = targeter.GetTarget();
+
+    }
+
+   
+
     [Server]
     private bool CanFireAtTarget()
     {
         return (targeter.GetTarget().transform.position - transform.position).sqrMagnitude
             <= fireRange * fireRange;
+    }
+
+    private void TargetUnitBase()
+    {
+        foreach(var unitBase in unitBases)
+        {
+            if (unitBase == null) return;
+
+            if (unitBase.TryGetComponent<NetworkIdentity>(out NetworkIdentity networkIdentity))
+            {
+                if (networkIdentity.connectionToClient.connectionId != connectionToClient.connectionId)
+                {
+                    Debug.Log($"UnitBase:{unitBase.name}");
+
+                    target = targeter.GetTarget();
+
+                    targeter.CmdSetTarget(unitBase);
+                }
+
+            }
+        }
+      
+
+       
+
+        
+
     }
 }

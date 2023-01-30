@@ -74,7 +74,7 @@ public class BuildingButton : MonoBehaviour
             
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, floorMask))
             {
-                Debug.Log($"Buidling Id: {building.GetId()}");
+                
                 player.CmdTryPlaceBuilding(building.GetId(), hit.point);
                
             }

@@ -6,8 +6,9 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] private GameObject lobbyUI = null;
     [SerializeField] private GameObject landingPagePanel = null;
-    [SerializeField] private bool useSteam;
+    [SerializeField] private bool useSteam=false;
 
     protected Callback<LobbyCreated_t> lobbyCreated;
     protected Callback<GameLobbyJoinRequested_t> gameLobbyRequested;
@@ -16,10 +17,10 @@ public class MainMenu : MonoBehaviour
     public void HostLobby()
     {
         landingPagePanel.SetActive(false);
-
+        lobbyUI.SetActive(true);
         if (useSteam)
         {
-            SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, 4);
+            SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, 2);
             return; 
         }
 

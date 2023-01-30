@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOverDisplay : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class GameOverDisplay : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameOverHandler.ClientOnGameOver += ClientHandleGameover;
+        GameOverHandler.ClientOnGameOver -= ClientHandleGameover;
     }
 
 
@@ -30,7 +31,7 @@ public class GameOverDisplay : MonoBehaviour
         }
         else
         {
-            NetworkManager.singleton.StopClient();    
+            NetworkManager.singleton.StopClient();
         }
     }
 

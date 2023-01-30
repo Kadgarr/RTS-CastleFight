@@ -107,6 +107,8 @@ public class RTSNetworkManager : NetworkManager
                    unitBasePrefab,
                    GetStartPosition().position,
                    Quaternion.identity);
+
+                baseInstance.name += $" {player.netId}";
                 NetworkServer.Spawn(baseInstance, player.connectionToClient);
             }
         }

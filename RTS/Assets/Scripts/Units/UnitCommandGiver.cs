@@ -56,6 +56,7 @@ public class UnitCommandGiver : MonoBehaviour
 
     private void TryTarget(Targetable target)
     {
+        
         foreach (Unit unit in unitSelectionHandler.SelectedUnits)
         {
             unit.GetTargeter().CmdSetTarget(target.gameObject);

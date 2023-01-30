@@ -32,6 +32,7 @@ public class UnitSelectionHandler : MonoBehaviour
     private void OnDestroy()
     {
         Unit.AuthorityOnUnitDespawned -= AuthorityHadnleUnitDespawned;
+        GameOverHandler.ClientOnGameOver -= ClientHandleGameOver;
     }
     private bool IsOverUI()
     {
@@ -85,7 +86,7 @@ public class UnitSelectionHandler : MonoBehaviour
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             ClearDeselectedUnits();
-        }
+        } 
         else if (Mouse.current.leftButton.wasReleasedThisFrame) ClearSelectionArea();
         else if (Mouse.current.leftButton.isPressed) UpdateSelectionArea(); 
     }
