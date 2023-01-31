@@ -156,7 +156,7 @@ SphereCollider:
   m_GameObject: {fileID: 2451727418419438733}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 3.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -280,6 +280,9 @@ MonoBehaviour:
   fireRange: 11
   fireRate: 1
   rotationSpeed: 200
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &-5199283524406866521
 MonoBehaviour:
   m_ObjectHideFlags: 0

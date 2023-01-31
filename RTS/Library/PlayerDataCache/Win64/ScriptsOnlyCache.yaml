@@ -37,8 +37,6 @@ ScriptsOnlyBuild:
     - Mirror.FizzySteam.FizzySteamworks
     Mirror.Components.dll:
     - Mirror.NetworkTransformReliable
-    Mirror.Editor.dll:
-    - Mirror.NetworkBehaviourInspector
     Mirror.Transports.dll:
     - Mirror.TelepathyTransport
     - kcp2k.KcpTransport
@@ -46,12 +44,14 @@ ScriptsOnlyBuild:
     - Mirror.NetworkIdentity
     - Mirror.NetworkStartPosition
     Unity.2D.Tilemap.Editor.dll:
+    - UnityEditor.Tilemaps.GridBrush
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
     - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
+    - UnityEditor.Tilemaps.TilemapEditorToolPreferences
     - UnityEditor.Tilemaps.TilemapPrefabStageHelper
     Unity.InputSystem.dll:
     - UnityEngine.InputSystem.InputActionAsset
@@ -62,6 +62,9 @@ ScriptsOnlyBuild:
     - UnityEngine.InputSystem.UI.InputSystemUIInputModule
     Unity.ProBuilder.Editor.dll:
     - UnityEditor.ProBuilder.ProBuilderEditor
+    - UnityEditor.ProBuilder.ProbuilderMoveTool
+    - UnityEditor.ProBuilder.ProbuilderRotateTool
+    - UnityEditor.ProBuilder.ProbuilderScaleTool
     Unity.RenderPipelines.Core.Runtime.dll:
     - UnityEngine.Rendering.UI.DebugUIHandlerBitField
     - UnityEngine.Rendering.UI.DebugUIHandlerButton
@@ -2447,7 +2450,7 @@ ScriptsOnlyBuild:
     className: CinemachineGroupComposer
   - hash:
       serializedVersion: 2
-      Hash: 6701d41bb8daf450e8532a658049bc65
+      Hash: fe7c8f4c580322e5075ecd5cc71f492d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UnitFiring

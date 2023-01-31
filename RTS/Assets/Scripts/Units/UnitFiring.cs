@@ -8,12 +8,13 @@ using UnityEngine;
 
 public class UnitFiring : NetworkBehaviour
 {
-    [SerializeField] private Targeter targeter=null;
+    [SerializeField] private Targeter targeter = null;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private Transform projectileSpawnPoint = null;
     [SerializeField] private float fireRange = 5f;
     [SerializeField] private float fireRate = 1f;
     [SerializeField] private float rotationSpeed = 20f;
+    [SerializeField] private LayerMask layerMask = new LayerMask();
 
     private List<GameObject> unitBases = new List<GameObject>();
 
@@ -22,10 +23,11 @@ public class UnitFiring : NetworkBehaviour
 
     private void Start()
     {
-        for(int i = 0; i < 2; i++)
+        for (int i = 0; i < 2; i++)
         {
-            unitBases.Add(GameObject.Find($"UnitBase(Clone) {i+1}"));
+            unitBases.Add(GameObject.Find($"UnitBase(Clone) {i + 1}"));
         }
+
     }
 
     [ServerCallback]
@@ -35,7 +37,11 @@ public class UnitFiring : NetworkBehaviour
 
         if (target == null)
         {
-           // TargetUnitBase();
+            
+            AutoAttack();
+
+            TargetUnitBase();
+
 
             return;
         }
@@ -62,37 +68,32 @@ public class UnitFiring : NetworkBehaviour
         }
     }
 
-    [ServerCallback]
-    private void OnTriggerEnter(Collider other)
-    {
 
-        if (other.TryGetComponent<NetworkIdentity>(out NetworkIdentity networkIdentity))
+
+    private void AutoAttack()
+    {
+        if (Physics.SphereCast(projectileSpawnPoint.position, fireRange, transform.position, out RaycastHit hit, fireRange, layerMask))
         {
-            if (networkIdentity.connectionToClient.connectionId == connectionToClient.connectionId)
-            { return; }
+           
+            if (hit.collider.TryGetComponent<Targetable>(out Targetable potentialTarget))
+            {
+                if (potentialTarget.connectionToClient == connectionToClient)
+                {
+                    return;  
+                }
+                else
+                {
+                    targeter.AttackUnit(hit.collider.gameObject); 
+                    target = targeter.GetTarget(); 
+                }
+            }
         }
      
-
-        if (target != null) return;
-
-        targeter.AttackUnit(other.gameObject);
-
-        target = targeter.GetTarget();
-
-    }
-
-   
-
-    [Server]
-    private bool CanFireAtTarget()
-    {
-        return (targeter.GetTarget().transform.position - transform.position).sqrMagnitude
-            <= fireRange * fireRange;
     }
 
     private void TargetUnitBase()
     {
-        foreach(var unitBase in unitBases)
+        foreach (var unitBase in unitBases)
         {
             if (unitBase == null) return;
 
@@ -104,16 +105,19 @@ public class UnitFiring : NetworkBehaviour
 
                     target = targeter.GetTarget();
 
-                    targeter.CmdSetTarget(unitBase);
+                    targeter.AttackUnit(unitBase);
                 }
 
             }
         }
-      
-
-       
-
-        
 
     }
+    [Server]
+    private bool CanFireAtTarget()
+    {
+        return (targeter.GetTarget().transform.position - transform.position).sqrMagnitude
+            <= fireRange * fireRange;
+    }
+
+
 }
