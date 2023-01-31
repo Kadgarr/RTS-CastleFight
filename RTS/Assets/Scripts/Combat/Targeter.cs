@@ -38,7 +38,7 @@ public class Targeter : NetworkBehaviour
         this.target = newTarget;
 
     }
-    public void AttackUnit(GameObject targetGameobject)
+    public void SetTarget(GameObject targetGameobject)
     {
         if (!targetGameobject.TryGetComponent<Targetable>(out Targetable newTarget)) { return; }
 

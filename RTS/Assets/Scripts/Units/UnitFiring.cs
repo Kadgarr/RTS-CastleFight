@@ -21,6 +21,7 @@ public class UnitFiring : NetworkBehaviour
     private float lastFireTime;
     private Targetable target;
     private bool activeUnitBase = false;
+    
 
     private void Start()
     {
@@ -36,11 +37,9 @@ public class UnitFiring : NetworkBehaviour
     {
         target = targeter.GetTarget();
 
-        if (target == null /*|| activeUnitBase*/)
+        if (target == null )
         {
-
             TargetUnitBase();
-
             return;
         }
 
@@ -68,7 +67,7 @@ public class UnitFiring : NetworkBehaviour
 
 
     [ServerCallback]
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
 
         if (other.TryGetComponent<NetworkIdentity>(out NetworkIdentity networkIdentity))
@@ -80,30 +79,11 @@ public class UnitFiring : NetworkBehaviour
 
         if (target != null && !activeUnitBase) return;
 
-        targeter.AttackUnit(other.gameObject);
+        targeter.SetTarget(other.gameObject);
 
         target = targeter.GetTarget();
         activeUnitBase = false;
 
-    }
-
-    private void AutoAttack()
-    {
-        if (Physics.SphereCast(projectileSpawnPoint.position, fireRange, transform.position, out RaycastHit hit, fireRange, layerMask))
-        {
-            if (hit.collider.TryGetComponent<Targetable>(out Targetable potentialTarget))
-            {
-                if (potentialTarget.connectionToClient==connectionToClient)
-                {
-                    return;  //if the hit target is the players, do nothing
-                }
-                else
-                {
-                    targeter.CmdSetTarget(hit.collider.gameObject); //tell the targeter script to set the target as the unit that is in range
-                    target = targeter.GetTarget(); //get the target just in case the update function doesn't work fast enough (maybe delete this at a later date)
-                }
-            }
-        }
     }
 
 
@@ -121,7 +101,8 @@ public class UnitFiring : NetworkBehaviour
 
                     target = targeter.GetTarget();
 
-                    targeter.AttackUnit(unitBase);
+                    targeter.SetTarget(unitBase);
+
                     activeUnitBase = true;
                 }
 

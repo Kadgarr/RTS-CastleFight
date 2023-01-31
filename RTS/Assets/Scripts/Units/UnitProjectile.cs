@@ -20,21 +20,28 @@ public class UnitProjectile : NetworkBehaviour
         Invoke(nameof(DestroySelf), destroyAfterSeconds);
     }
 
+
     [ServerCallback]
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent<NetworkIdentity>(out NetworkIdentity networkIdentity))
+        if (other.TryGetComponent<NetworkIdentity>(out NetworkIdentity networkIdentity))
         {
             if (networkIdentity.connectionToClient == connectionToClient) return;
         }
 
-        if(other.TryGetComponent<Health>(out Health health))
+
+        if (other.TryGetComponent<Health>(out Health health))
         {
             health.DealDamage(damageToDeal);
         }
 
-        DestroySelf(); 
+
+        
+        DestroySelf();
+    
+        
     }
+
 
     [Server]
     private void DestroySelf()
