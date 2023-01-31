@@ -20,6 +20,7 @@ public class UnitFiring : NetworkBehaviour
 
     private float lastFireTime;
     private Targetable target;
+    private bool activeUnitBase = false;
 
     private void Start()
     {
@@ -35,32 +36,29 @@ public class UnitFiring : NetworkBehaviour
     {
         target = targeter.GetTarget();
 
-        if (target == null)
+        if (target == null /*|| activeUnitBase*/)
         {
-            
-            AutoAttack();
 
             TargetUnitBase();
-
 
             return;
         }
 
-        if(!CanFireAtTarget()) return;
+        if (!CanFireAtTarget()) return;
 
-       
+
         Quaternion targetRotation = Quaternion.LookRotation(
             target.transform.position - transform.position);
 
         transform.rotation = Quaternion.RotateTowards(
-            transform.rotation,targetRotation,rotationSpeed*Time.deltaTime);
+            transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
         if (Time.time > (1 / fireRate) + lastFireTime)
         {
             Quaternion projectileRotation = Quaternion.LookRotation(
                 target.GetAimPoint().position - projectileSpawnPoint.position);
-            
-            GameObject projectileInstance = Instantiate(projectilePrefab, projectileSpawnPoint.position,projectileRotation);
+
+            GameObject projectileInstance = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileRotation);
 
             NetworkServer.Spawn(projectileInstance, connectionToClient);
 
@@ -69,27 +67,45 @@ public class UnitFiring : NetworkBehaviour
     }
 
 
+    [ServerCallback]
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.TryGetComponent<NetworkIdentity>(out NetworkIdentity networkIdentity))
+        {
+            if (networkIdentity.connectionToClient == connectionToClient)
+            { return; }
+        }
+
+
+        if (target != null && !activeUnitBase) return;
+
+        targeter.AttackUnit(other.gameObject);
+
+        target = targeter.GetTarget();
+        activeUnitBase = false;
+
+    }
 
     private void AutoAttack()
     {
         if (Physics.SphereCast(projectileSpawnPoint.position, fireRange, transform.position, out RaycastHit hit, fireRange, layerMask))
         {
-           
             if (hit.collider.TryGetComponent<Targetable>(out Targetable potentialTarget))
             {
-                if (potentialTarget.connectionToClient == connectionToClient)
+                if (potentialTarget.connectionToClient==connectionToClient)
                 {
-                    return;  
+                    return;  //if the hit target is the players, do nothing
                 }
                 else
                 {
-                    targeter.AttackUnit(hit.collider.gameObject); 
-                    target = targeter.GetTarget(); 
+                    targeter.CmdSetTarget(hit.collider.gameObject); //tell the targeter script to set the target as the unit that is in range
+                    target = targeter.GetTarget(); //get the target just in case the update function doesn't work fast enough (maybe delete this at a later date)
                 }
             }
         }
-     
     }
+
 
     private void TargetUnitBase()
     {
@@ -106,6 +122,7 @@ public class UnitFiring : NetworkBehaviour
                     target = targeter.GetTarget();
 
                     targeter.AttackUnit(unitBase);
+                    activeUnitBase = true;
                 }
 
             }
