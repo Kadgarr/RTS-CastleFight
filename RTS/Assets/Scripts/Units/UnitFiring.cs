@@ -40,6 +40,7 @@ public class UnitFiring : NetworkBehaviour
         if (target == null )
         {
             TargetUnitBase();
+ 
             return;
         }
 
@@ -87,7 +88,6 @@ public class UnitFiring : NetworkBehaviour
 
     }
 
-
     private void TargetUnitBase()
     {
         foreach (var unitBase in unitBases)
@@ -98,7 +98,6 @@ public class UnitFiring : NetworkBehaviour
             {
                 if (networkIdentity.connectionToClient.connectionId != connectionToClient.connectionId)
                 {
-                    Debug.Log($"UnitBase:{unitBase.name}");
 
                     target = targeter.GetTarget();
 

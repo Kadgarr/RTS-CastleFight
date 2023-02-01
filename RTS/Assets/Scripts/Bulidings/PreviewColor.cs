@@ -12,7 +12,7 @@ public class PreviewColor : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("CHECKCOL");
+        
         if (collision.gameObject.layer == 0) 
             gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
 
@@ -20,7 +20,7 @@ public class PreviewColor : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("CHECK");
+       
         if (collision.gameObject.layer == 0)
             gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
     }

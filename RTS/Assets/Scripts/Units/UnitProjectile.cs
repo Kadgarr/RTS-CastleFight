@@ -31,7 +31,6 @@ public class UnitProjectile : NetworkBehaviour
            if (networkIdentity.connectionToClient == connectionToClient) return;
         }
 
-
         if (other.TryGetComponent<Health>(out Health health))
         {
            health.DealDamage(damageToDeal);
