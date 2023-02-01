@@ -82,6 +82,7 @@ public class UnitFiring : NetworkBehaviour
         targeter.SetTarget(other.gameObject);
 
         target = targeter.GetTarget();
+
         activeUnitBase = false;
 
     }

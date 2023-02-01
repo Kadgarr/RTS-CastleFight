@@ -24,22 +24,20 @@ public class UnitProjectile : NetworkBehaviour
     [ServerCallback]
     private void OnTriggerEnter(Collider other)
     {
+        if (other.isTrigger) return;
+        
         if (other.TryGetComponent<NetworkIdentity>(out NetworkIdentity networkIdentity))
         {
-            if (networkIdentity.connectionToClient == connectionToClient) return;
+           if (networkIdentity.connectionToClient == connectionToClient) return;
         }
 
 
         if (other.TryGetComponent<Health>(out Health health))
         {
-            health.DealDamage(damageToDeal);
+           health.DealDamage(damageToDeal);
         }
 
-
-        
         DestroySelf();
-    
-        
     }
 
 
