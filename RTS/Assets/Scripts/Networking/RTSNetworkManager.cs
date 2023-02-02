@@ -1,4 +1,5 @@
 using Mirror;
+using Steamworks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -82,7 +83,10 @@ public class RTSNetworkManager : NetworkManager
 
         Players.Add(player);
 
-        player.SetDisplayName($"Player {Players.Count}");
+        if (SteamManager.Initialized) 
+        player.SetDisplayName(SteamFriends.GetPersonaName()); 
+        else
+            player.SetDisplayName($"Player {Players.Count}");
 
         player.SetTeamColor(new Color(
             UnityEngine.Random.Range(0f,1f),

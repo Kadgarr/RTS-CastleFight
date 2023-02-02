@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class UnitFiring : NetworkBehaviour
 {
@@ -99,10 +100,11 @@ public class UnitFiring : NetworkBehaviour
                 if (networkIdentity.connectionToClient.connectionId != connectionToClient.connectionId)
                 {
 
-                    target = targeter.GetTarget();
+                    //target = targeter.GetTarget();
 
-                    targeter.SetTarget(unitBase);
-
+                    //targeter.SetTarget(unitBase);
+                    //Debug.Log("UnitBase coordinates: "+unitBase.transform.position);
+                    gameObject.GetComponent<NavMeshAgent>().SetDestination(unitBase.transform.position);
                     activeUnitBase = true;
                 }
 
@@ -110,6 +112,7 @@ public class UnitFiring : NetworkBehaviour
         }
 
     }
+    
     [Server]
     private bool CanFireAtTarget()
     {
