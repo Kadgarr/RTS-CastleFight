@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,6 +26,8 @@ public class GameOverDisplay : MonoBehaviour
 
     public void LeaveGame()
     {
+        var steamManager = GameObject.Find("SteamManager");
+
         if (NetworkServer.active && NetworkClient.isConnected)
         {
             NetworkManager.singleton.StopHost();
@@ -38,6 +41,9 @@ public class GameOverDisplay : MonoBehaviour
 
     private void ClientHandleGameover(string winner)
     {
+        var steamManager = GameObject.Find("SteamManager");
+
+
         winnerNameText.text = $" {winner} has won!";
 
         gameOverDisplayParent.SetActive(true);

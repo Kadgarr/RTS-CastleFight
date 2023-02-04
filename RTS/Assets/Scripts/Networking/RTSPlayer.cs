@@ -74,8 +74,6 @@ public class RTSPlayer : NetworkBehaviour
             return false;
         }
 
-    
-
         foreach (Building building in myBuildings)
         {
             if ((point - building.transform.position).sqrMagnitude <=

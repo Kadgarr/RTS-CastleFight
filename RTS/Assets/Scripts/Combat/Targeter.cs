@@ -45,6 +45,7 @@ public class Targeter : NetworkBehaviour
         this.target = newTarget;
 
     }
+
     [Server]
     public void ClearTarget()
     {

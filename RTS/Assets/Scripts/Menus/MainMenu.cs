@@ -7,7 +7,7 @@ using UnityEngine;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject lobbyUI = null;
-    [SerializeField] private GameObject landingPagePanel = null;
+    [SerializeField] private GameObject landingPagePanel;
     [SerializeField] private bool useSteam=false;
 
     protected Callback<LobbyCreated_t> lobbyCreated;
@@ -18,6 +18,7 @@ public class MainMenu : MonoBehaviour
     {
         landingPagePanel.SetActive(false);
         lobbyUI.SetActive(true);
+
         if (useSteam)
         {
             SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, 2);
@@ -30,11 +31,11 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         if (!useSteam) return;
-
+        
         lobbyCreated = Callback<LobbyCreated_t>.Create(OnLobbyCreated);
         gameLobbyRequested = Callback<GameLobbyJoinRequested_t>.Create(OnGameLobbyJoinRequested);
         lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEnter);
-      
+        
     }
 
     private void OnLobbyCreated(LobbyCreated_t callback)
@@ -44,7 +45,7 @@ public class MainMenu : MonoBehaviour
             landingPagePanel.SetActive(true);
             return;
         }
-
+        
         NetworkManager.singleton.StartHost();
 
         SteamMatchmaking.SetLobbyData(
@@ -65,10 +66,11 @@ public class MainMenu : MonoBehaviour
         string hostAdress = SteamMatchmaking.GetLobbyData(
             new CSteamID(callback.m_ulSteamIDLobby),
             "HostAddress");
-
+       
         NetworkManager.singleton.networkAddress = hostAdress;
         NetworkManager.singleton.StartClient();
 
+        landingPagePanel = GameObject.Find("LandingPage");
         landingPagePanel.SetActive(false);
     }
 

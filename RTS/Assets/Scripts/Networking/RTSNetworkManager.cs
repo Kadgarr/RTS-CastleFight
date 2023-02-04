@@ -19,6 +19,8 @@ public class RTSNetworkManager : NetworkManager
     public static event Action ClientOnConnected;
     public static event Action ClientOnDisconnected;
 
+    private Callback callback;
+
     public List<RTSPlayer> Players { get; } = new List<RTSPlayer> ();
 
     #region Server
@@ -80,11 +82,11 @@ public class RTSNetworkManager : NetworkManager
         base.OnServerAddPlayer(conn);
 
         RTSPlayer player = conn.identity.GetComponent<RTSPlayer>();
-
+    
         Players.Add(player);
-
+        
         if (SteamManager.Initialized) 
-        player.SetDisplayName(SteamFriends.GetPersonaName()); 
+        player.SetDisplayName(SteamFriends.GetFriendPersonaName(SteamUser.GetSteamID())); 
         else
             player.SetDisplayName($"Player {Players.Count}");
 
@@ -96,6 +98,8 @@ public class RTSNetworkManager : NetworkManager
 
         player.SetPartyOwner(Players.Count == 1);
     }
+
+
 
     public override void OnServerSceneChanged(string sceneName)
     {
