@@ -1,12 +1,14 @@
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.ProBuilder.Shapes;
 using UnityEngine.UI;
+using Color = UnityEngine.Color;
 
 public class BuildingButton : MonoBehaviour
 {
@@ -74,9 +76,7 @@ public class BuildingButton : MonoBehaviour
             
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, floorMask))
             {
-                
                 player.CmdTryPlaceBuilding(building.GetId(), hit.point);
-               
             }
 
             Destroy(buildingPreviewInstance);
@@ -105,6 +105,7 @@ public class BuildingButton : MonoBehaviour
         //смена цвета при размещении здания (корректно ли размещается)
 
         //Debug.Log(player.CanPlaceBuilding(buildingCollider, hit.point).ToString());
+        //Debug.Log($"Physics.Raycast:{Physics.Raycast(ray, out RaycastHit hitt, Mathf.Infinity, floorMask)}");
 
         Color color = player.CanPlaceBuilding(buildingCollider, hit.point) ? normColor : Color.red;
 

@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.Rendering.Universal;
 
@@ -10,6 +11,7 @@ public class RTSPlayer : NetworkBehaviour
 {
     [SerializeField] private Transform cameraTransform=null;
     [SerializeField] private LayerMask buildingBlockLayer = new LayerMask();
+    [SerializeField] private LayerMask floorMask = new LayerMask();
     [SerializeField] private Building[] buildings = new Building[0];
     [SerializeField] private float buildingRangeLimit = 5f;
 
@@ -28,8 +30,12 @@ public class RTSPlayer : NetworkBehaviour
     private List<Unit> myUnits = new List<Unit>();
 
     private List<Building> myBuildings = new List<Building>();
+    private Camera mainCamera;
 
-
+    private void Update()
+    {
+      if(mainCamera==null) mainCamera = Camera.main;
+    }
     public string GetDisplayName()
     {
         return displayName;
@@ -63,6 +69,7 @@ public class RTSPlayer : NetworkBehaviour
         return resources;
     }
 
+   
     public bool CanPlaceBuilding(BoxCollider buildingCollider, Vector3 point)
     {
         if (Physics.CheckBox(point + buildingCollider.center,
@@ -74,14 +81,29 @@ public class RTSPlayer : NetworkBehaviour
             return false;
         }
 
-        foreach (Building building in myBuildings)
+        //foreach (Building building in myBuildings)
+        //{
+        //    if ((point - building.transform.position).sqrMagnitude <=
+        //        buildingRangeLimit * buildingRangeLimit)
+        //    {
+
+        //        return true;
+        //    }
+        //}
+        
+        Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+        
+
+        if (Physics.Raycast(ray, out RaycastHit hit/*, Mathf.Infinity , floorMask*/))
         {
-            if ((point - building.transform.position).sqrMagnitude <=
-                buildingRangeLimit * buildingRangeLimit)
+            Debug.Log("True Raycast");
+            Debug.Log($"Tag: {hit.collider.gameObject.tag}; isTrigger: {hit.collider.isTrigger}");
+            if (hit.collider.gameObject.tag == "BuildingArea" && hit.collider.isTrigger)
             {
-                
+                Debug.Log("True BuildingArea");
                 return true;
             }
+                
         }
 
         return false;
@@ -101,7 +123,7 @@ public class RTSPlayer : NetworkBehaviour
     {
         isPartyOwner = state;
     }
-
+    
     [Command]
     public void CmdStartGame()
     {
