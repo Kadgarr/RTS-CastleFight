@@ -70,7 +70,7 @@ public class RTSPlayer : NetworkBehaviour
         return resources;
     }
 
-   
+
     public bool CanPlaceBuilding(BoxCollider buildingCollider, Vector3 point)
     {
         if (Physics.CheckBox(point + buildingCollider.center,
@@ -95,21 +95,21 @@ public class RTSPlayer : NetworkBehaviour
         Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
 
-        if (Physics.Raycast(ray, out RaycastHit hit/*, Mathf.Infinity , floorMask*/))
+        if (Physics.Raycast(ray, out RaycastHit hit/*, Mathf.Infinity, floorMask*/))
         {
             Debug.Log("True Raycast");
             Debug.Log($"Tag: {hit.collider.gameObject.tag}; isTrigger: {hit.collider.isTrigger}");
             if (hit.collider.gameObject.tag == "BuildingArea" /*&& !hit.collider.isTrigger*/)
             {
                 Debug.Log("True BuildingArea");
-                return true;
+                return false;
             }
 
             if (hit.collider.gameObject.tag == "RoadArea")
                 return false;
         }
 
-        return false;
+        return true;
     }
 
 
@@ -196,7 +196,37 @@ public class RTSPlayer : NetworkBehaviour
 
         SetResources(resources - buildingToPlace.GetPrice()); 
     }
+    public void TryPlaceBuilding(int idBuilding, Vector3 point)
+    {
+        Building buildingToPlace = null;
 
+        foreach (Building building in buildings)
+        {
+            if (building.GetId() == idBuilding)
+            {
+                buildingToPlace = building;
+                break;
+            }
+        }
+
+
+        if (buildingToPlace == null) return;
+
+        if (resources < buildingToPlace.GetPrice()) return;
+
+        BoxCollider buildingCollider = buildingToPlace.GetComponent<BoxCollider>();
+
+
+        if (!CanPlaceBuilding(buildingCollider, point)) return;
+
+
+        GameObject buildingInstance =
+            Instantiate(buildingToPlace.gameObject, point, buildingToPlace.transform.rotation);
+
+        NetworkServer.Spawn(buildingInstance, connectionToClient);
+
+        SetResources(resources - buildingToPlace.GetPrice());
+    }
 
     private void ServerHandleUnitSpawned(Unit unit)
     {
