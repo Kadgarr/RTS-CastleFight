@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.Rendering.Universal;
@@ -90,20 +91,22 @@ public class RTSPlayer : NetworkBehaviour
         //        return true;
         //    }
         //}
-        
+
         Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
-        
+
 
         if (Physics.Raycast(ray, out RaycastHit hit/*, Mathf.Infinity , floorMask*/))
         {
             Debug.Log("True Raycast");
             Debug.Log($"Tag: {hit.collider.gameObject.tag}; isTrigger: {hit.collider.isTrigger}");
-            if (hit.collider.gameObject.tag == "BuildingArea" && hit.collider.isTrigger)
+            if (hit.collider.gameObject.tag == "BuildingArea" /*&& !hit.collider.isTrigger*/)
             {
                 Debug.Log("True BuildingArea");
                 return true;
             }
-                
+
+            if (hit.collider.gameObject.tag == "RoadArea")
+                return false;
         }
 
         return false;
