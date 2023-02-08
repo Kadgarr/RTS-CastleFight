@@ -15,7 +15,7 @@ public class RTSPlayer : NetworkBehaviour
     [SerializeField] private LayerMask floorMask = new LayerMask();
     [SerializeField] private Building[] buildings = new Building[0];
     [SerializeField] private float buildingRangeLimit = 5f;
-    [SerializeField] private int teamNumber = 0;
+    
 
     [SyncVar(hook = nameof(ClientHandleResourcesUpdated))]
     private int resources = 500;
@@ -23,6 +23,11 @@ public class RTSPlayer : NetworkBehaviour
     private bool isPartyOwner=false;
     [SyncVar(hook =nameof(ClientHandleDisplayNameUpdated))]
     private string displayName;
+
+    [SerializeField]
+    [SyncVar(hook = nameof(ClientHandleTeamNumberUpdated))]
+    private int teamNumber;
+
 
     public event Action<int> ClientOnResourcesUpdated;
     public static event Action<bool> AuthorityOnPartyOwnerStateUpdated;
@@ -130,7 +135,12 @@ public class RTSPlayer : NetworkBehaviour
     {
         isPartyOwner = state;
     }
-    
+
+    [Command]
+    public void CmdSetTeamNumber(int teamNumber)
+    {
+        this.teamNumber=teamNumber;
+    }
     [Command]
     public void CmdStartGame()
     {
@@ -171,7 +181,7 @@ public class RTSPlayer : NetworkBehaviour
     [Command]
     public void CmdTryPlaceBuilding(int idBuilding, Vector3 point)
     {
-        Debug.LogError($"Check CMD");
+     
         Building buildingToPlace = null;
 
         foreach (Building building in buildings)
@@ -190,7 +200,7 @@ public class RTSPlayer : NetworkBehaviour
 
         BoxCollider buildingCollider = buildingToPlace.GetComponent<BoxCollider>();
 
-        Debug.LogError($"Check {CanPlaceBuilding(buildingCollider, point)}");
+        
         if (!CanPlaceBuilding(buildingCollider,point)) return;
 
         
@@ -302,7 +312,10 @@ public class RTSPlayer : NetworkBehaviour
         Building.AuthorityOnBuildingSpawned -= AuthorityHandleBuildingSpawned;
         Building.AuthorityOnBuildingDespawned -= AuthorityHandleBuildingDespawned;
     }
-
+    private void ClientHandleTeamNumberUpdated(int oldTeamNumber, int newTeamNumber)
+    {
+        //ClientOnInfoUpdated?.Invoke();
+    }
     private void ClientHandleDisplayNameUpdated(string oldDisplayName, string newDisplayName)
     {
         ClientOnInfoUpdated?.Invoke();
