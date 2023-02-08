@@ -13,11 +13,14 @@ public class LobbyMenu : MonoBehaviour
     [SerializeField] private Button startGameButton = null;
     [SerializeField] private TMP_Text[] playerNameTexts=new TMP_Text[2];
 
+   // private RTSPlayer player;
+
     private void Start()
     {
         RTSNetworkManager.ClientOnConnected += HandleClientConnected;
         RTSPlayer.AuthorityOnPartyOwnerStateUpdated += AuthorityHandlePartyOwnerStateUpdated;
         RTSPlayer.ClientOnInfoUpdated += ClientHandleInfoUpdated;
+      //  player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
     }
 
     private void OnDestroy()

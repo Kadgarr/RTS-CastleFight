@@ -15,6 +15,7 @@ public class RTSPlayer : NetworkBehaviour
     [SerializeField] private LayerMask floorMask = new LayerMask();
     [SerializeField] private Building[] buildings = new Building[0];
     [SerializeField] private float buildingRangeLimit = 5f;
+    [SerializeField] private int teamNumber = 0;
 
     [SyncVar(hook = nameof(ClientHandleResourcesUpdated))]
     private int resources = 500;
@@ -40,6 +41,11 @@ public class RTSPlayer : NetworkBehaviour
     public string GetDisplayName()
     {
         return displayName;
+    }
+
+    public int GetTeamNumber()
+    {
+        return teamNumber;
     }
     public bool GetIsPartyOwenr()
     {
@@ -82,26 +88,14 @@ public class RTSPlayer : NetworkBehaviour
             return false;
         }
 
-        //foreach (Building building in myBuildings)
-        //{
-        //    if ((point - building.transform.position).sqrMagnitude <=
-        //        buildingRangeLimit * buildingRangeLimit)
-        //    {
-
-        //        return true;
-        //    }
-        //}
-
         Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
 
-        if (Physics.Raycast(ray, out RaycastHit hit/*, Mathf.Infinity, floorMask*/))
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, buildingBlockLayer))
         {
-            Debug.Log("True Raycast");
-            Debug.Log($"Tag: {hit.collider.gameObject.tag}; isTrigger: {hit.collider.isTrigger}");
-            if (hit.collider.gameObject.tag == "BuildingArea" /*&& !hit.collider.isTrigger*/)
+           
+            if (hit.collider.gameObject.tag == "BuildingArea" )
             {
-                Debug.Log("True BuildingArea");
                 return false;
             }
 
@@ -112,6 +106,16 @@ public class RTSPlayer : NetworkBehaviour
         return true;
     }
 
+
+    //foreach (Building building in myBuildings)
+    //{
+    //    if ((point - building.transform.position).sqrMagnitude <=
+    //        buildingRangeLimit * buildingRangeLimit)
+    //    {
+
+    //        return true;
+    //    }
+    //}
 
     #region Server
 
@@ -167,6 +171,7 @@ public class RTSPlayer : NetworkBehaviour
     [Command]
     public void CmdTryPlaceBuilding(int idBuilding, Vector3 point)
     {
+        Debug.LogError($"Check CMD");
         Building buildingToPlace = null;
 
         foreach (Building building in buildings)
@@ -185,7 +190,7 @@ public class RTSPlayer : NetworkBehaviour
 
         BoxCollider buildingCollider = buildingToPlace.GetComponent<BoxCollider>();
 
-        
+        Debug.LogError($"Check {CanPlaceBuilding(buildingCollider, point)}");
         if (!CanPlaceBuilding(buildingCollider,point)) return;
 
         
@@ -196,6 +201,7 @@ public class RTSPlayer : NetworkBehaviour
 
         SetResources(resources - buildingToPlace.GetPrice()); 
     }
+
     public void TryPlaceBuilding(int idBuilding, Vector3 point)
     {
         Building buildingToPlace = null;
@@ -216,7 +222,7 @@ public class RTSPlayer : NetworkBehaviour
 
         BoxCollider buildingCollider = buildingToPlace.GetComponent<BoxCollider>();
 
-
+        Debug.Log($"Check {CanPlaceBuilding(buildingCollider, point)}");
         if (!CanPlaceBuilding(buildingCollider, point)) return;
 
 
