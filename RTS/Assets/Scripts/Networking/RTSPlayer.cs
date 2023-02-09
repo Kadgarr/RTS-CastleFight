@@ -32,6 +32,7 @@ public class RTSPlayer : NetworkBehaviour
     public event Action<int> ClientOnResourcesUpdated;
     public static event Action<bool> AuthorityOnPartyOwnerStateUpdated;
     public static event Action ClientOnInfoUpdated;
+    public static event Action ClientOnTeamInfoUpdated;
 
     private Color teamColor = new Color();
     private List<Unit> myUnits = new List<Unit>();
@@ -312,10 +313,12 @@ public class RTSPlayer : NetworkBehaviour
         Building.AuthorityOnBuildingSpawned -= AuthorityHandleBuildingSpawned;
         Building.AuthorityOnBuildingDespawned -= AuthorityHandleBuildingDespawned;
     }
+
     private void ClientHandleTeamNumberUpdated(int oldTeamNumber, int newTeamNumber)
     {
-        //ClientOnInfoUpdated?.Invoke();
+        ClientOnTeamInfoUpdated?.Invoke(); 
     }
+
     private void ClientHandleDisplayNameUpdated(string oldDisplayName, string newDisplayName)
     {
         ClientOnInfoUpdated?.Invoke();
