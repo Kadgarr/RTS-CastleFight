@@ -96,19 +96,45 @@ public class RTSPlayer : NetworkBehaviour
 
         Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
-
+        if (Physics.Raycast(ray, out RaycastHit hitt/*, Mathf.Infinity, buildingBlockLayer*/))
+        {
+            if (hitt.collider.gameObject.tag == "BuildingArea")
+            {
+                if (hitt.collider.TryGetComponent<TeamNumberArea>(out TeamNumberArea teamNumberArea))
+                {
+                  
+                    if (teamNumberArea.GetTeamNumber() == GetTeamNumber())
+                    {
+                        Debug.LogError($"Check. TeamNumberArea: " + teamNumberArea.GetTeamNumber() + "TeamPlayer:" + GetTeamNumber()) ;
+                        return true;
+                    }
+                      
+                }
+            }
+        }
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, buildingBlockLayer))
         {
-           
+            
             if (hit.collider.gameObject.tag == "BuildingArea" )
             {
-                return false;
+                
+                if(hit.collider.TryGetComponent<TeamNumberArea>(out TeamNumberArea teamNumberArea))
+                {
+                    Debug.LogError($"Check. TeamNumberArea: " + teamNumberArea.GetTeamNumber() + "TeamPlayer:" + GetTeamNumber());
+                    if (teamNumberArea.GetTeamNumber() != GetTeamNumber())
+                    {
+                        return false;
+                    }
+                       
+                }
+                
             }
 
             if (hit.collider.gameObject.tag == "RoadArea")
                 return false;
         }
 
+       
         return true;
     }
 
