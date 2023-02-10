@@ -76,7 +76,17 @@ public class BuildingButton : MonoBehaviour
             
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, floorMask))
             {
-                player.CmdTryPlaceBuilding(building.GetId(), hit.point);
+                if(hit.collider.TryGetComponent<TeamNumberArea>(out TeamNumberArea teamNumberArea))
+                {
+                    
+                    if (teamNumberArea.GetTeamNumber() == player.GetTeamNumber())
+                    {
+                        RTSPlayer player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
+                        player.CmdTryPlaceBuilding(building.GetId(), hit.point);
+                    }
+                }
+
+                
             }
 
             Destroy(buildingPreviewInstance);

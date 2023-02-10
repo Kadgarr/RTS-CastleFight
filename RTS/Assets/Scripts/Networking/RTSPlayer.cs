@@ -98,21 +98,10 @@ public class RTSPlayer : NetworkBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hitt/*, Mathf.Infinity, buildingBlockLayer*/))
         {
-            if (hitt.collider.gameObject.tag == "BuildingArea")
-            {
-                if (hitt.collider.TryGetComponent<TeamNumberArea>(out TeamNumberArea teamNumberArea))
-                {
-                  
-                    if (teamNumberArea.GetTeamNumber() == GetTeamNumber())
-                    {
-                        Debug.LogError($"Check. TeamNumberArea: " + teamNumberArea.GetTeamNumber() + "TeamPlayer:" + GetTeamNumber()) ;
-                        return true;
-                    }
-                      
-                }
-            }
+            if (hitt.collider.gameObject.tag == "RoadArea")
+                return false;
         }
-        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, buildingBlockLayer))
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, floorMask))
         {
             
             if (hit.collider.gameObject.tag == "BuildingArea" )
@@ -125,13 +114,17 @@ public class RTSPlayer : NetworkBehaviour
                     {
                         return false;
                     }
+                    else if (teamNumberArea.GetTeamNumber() == GetTeamNumber())
+                    {
+                        Debug.LogError($"Check. TeamNumberArea: " + teamNumberArea.GetTeamNumber() + "TeamPlayer:" + GetTeamNumber());
+                        return true;
+                    }
                        
                 }
                 
             }
 
-            if (hit.collider.gameObject.tag == "RoadArea")
-                return false;
+           
         }
 
        
