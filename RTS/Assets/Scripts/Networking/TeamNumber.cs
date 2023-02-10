@@ -3,15 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TeamNumber : MonoBehaviour
+public class TeamNumber : NetworkBehaviour
 {
     [SerializeField] private int teamNumber;
 
-    private RTSPlayer player;
-
+    RTSPlayer player;
     private void Start()
     {
-        player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
+        if(player == null)
+            player = connectionToClient.identity.GetComponent<RTSPlayer>();
+
         teamNumber = player.GetTeamNumber();
     }
 

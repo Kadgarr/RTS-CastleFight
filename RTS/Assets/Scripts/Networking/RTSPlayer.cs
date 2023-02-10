@@ -96,7 +96,7 @@ public class RTSPlayer : NetworkBehaviour
 
         Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
-        if (Physics.Raycast(ray, out RaycastHit hitt/*, Mathf.Infinity, buildingBlockLayer*/))
+        if (Physics.Raycast(ray, out RaycastHit hitt, Mathf.Infinity, buildingBlockLayer))
         {
             if (hitt.collider.gameObject.tag == "RoadArea")
                 return false;

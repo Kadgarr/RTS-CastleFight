@@ -78,6 +78,12 @@ public class UnitFiring : NetworkBehaviour
             { return; }
         }
 
+        if( other.TryGetComponent<TeamNumber>(out TeamNumber teamNumber))
+        {
+            RTSPlayer player = connectionToClient.identity.GetComponent<RTSPlayer>();
+            if (teamNumber.GetTeamNumber() == player.GetTeamNumber())
+                return;
+        }
 
         if (target != null && !activeUnitBase) return;
 
