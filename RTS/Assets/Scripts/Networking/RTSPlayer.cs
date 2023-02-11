@@ -109,14 +109,13 @@ public class RTSPlayer : NetworkBehaviour
                 
                 if(hit.collider.TryGetComponent<TeamNumberArea>(out TeamNumberArea teamNumberArea))
                 {
-                    Debug.LogError($"Check. TeamNumberArea: " + teamNumberArea.GetTeamNumber() + "TeamPlayer:" + GetTeamNumber());
+                   
                     if (teamNumberArea.GetTeamNumber() != GetTeamNumber())
                     {
                         return false;
                     }
                     else if (teamNumberArea.GetTeamNumber() == GetTeamNumber())
                     {
-                        Debug.LogError($"Check. TeamNumberArea: " + teamNumberArea.GetTeamNumber() + "TeamPlayer:" + GetTeamNumber());
                         return true;
                     }
                        

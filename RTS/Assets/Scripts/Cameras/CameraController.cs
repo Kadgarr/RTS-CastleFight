@@ -2,7 +2,9 @@ using Mirror;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 public class CameraController : NetworkBehaviour
@@ -20,14 +22,40 @@ public class CameraController : NetworkBehaviour
     public override void OnStartAuthority()
     {
         playerCameraTransform.gameObject.SetActive(true);
-
+        
         controls = new Controls();
 
         controls.Player.MoveCamera.performed += SetPreviousInput;
         controls.Player.MoveCamera.canceled += SetPreviousInput;
-
+        RTSPlayer.ClientOnTeamInfoUpdated += HandleTeamNumberUpdate;
         controls.Enable();
     }
+    public override void OnStopAuthority()
+    {
+        RTSPlayer.ClientOnTeamInfoUpdated -= HandleTeamNumberUpdate;
+        base.OnStopAuthority();
+    }
+
+    private void HandleTeamNumberUpdate()
+    {
+        RTSPlayer player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
+        
+        if (player.GetTeamNumber() == 1)
+        {
+            playerCameraTransform.transform.position =
+               new Vector3(-110f, playerCameraTransform.position.y, playerCameraTransform.position.z);
+            Debug.LogError($"Number: {player.GetTeamNumber()}");
+        }
+        else
+        {
+            playerCameraTransform.transform.position =
+               new Vector3(98f, playerCameraTransform.position.y, playerCameraTransform.position.z);
+            Debug.LogError($"Number: {player.GetTeamNumber()}");
+        }
+           
+
+    }
+
 
     [ClientCallback]
     private void Update()
@@ -83,5 +111,7 @@ public class CameraController : NetworkBehaviour
     {
         previousInput = ctx.ReadValue<Vector2>();
     }
+
+   
 
 }

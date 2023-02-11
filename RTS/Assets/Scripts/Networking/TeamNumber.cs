@@ -10,10 +10,10 @@ public class TeamNumber : NetworkBehaviour
     RTSPlayer player;
     private void Start()
     {
-        if(player == null)
-            player = connectionToClient.identity.GetComponent<RTSPlayer>();
+        player = connectionToClient.identity.GetComponent<RTSPlayer>();
 
         teamNumber = player.GetTeamNumber();
+
     }
 
     public int GetTeamNumber()
