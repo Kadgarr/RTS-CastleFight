@@ -73,7 +73,7 @@ public class LobbyMenu : MonoBehaviour
 
        
         player.CmdSetTeamNumber(2);
-        Debug.LogError($"Team number: {player.GetTeamNumber()}");
+        
     }
 
     private void HandleChangeTeam()

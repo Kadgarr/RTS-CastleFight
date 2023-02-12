@@ -122,8 +122,12 @@ public class RTSPlayer : NetworkBehaviour
                 }
                 
             }
+            if (hit.collider.gameObject.tag == "WallArea")
+            {
+                return false;
+            }
 
-           
+
         }
 
        

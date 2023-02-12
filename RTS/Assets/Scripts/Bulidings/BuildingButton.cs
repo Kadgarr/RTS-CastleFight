@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.ProBuilder.Shapes;
 using UnityEngine.UI;
+using UnityEngineInternal;
 using Color = UnityEngine.Color;
 
 public class BuildingButton : MonoBehaviour
@@ -78,15 +79,13 @@ public class BuildingButton : MonoBehaviour
             {
                 if(hit.collider.TryGetComponent<TeamNumberArea>(out TeamNumberArea teamNumberArea))
                 {
-                    
-                    if (teamNumberArea.GetTeamNumber() == player.GetTeamNumber())
+                    if (teamNumberArea.GetTeamNumber() == player.GetTeamNumber() && hit.collider.gameObject.tag!="WallArea")
                     {
                         RTSPlayer player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
                         player.CmdTryPlaceBuilding(building.GetId(), hit.point);
                     }
                 }
 
-                
             }
 
             Destroy(buildingPreviewInstance);

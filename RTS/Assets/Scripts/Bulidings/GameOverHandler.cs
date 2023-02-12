@@ -42,7 +42,7 @@ public class GameOverHandler : NetworkBehaviour
         int winnerId = bases[0].connectionToClient.connectionId;
 
         RpcGameOver($"Player {winnerId}");
-        NetworkClient.connection.identity.GetComponent<RTSPlayer>().CmdSetTeamNumber(0);
+        //connectionToClient.identity.GetComponent<RTSPlayer>().CmdSetTeamNumber(1);
         ServerOnGameOver?.Invoke();
     }
     #endregion

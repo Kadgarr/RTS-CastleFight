@@ -18,7 +18,7 @@ public class CameraController : NetworkBehaviour
 
     private Controls controls;
     private Vector2 previousInput;
-
+    private RTSPlayer player;
     public override void OnStartAuthority()
     {
         playerCameraTransform.gameObject.SetActive(true);
@@ -33,27 +33,28 @@ public class CameraController : NetworkBehaviour
     public override void OnStopAuthority()
     {
         RTSPlayer.ClientOnTeamInfoUpdated -= HandleTeamNumberUpdate;
-        base.OnStopAuthority();
+        //base.OnStopAuthority();
     }
 
     private void HandleTeamNumberUpdate()
     {
-        RTSPlayer player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
-        
+        player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
+
+        Debug.LogError($"Number: {player.GetDisplayName()}");
         if (player.GetTeamNumber() == 1)
         {
-            playerCameraTransform.transform.position =
+            playerCameraTransform.position =
                new Vector3(-110f, playerCameraTransform.position.y, playerCameraTransform.position.z);
-            Debug.LogError($"Number: {player.GetTeamNumber()}");
+            
         }
-        else
+        else if (player.GetTeamNumber() == 2)
         {
-            playerCameraTransform.transform.position =
+            playerCameraTransform.position =
                new Vector3(98f, playerCameraTransform.position.y, playerCameraTransform.position.z);
-            Debug.LogError($"Number: {player.GetTeamNumber()}");
+            
         }
-           
 
+        player = null;
     }
 
 
