@@ -38,23 +38,25 @@ public class CameraController : NetworkBehaviour
 
     private void HandleTeamNumberUpdate()
     {
-        player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
-
-        Debug.LogError($"Number: {player.GetDisplayName()}");
-        if (player.GetTeamNumber() == 1)
-        {
-            playerCameraTransform.position =
-               new Vector3(-110f, playerCameraTransform.position.y, playerCameraTransform.position.z);
+        //player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
+      
+        //Debug.LogError($"Number: {player.GetDisplayName()}");
+        //if (player.GetTeamNumber() == 1)
+        //{
+        //    player.CmdSetCameraTransform(new Vector3
+        //        (-110f, playerCameraTransform.position.y, playerCameraTransform.position.z));
             
-        }
-        else if (player.GetTeamNumber() == 2)
-        {
-            playerCameraTransform.position =
-               new Vector3(98f, playerCameraTransform.position.y, playerCameraTransform.position.z);
             
-        }
+        //}
+        //else if (player.GetTeamNumber() == 2)
+        //{
 
-        player = null;
+        //    player.CmdSetCameraTransform(new Vector3
+        //        (98f, playerCameraTransform.position.y, playerCameraTransform.position.z));
+            
+        //}
+
+        //player = null;
     }
 
 

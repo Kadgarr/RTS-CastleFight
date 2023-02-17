@@ -165,6 +165,11 @@ public class RTSPlayer : NetworkBehaviour
         this.teamNumber=teamNumber;
     }
     [Command]
+    public void CmdSetCameraTransform(Vector3 cameraPosition)
+    {
+        this.cameraTransform.position = cameraPosition;
+    }
+    [Command]
     public void CmdStartGame()
     {
         if (!isPartyOwner) return;
