@@ -59,7 +59,7 @@ public class UnitSpawner : NetworkBehaviour, IPointerClickHandler
     [Server]
     private void ProduceUnits()
     {
-        if (queuedUnits == 0) return;
+        //if (queuedUnits == 0) return;
         unitTimer += Time.deltaTime;
 
         if (unitTimer < unitSpawnDuration)  return;
@@ -78,9 +78,10 @@ public class UnitSpawner : NetworkBehaviour, IPointerClickHandler
         UnitMovement unitMovement=unitInstance.GetComponent<UnitMovement>();
         unitMovement.ServerMove(unitSpawnPoint.position+spawnOffSet);
 
-        queuedUnits--;
+       // queuedUnits--;
         unitTimer = 0f;
     }
+
     [Command]
     private void CmdSpawnUnit()
     {
@@ -125,7 +126,7 @@ public class UnitSpawner : NetworkBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(eventData.button != PointerEventData.InputButton.Left) { return; }
+        if (eventData.button != PointerEventData.InputButton.Left) { return; }
 
         if (!hasAuthority) return;
 

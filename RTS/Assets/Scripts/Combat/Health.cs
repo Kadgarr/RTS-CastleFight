@@ -51,7 +51,7 @@ public class Health : NetworkBehaviour
 
         ServerOnDie?.Invoke();
 
-        //Debug.Log("We Died");
+       
     }
 
     #endregion
@@ -63,5 +63,9 @@ public class Health : NetworkBehaviour
         ClientOnHealthUpdated?.Invoke(newHealth, maxHealth);
     }
 
+    public int GetHealth()
+    {
+        return currentHealth;
+    }
     #endregion
 }

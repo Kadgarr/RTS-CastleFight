@@ -82,11 +82,6 @@ public class UnitSelectionHandler : MonoBehaviour
             if (IsOverUI()) return;
             StartSelectionArea();
         }
-        else
-        if (Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            ClearDeselectedUnits();
-        } 
         else if (Mouse.current.leftButton.wasReleasedThisFrame) ClearSelectionArea();
         else if (Mouse.current.leftButton.isPressed) UpdateSelectionArea(); 
     }
@@ -130,20 +125,11 @@ public class UnitSelectionHandler : MonoBehaviour
 
     }
 
-    private void ClearDeselectedUnits()
-    {
-        foreach (Unit selectedUnit in SelectedUnits)
-        {
-            selectedUnit.Deselect();
-
-        }
-        SelectedUnits.Clear();
-    }
 
     private void ClearSelectionArea()
     {
         unitSelectionArea.gameObject.SetActive(false);
-
+        
         if (unitSelectionArea.sizeDelta.magnitude == 0)
         {
             Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
