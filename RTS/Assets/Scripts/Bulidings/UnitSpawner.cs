@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UnitSpawner : NetworkBehaviour, IPointerClickHandler
+public class UnitSpawner : NetworkBehaviour//, IPointerClickHandler
 {
     [SerializeField] private Health health = null;
     [SerializeField] private Unit unitPreab = null;
@@ -124,17 +124,24 @@ public class UnitSpawner : NetworkBehaviour, IPointerClickHandler
         }
     }
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if (eventData.button != PointerEventData.InputButton.Left) { return; }
+    //public void OnPointerClick(PointerEventData eventData)
+    //{
+    //    if (eventData.button != PointerEventData.InputButton.Left) { return; }
 
-        if (!hasAuthority) return;
+    //    if (!hasAuthority) return;
 
-        CmdSpawnUnit();
-    }
+    //    CmdSpawnUnit();
+    //}
 
     #endregion
 
+    #region Client
 
+    public float GetUnitSpawnDuration()
+    {
+        return unitSpawnDuration;
+    }
+
+    #endregion
 
 }

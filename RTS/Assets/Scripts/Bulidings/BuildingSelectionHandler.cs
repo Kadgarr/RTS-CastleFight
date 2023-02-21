@@ -12,7 +12,6 @@ public class BuildingSelectionHandler : MonoBehaviour
 {
 
     [SerializeField] private RectTransform buildingSelectionArea = null;
-    [SerializeField] private Image infoImageBuilding = null;
 
     [SerializeField] private LayerMask layerMask = new LayerMask();
 
@@ -78,7 +77,6 @@ public class BuildingSelectionHandler : MonoBehaviour
             if (IsOverUI()) return;
             StartSelectionArea();
         }
-     
         else if (Mouse.current.leftButton.wasReleasedThisFrame) ClearSelectionArea();
         else if (Mouse.current.leftButton.isPressed) UpdateSelectionArea(); 
     }
@@ -90,7 +88,7 @@ public class BuildingSelectionHandler : MonoBehaviour
             foreach (Building selectedBuilding in SelectedBuildings)
             {
                 selectedBuilding.Deselect();
-                infoImageBuilding.gameObject.SetActive(false);  
+                selectedBuilding.SetActiveCanvasInfo(false);
             }
             SelectedBuildings.Clear();
         }
@@ -142,7 +140,7 @@ public class BuildingSelectionHandler : MonoBehaviour
             foreach (Building selectedBuilding in SelectedBuildings)
             {
                 selectedBuilding.Select();
-                infoImageBuilding.gameObject.SetActive(true);
+                selectedBuilding.SetActiveCanvasInfo(true);
             }
 
             return;
@@ -164,7 +162,7 @@ public class BuildingSelectionHandler : MonoBehaviour
             {
                 SelectedBuildings.Add(buildings);
                 buildings.Select();
-                infoImageBuilding.gameObject.SetActive(true);
+                buildings.SetActiveCanvasInfo(true);
             }
         }
     }
@@ -173,6 +171,6 @@ public class BuildingSelectionHandler : MonoBehaviour
     private void AuthorityHadnleBuildingDespawned(Building building)
     {
         SelectedBuildings.Remove(building);
-        infoImageBuilding.gameObject.SetActive(false);
+        building.SetActiveCanvasInfo(false);
     }
 }
