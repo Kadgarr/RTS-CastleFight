@@ -11,6 +11,7 @@ ScriptsOnlyBuild:
     - GameOverHandler
     - Health
     - HealthDisplay
+    - InfoBuildingDisplay
     - JoinLobbyMenu
     - LobbyMenu
     - MainMenu
@@ -416,6 +417,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 15934}
     - Class: 114
       Script: {instanceID: 16030}
+    - Class: 114
+      Script: {instanceID: 71866}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -649,6 +652,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 15872}
     - Class: 114
       Script: {instanceID: 15934}
+    - Class: 114
+      Script: {instanceID: 71866}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1804,7 +1809,7 @@ ScriptsOnlyBuild:
     className: TeamColorSetter
   - hash:
       serializedVersion: 2
-      Hash: 4cbd3a7a56ceaf1574296c0e9756486e
+      Hash: 1a611157d04123b8c1feb246c7ff1bb5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Building
@@ -2500,7 +2505,7 @@ ScriptsOnlyBuild:
     className: UnitFiring
   - hash:
       serializedVersion: 2
-      Hash: ad703dcfad9ff913c831701af80b2232
+      Hash: 194e13e30de39d02f129a736baf12b43
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BuildingSelectionHandler
@@ -3458,6 +3463,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 92ad0f9001255f5ba8f0013636126e5a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: InfoBuildingDisplay
   platform: 19
   scenePathNames:
   - Assets/Scenes/Scene_Menu.unity

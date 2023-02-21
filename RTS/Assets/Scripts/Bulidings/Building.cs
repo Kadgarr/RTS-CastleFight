@@ -9,11 +9,14 @@ using UnityEngine.Events;
 public class Building : NetworkBehaviour
 {
     [SerializeField] private GameObject buildingPreview = null;
+    [SerializeField] private GameObject infoBuildingCanvas = null;
     [SerializeField] private Sprite icon = null;
     [SerializeField] private UnityEvent onSelected = null;
     [SerializeField] private UnityEvent onDeselected = null;
     [SerializeField] private int id = -1;
     [SerializeField] private int price = 100;
+
+    private bool activeCanvasInfo;
 
     public static event Action<Building> ServerOnBuildingSpawned;
     public static event Action<Building> ServerOnBuildingDespawned;
@@ -25,7 +28,22 @@ public class Building : NetworkBehaviour
     {
         return buildingPreview;
     }
-    
+
+   
+    public bool GetActiveCanvasInfo()
+    {
+        return activeCanvasInfo;
+    }
+
+    public void SetActiveCanvasInfo(bool stateCanvas)
+    {
+        if(!stateCanvas)
+            infoBuildingCanvas.SetActive(false);
+        else
+            infoBuildingCanvas.SetActive(true);
+
+        activeCanvasInfo =stateCanvas;
+    }
 
     public Sprite GetIcon()
     {

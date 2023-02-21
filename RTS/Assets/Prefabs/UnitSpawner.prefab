@@ -93,7 +93,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2092158228722836962}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &436885694403242206
 MeshFilter:
@@ -152,6 +152,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1731839186, guid: 2a057b32aad46d6428504595ff946ab7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1731839187, guid: 2a057b32aad46d6428504595ff946ab7, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 55288472565536593, guid: 2a057b32aad46d6428504595ff946ab7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 238138801380695714, guid: 2a057b32aad46d6428504595ff946ab7, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -200,6 +212,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: UnitSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 382671261993362333, guid: 2a057b32aad46d6428504595ff946ab7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 500474038356619863, guid: 2a057b32aad46d6428504595ff946ab7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 798512748400646592, guid: 2a057b32aad46d6428504595ff946ab7, type: 3}
       propertyPath: m_Center.y
       value: 0
@@ -236,6 +256,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 2580227737913969478, guid: 2a057b32aad46d6428504595ff946ab7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3210836779179453368, guid: 2a057b32aad46d6428504595ff946ab7, type: 3}
       propertyPath: aimAtPoint
       value: 
@@ -244,6 +268,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4671422009501883924, guid: 2a057b32aad46d6428504595ff946ab7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5179320728914654425, guid: 2a057b32aad46d6428504595ff946ab7, type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 7770772787249107964}
+    - target: {fileID: 5179320728914654425, guid: 2a057b32aad46d6428504595ff946ab7, type: 3}
+      propertyPath: spawnDurationField
+      value: 
+      objectReference: {fileID: 2761281718843893061}
     - target: {fileID: 5450643132216215313, guid: 2a057b32aad46d6428504595ff946ab7, type: 3}
       propertyPath: m_Layer
       value: 5
@@ -272,6 +308,14 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7563730076334492553, guid: 2a057b32aad46d6428504595ff946ab7, type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 7770772787249107964}
+    - target: {fileID: 7563730076334492553, guid: 2a057b32aad46d6428504595ff946ab7, type: 3}
+      propertyPath: spawnDurationField
+      value: 
+      objectReference: {fileID: 2761281718843893061}
     - target: {fileID: 7951435523790332098, guid: 2a057b32aad46d6428504595ff946ab7, type: 3}
       propertyPath: maxHealth
       value: 200
@@ -387,6 +431,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 238138801380695714, guid: 2a057b32aad46d6428504595ff946ab7, type: 3}
   m_PrefabInstance: {fileID: 2181676438361996096}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2761281718843893061 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4041088130745343493, guid: 2a057b32aad46d6428504595ff946ab7, type: 3}
+  m_PrefabInstance: {fileID: 2181676438361996096}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8079443796927323010 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7951435523790332098, guid: 2a057b32aad46d6428504595ff946ab7, type: 3}
