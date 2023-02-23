@@ -25,8 +25,13 @@ public class UnitSpawner : NetworkBehaviour//, IPointerClickHandler
     private float unitTimer;
     #region Server
 
+    float newProgress;
     private float progressImageVelocity;
 
+    private void Start()
+    {
+        unitProgressImage.fillAmount = 0f;
+    }
     private void Update()
     {
         if (isServer)
@@ -107,8 +112,8 @@ public class UnitSpawner : NetworkBehaviour//, IPointerClickHandler
 
     private void UpdateTimerDisplay()
     {
-        float newProgress = unitTimer / unitSpawnDuration;
-
+        newProgress = unitTimer / unitSpawnDuration;
+        //unitProgressImage.fillAmount = newProgress;
         if (newProgress < unitProgressImage.fillAmount)
         {
             unitProgressImage.fillAmount = newProgress;
@@ -136,12 +141,15 @@ public class UnitSpawner : NetworkBehaviour//, IPointerClickHandler
     #endregion
 
     #region Client
-
-    public float GetUnitSpawnDuration()
+    public float GetNewProgressDuration()
     {
-        return unitSpawnDuration;
+        return (int)unitTimer+1;
     }
 
+    public int GetSpawnDuration()
+    {
+        return (int)unitSpawnDuration;
+    }
     #endregion
 
 }

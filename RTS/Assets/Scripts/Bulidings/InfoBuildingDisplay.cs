@@ -10,6 +10,7 @@ public class InfoBuildingDisplay : MonoBehaviour
 
     [SerializeField] private TMP_Text healthField=null;
     [SerializeField] private TMP_Text spawnDurationField = null;
+    [SerializeField] private TMP_Text fullTimeSpawnField = null;
 
 
 
@@ -19,6 +20,7 @@ public class InfoBuildingDisplay : MonoBehaviour
        
         if (spawner == null) return;
 
-        spawnDurationField.text = spawner.GetUnitSpawnDuration().ToString();
+        spawnDurationField.text = spawner.GetNewProgressDuration().ToString();
+        fullTimeSpawnField.text = spawner.GetSpawnDuration().ToString();
     }
 }
