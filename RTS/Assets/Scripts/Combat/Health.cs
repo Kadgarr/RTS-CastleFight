@@ -63,9 +63,13 @@ public class Health : NetworkBehaviour
         ClientOnHealthUpdated?.Invoke(newHealth, maxHealth);
     }
 
-    public int GetHealth()
+    public int GetCurrentHealth()
     {
         return currentHealth;
+    }
+    public int GetHealth()
+    {
+        return maxHealth;
     }
     #endregion
 }

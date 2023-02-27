@@ -12,6 +12,7 @@ ScriptsOnlyBuild:
     - Health
     - HealthDisplay
     - InfoBuildingDisplay
+    - InfoUnitDisplay
     - JoinLobbyMenu
     - LobbyMenu
     - MainMenu
@@ -220,6 +221,42 @@ ScriptsOnlyBuild:
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.Renderer
     methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitSpawner
+    methodName: SetFalseProducingUnits
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitSpawner
+    methodName: SetTrueProducingUnits
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitSpawner
+    methodName: SetTrueProducingUnits
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitSpawner
+    methodName: SetFalseProducingUnits
   - assembly: Assembly-CSharp
     fullTypeName: LobbyMenu
     methodName: ChangeToSecondTeam
@@ -301,6 +338,30 @@ ScriptsOnlyBuild:
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.Renderer
     methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitSpawner
+    methodName: SetFalseProducingUnits
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitSpawner
+    methodName: SetTrueProducingUnits
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitSpawner
+    methodName: SetTrueProducingUnits
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitSpawner
+    methodName: SetFalseProducingUnits
   sceneClasses:
     Assets/Scenes/Scene_Map_01.unity:
     - Class: 1
@@ -419,6 +480,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 15936}
     - Class: 114
       Script: {instanceID: 16032}
+    - Class: 114
+      Script: {instanceID: 93478}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -654,6 +717,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 15874}
     - Class: 114
       Script: {instanceID: 15936}
+    - Class: 114
+      Script: {instanceID: 93478}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -825,7 +890,7 @@ ScriptsOnlyBuild:
     className: NetworkStatistics
   - hash:
       serializedVersion: 2
-      Hash: a528e3abe5f10e8f752601482df08dfb
+      Hash: 4592cba22d73f4f082d820ed8c7ceb12
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Unit
@@ -2013,7 +2078,7 @@ ScriptsOnlyBuild:
     className: UnityOnMouseEnterMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 680b847b5ed0cae1bd9770c44cdd3108
+      Hash: 40e10887282a878ed709a370a0f484fe
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: InfoBuildingDisplay
@@ -3469,6 +3534,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: d0c89a0c0da1aff8c47b1231e316510a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: InfoUnitDisplay
   platform: 19
   scenePathNames:
   - Assets/Scenes/Scene_Menu.unity

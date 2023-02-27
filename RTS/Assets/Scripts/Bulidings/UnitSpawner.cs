@@ -23,6 +23,9 @@ public class UnitSpawner : NetworkBehaviour//, IPointerClickHandler
 
     [SyncVar]
     private float unitTimer;
+    [SyncVar]
+    private bool isProducingUnits=true;
+
     #region Server
 
     float newProgress;
@@ -36,6 +39,7 @@ public class UnitSpawner : NetworkBehaviour//, IPointerClickHandler
     {
         if (isServer)
         {
+            if(isProducingUnits)
             ProduceUnits();
         }
 
@@ -149,6 +153,20 @@ public class UnitSpawner : NetworkBehaviour//, IPointerClickHandler
     public int GetSpawnDuration()
     {
         return (int)unitSpawnDuration;
+    }
+
+    [Command]
+    public void SetTrueProducingUnits()
+    {
+        isProducingUnits = true;
+    }
+    [Command]
+    public void SetFalseProducingUnits()
+    {
+        isProducingUnits = false;
+        unitProgressImage.fillAmount = 0f;
+        newProgress = 0f;
+        unitTimer = 0f;
     }
     #endregion
 

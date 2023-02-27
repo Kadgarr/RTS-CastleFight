@@ -45,4 +45,9 @@ public class UnitProjectile : NetworkBehaviour
     {
         NetworkServer.Destroy(gameObject);
     }
+
+    public int GetDamageToDeal()
+    {
+        return damageToDeal;    
+    }
 }

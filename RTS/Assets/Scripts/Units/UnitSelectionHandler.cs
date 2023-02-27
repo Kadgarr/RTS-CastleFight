@@ -2,6 +2,7 @@ using Mirror;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -93,6 +94,7 @@ public class UnitSelectionHandler : MonoBehaviour
             foreach (Unit selectedUnit in SelectedUnits)
             {
                 selectedUnit.Deselect();
+                selectedUnit.SetActiveCanvasInfo(false);
 
             }
             SelectedUnits.Clear();
@@ -145,6 +147,7 @@ public class UnitSelectionHandler : MonoBehaviour
             foreach (Unit selectedUnit in SelectedUnits)
             {
                 selectedUnit.Select();
+                selectedUnit.SetActiveCanvasInfo(true);
             }
 
             return;
@@ -166,6 +169,7 @@ public class UnitSelectionHandler : MonoBehaviour
             {
                 SelectedUnits.Add(unit);
                 unit.Select();
+                unit.SetActiveCanvasInfo(true);
             }
         }
     }
@@ -174,5 +178,6 @@ public class UnitSelectionHandler : MonoBehaviour
     private void AuthorityHadnleUnitDespawned(Unit unit)
     {
         SelectedUnits.Remove(unit);
+        unit.SetActiveCanvasInfo(false);
     }
 }

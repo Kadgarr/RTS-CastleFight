@@ -13,12 +13,15 @@ public class Unit : NetworkBehaviour
     [SerializeField] private Targeter targeter = null;
     [SerializeField] private UnityEvent onDeselected = null;
     [SerializeField] private UnitMovement unitMovement = null;
+    [SerializeField] private GameObject infoUnitCanvas = null;
 
     public static event Action<Unit> ServerOnUnitSpawned;
     public static event Action<Unit> ServerOnUnitDespawned;
 
     public static event Action<Unit> AuthorityOnUnitSpawned;
     public static event Action<Unit> AuthorityOnUnitDespawned;
+
+    private bool activeCanvasInfo;
 
     public UnitMovement GetUnitMovement()
     {
@@ -57,6 +60,16 @@ public class Unit : NetworkBehaviour
     #endregion
 
     #region Client
+
+    public void SetActiveCanvasInfo(bool stateCanvas)
+    {
+        if (!stateCanvas)
+            infoUnitCanvas.SetActive(false);
+        else
+            infoUnitCanvas.SetActive(true);
+
+        activeCanvasInfo = stateCanvas;
+    }
 
     public override void OnStartAuthority()
     {

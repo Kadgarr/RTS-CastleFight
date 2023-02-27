@@ -126,5 +126,12 @@ public class UnitFiring : NetworkBehaviour
             <= fireRange * fireRange;
     }
 
-
+    public GameObject GetProjectilePrefab()
+    {
+        return projectilePrefab;
+    }
+    public float GetFireRate()
+    {
+        return fireRate;
+    }
 }

@@ -9,6 +9,7 @@ public class InfoBuildingDisplay : MonoBehaviour
     [SerializeField] private UnitSpawner spawner = null;
 
     [SerializeField] private TMP_Text healthField=null;
+    [SerializeField] private TMP_Text fullHealthField = null;
     [SerializeField] private TMP_Text spawnDurationField = null;
     [SerializeField] private TMP_Text fullTimeSpawnField = null;
 
@@ -16,8 +17,10 @@ public class InfoBuildingDisplay : MonoBehaviour
 
     void Update()
     {
-        healthField.text = health.GetHealth().ToString();
-       
+        healthField.text = health.GetCurrentHealth().ToString();
+        fullHealthField.text = health.GetHealth().ToString();    
+
+
         if (spawner == null) return;
 
         spawnDurationField.text = spawner.GetNewProgressDuration().ToString();
