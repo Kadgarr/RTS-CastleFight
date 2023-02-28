@@ -257,6 +257,12 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: UnitSpawner
     methodName: SetFalseProducingUnits
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
   - assembly: Assembly-CSharp
     fullTypeName: LobbyMenu
     methodName: ChangeToSecondTeam
@@ -323,9 +329,21 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: BuildingButton
     methodName: Build
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
   - assembly: Assembly-CSharp
     fullTypeName: GameOverDisplay
     methodName: LeaveGame
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.Renderer
     methodName: set_enabled
@@ -439,6 +457,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 8050}
     - Class: 114
+      Script: {instanceID: 8644}
+    - Class: 114
       Script: {instanceID: 8870}
     - Class: 114
       Script: {instanceID: 9518}
@@ -461,27 +481,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12030}
     - Class: 114
-      Script: {instanceID: 12862}
+      Script: {instanceID: 12304}
     - Class: 114
-      Script: {instanceID: 13290}
+      Script: {instanceID: 12864}
     - Class: 114
-      Script: {instanceID: 13332}
+      Script: {instanceID: 13292}
     - Class: 114
-      Script: {instanceID: 13490}
+      Script: {instanceID: 13334}
     - Class: 114
-      Script: {instanceID: 13530}
+      Script: {instanceID: 13492}
     - Class: 114
-      Script: {instanceID: 13788}
+      Script: {instanceID: 13532}
     - Class: 114
-      Script: {instanceID: 15148}
+      Script: {instanceID: 13790}
     - Class: 114
-      Script: {instanceID: 15280}
+      Script: {instanceID: 15150}
     - Class: 114
-      Script: {instanceID: 15936}
+      Script: {instanceID: 15282}
     - Class: 114
-      Script: {instanceID: 16032}
+      Script: {instanceID: 15938}
     - Class: 114
-      Script: {instanceID: 93478}
+      Script: {instanceID: 16034}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -662,68 +682,70 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12054}
     - Class: 114
-      Script: {instanceID: 12540}
+      Script: {instanceID: 12304}
     - Class: 114
-      Script: {instanceID: 12636}
+      Script: {instanceID: 12542}
     - Class: 114
-      Script: {instanceID: 12798}
+      Script: {instanceID: 12638}
     - Class: 114
-      Script: {instanceID: 12862}
+      Script: {instanceID: 12800}
     - Class: 114
-      Script: {instanceID: 13090}
+      Script: {instanceID: 12864}
     - Class: 114
-      Script: {instanceID: 13102}
+      Script: {instanceID: 13092}
     - Class: 114
-      Script: {instanceID: 13192}
+      Script: {instanceID: 13104}
     - Class: 114
-      Script: {instanceID: 13332}
+      Script: {instanceID: 13194}
     - Class: 114
-      Script: {instanceID: 13388}
+      Script: {instanceID: 13334}
     - Class: 114
-      Script: {instanceID: 13418}
+      Script: {instanceID: 13390}
     - Class: 114
-      Script: {instanceID: 13530}
+      Script: {instanceID: 13420}
     - Class: 114
-      Script: {instanceID: 13788}
+      Script: {instanceID: 13532}
     - Class: 114
-      Script: {instanceID: 13808}
+      Script: {instanceID: 13790}
     - Class: 114
-      Script: {instanceID: 13966}
+      Script: {instanceID: 13810}
     - Class: 114
-      Script: {instanceID: 14040}
+      Script: {instanceID: 13968}
     - Class: 114
-      Script: {instanceID: 14068}
+      Script: {instanceID: 14042}
     - Class: 114
-      Script: {instanceID: 14080}
+      Script: {instanceID: 14070}
     - Class: 114
-      Script: {instanceID: 14182}
+      Script: {instanceID: 14082}
     - Class: 114
-      Script: {instanceID: 14348}
+      Script: {instanceID: 14184}
     - Class: 114
-      Script: {instanceID: 14654}
+      Script: {instanceID: 14350}
     - Class: 114
-      Script: {instanceID: 14756}
+      Script: {instanceID: 14656}
     - Class: 114
-      Script: {instanceID: 14868}
+      Script: {instanceID: 14758}
     - Class: 114
-      Script: {instanceID: 15060}
+      Script: {instanceID: 14870}
     - Class: 114
-      Script: {instanceID: 15106}
+      Script: {instanceID: 15062}
     - Class: 114
-      Script: {instanceID: 15148}
+      Script: {instanceID: 15108}
     - Class: 114
-      Script: {instanceID: 15300}
+      Script: {instanceID: 15150}
     - Class: 114
-      Script: {instanceID: 15874}
+      Script: {instanceID: 15302}
     - Class: 114
-      Script: {instanceID: 15936}
+      Script: {instanceID: 15876}
     - Class: 114
-      Script: {instanceID: 93478}
+      Script: {instanceID: 15938}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
     - Class: 135
+      Script: {instanceID: 0}
+    - Class: 136
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -2780,6 +2802,12 @@ ScriptsOnlyBuild:
     className: Vignette
   - hash:
       serializedVersion: 2
+      Hash: d0c89a0c0da1aff8c47b1231e316510a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: InfoUnitDisplay
+  - hash:
+      serializedVersion: 2
       Hash: 3618c1889fab43585d63e0ee59c37c96
     assemblyName: Mirror.Examples.dll
     namespaceName: Mirror.Examples.Chat
@@ -3290,7 +3318,7 @@ ScriptsOnlyBuild:
     className: PlayModeRunnerCallback
   - hash:
       serializedVersion: 2
-      Hash: 862c125e64dcf3912cc29b9f40b24d7b
+      Hash: 1febdc9828b6a3264be4300002574a10
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RTSNetworkManager
@@ -3534,12 +3562,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: d0c89a0c0da1aff8c47b1231e316510a
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: InfoUnitDisplay
   platform: 19
   scenePathNames:
   - Assets/Scenes/Scene_Menu.unity

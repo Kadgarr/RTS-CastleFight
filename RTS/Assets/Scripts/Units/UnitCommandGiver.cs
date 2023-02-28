@@ -41,7 +41,7 @@ public class UnitCommandGiver : MonoBehaviour
             TryTarget(target);
             return;
         }
-
+        
         TryMove(hit.point);
     }
 
@@ -50,16 +50,17 @@ public class UnitCommandGiver : MonoBehaviour
     {
         foreach(Unit unit in unitSelectionHandler.SelectedUnits)
         {
-            unit.GetUnitMovement().CmdMove(point);
+            if(unit.gameObject.layer==12) //указываем, что нужно двигатьс€ только билдеру
+              unit.GetUnitMovement().CmdMove(point);
         }
     }
 
     private void TryTarget(Targetable target)
     {
-        
         foreach (Unit unit in unitSelectionHandler.SelectedUnits)
         {
-            unit.GetTargeter().CmdSetTarget(target.gameObject);
+            if (unit.gameObject.layer == 12)
+                unit.GetTargeter().CmdSetTarget(target.gameObject);
         }
     }
 

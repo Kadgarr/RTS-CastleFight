@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 
 public class RTSNetworkManager : NetworkManager
 {
-    [SerializeField] private GameObject unitBasePrefab = null;
+    [SerializeField] private GameObject unitPlayerPrefab = null;
     [SerializeField] private GameOverHandler gameOverHandlerPrefab = null;
 
     private bool isGameInProgress=false;
@@ -111,13 +111,13 @@ public class RTSNetworkManager : NetworkManager
 
             foreach(RTSPlayer player in Players)
             {
-               GameObject baseInstance = Instantiate(
-                   unitBasePrefab,
+               GameObject builderInstance = Instantiate(
+                   unitPlayerPrefab,
                    GetStartPosition().position,
                    Quaternion.identity);
 
-                baseInstance.name += $" {player.netId}";
-                NetworkServer.Spawn(baseInstance, player.connectionToClient);
+                builderInstance.name += $" {player.netId}";
+                NetworkServer.Spawn(builderInstance, player.connectionToClient);
             }
         }
     }

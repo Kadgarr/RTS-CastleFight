@@ -28,7 +28,7 @@ public class UnitFiring : NetworkBehaviour
     {
         for (int i = 0; i < 2; i++)
         {
-            unitBases.Add(GameObject.Find($"UnitBase(Clone) {i + 1}"));
+            unitBases.Add(GameObject.Find($"UnitBase {i + 1}"));
         }
 
     }
@@ -38,10 +38,10 @@ public class UnitFiring : NetworkBehaviour
     {
         target = targeter.GetTarget();
 
-        if (target == null )
+        if (target == null)
         {
             TargetUnitBase();
- 
+
             return;
         }
 
@@ -101,15 +101,21 @@ public class UnitFiring : NetworkBehaviour
         {
             if (unitBase == null) return;
 
-            if (unitBase.TryGetComponent<NetworkIdentity>(out NetworkIdentity networkIdentity))
+            //if (unitBase.TryGetComponent<NetworkIdentity>(out NetworkIdentity networkIdentity))
+            //{
+            //    if (networkIdentity.connectionToClient.connectionId != connectionToClient.connectionId)
+            //    {
+            //        gameObject.GetComponent<NavMeshAgent>().SetDestination(unitBase.transform.position);
+            //        activeUnitBase = true;
+            //    }
+
+            //}
+
+            if (unitBase.TryGetComponent<TeamNumber>(out TeamNumber teamNumber))
             {
-                if (networkIdentity.connectionToClient.connectionId != connectionToClient.connectionId)
+                RTSPlayer player = connectionToClient.identity.GetComponent<RTSPlayer>();
+                if (teamNumber.GetTeamNumber() != player.GetTeamNumber())
                 {
-
-                    //target = targeter.GetTarget();
-
-                    //targeter.SetTarget(unitBase);
-                    //Debug.Log("UnitBase coordinates: "+unitBase.transform.position);
                     gameObject.GetComponent<NavMeshAgent>().SetDestination(unitBase.transform.position);
                     activeUnitBase = true;
                 }
