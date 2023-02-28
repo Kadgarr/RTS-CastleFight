@@ -52,7 +52,7 @@ public class GameOverHandler : NetworkBehaviour
 
         int winnerTeamId = bases[0].GetComponent<TeamNumber>().GetTeamNumber();
 
-        RpcGameOver($"Team {winnerTeamId} won!");
+        RpcGameOver($"Team {winnerTeamId}");
        
         ServerOnGameOver?.Invoke();
     }

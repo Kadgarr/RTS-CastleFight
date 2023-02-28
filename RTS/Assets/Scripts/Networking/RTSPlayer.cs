@@ -288,7 +288,8 @@ public class RTSPlayer : NetworkBehaviour
 
     private void ServerHandleBuildingSpawned(Building building)
     {
-        if (building.connectionToClient.connectionId != connectionToClient.connectionId) return;
+        if(!building.gameObject.name.Contains("UnitBase"))
+            if (building.connectionToClient.connectionId != connectionToClient.connectionId) return;
 
         myBuildings.Add(building);
 
@@ -296,7 +297,8 @@ public class RTSPlayer : NetworkBehaviour
 
     private void ServerHandleBuildingDespawned(Building building)
     {
-        if (building.connectionToClient.connectionId != connectionToClient.connectionId) return;
+        if (!building.gameObject.name.Contains("UnitBase"))
+            if (building.connectionToClient.connectionId != connectionToClient.connectionId) return;
 
         myBuildings.Remove(building);
     }
