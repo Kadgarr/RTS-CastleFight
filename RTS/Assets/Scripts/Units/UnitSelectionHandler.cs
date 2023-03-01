@@ -43,7 +43,6 @@ public class UnitSelectionHandler : MonoBehaviour
             PointerEventData pointerData = new PointerEventData(EventSystem.current)
             {
                 pointerId = -1,
-
             };
 
 
@@ -53,21 +52,14 @@ public class UnitSelectionHandler : MonoBehaviour
 
             EventSystem.current.RaycastAll(pointerData, results);
             if (results.Count > 0)
-
             {
-
                 for (int i = 0; i < results.Count; ++i)
                 {
-
                     if (results[i].gameObject.CompareTag("UI"))
-
                         return true;
-
                 }
 
             }
-
-
             return false;
         }
 
@@ -140,7 +132,7 @@ public class UnitSelectionHandler : MonoBehaviour
 
             if (!hit.collider.TryGetComponent<Unit>(out Unit unit)) return;
 
-            if (!unit.hasAuthority) return;
+           // if (!unit.hasAuthority) return;
 
             SelectedUnits.Add(unit);
 

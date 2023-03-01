@@ -85,13 +85,13 @@ public class Unit : NetworkBehaviour
 
     public void Select()
     {
-        if (!hasAuthority) return;
+        //if (!hasAuthority) return;
         onSelected?.Invoke();
     }
 
     public void Deselect()
     {
-        if (!hasAuthority) return;
+      //  if (!hasAuthority) return;
         onDeselected?.Invoke(); 
     }
     #endregion

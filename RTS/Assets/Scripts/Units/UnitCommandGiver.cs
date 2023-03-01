@@ -1,3 +1,4 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,21 +29,38 @@ public class UnitCommandGiver : MonoBehaviour
 
         Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
-        if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask)) return;
-
-        if(hit.collider.TryGetComponent<Targetable>(out Targetable target))
+        //if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask)) return;
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
         {
-            if (target.hasAuthority)
+
+            if (hit.collider.gameObject.tag == "BuildingArea" && 
+                hit.collider.TryGetComponent<TeamNumberArea>(out TeamNumberArea teamNumberArea))
             {
+                if (teamNumberArea.GetTeamNumber() !=
+                    NetworkClient.connection.identity.GetComponent<RTSPlayer>().GetTeamNumber())
+                    return;
+
+                if (hit.collider.TryGetComponent<Targetable>(out Targetable target))
+                {
+                    if (target.hasAuthority)
+                    {
+                        TryMove(hit.point);
+                        return;
+                    }
+
+                    TryTarget(target);
+                    return;
+                }
+
                 TryMove(hit.point);
+            }
+            else
+            if (hit.collider.gameObject.tag == "WallArea")
+            {
                 return;
             }
-
-            TryTarget(target);
-            return;
         }
-        
-        TryMove(hit.point);
+
     }
 
    
