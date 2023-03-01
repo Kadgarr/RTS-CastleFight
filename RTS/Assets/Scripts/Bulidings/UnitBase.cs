@@ -13,20 +13,7 @@ public class UnitBase : NetworkBehaviour
     public static event Action<UnitBase> ServerOnBaseSpawned;
     public static event Action<UnitBase> ServerOnBaseDespawned;
 
-    //бпелеммн
-    private void Start()
-    {
-        if (this.gameObject.GetComponent<TeamNumber>().GetTeamNumber() == 1)
-        {
-            Color color = Color.red;
-            colorRenderer.material.SetColor("_BaseColor", color);
-        }
-        else
-        {
-            Color color = Color.blue;
-            colorRenderer.material.SetColor("_BaseColor", color);
-        }
-    }
+   
 
     #region Server
 
@@ -45,7 +32,7 @@ public class UnitBase : NetworkBehaviour
 
     private void ServerHandelDie()
     {
-        //ServerOnPlayerDie?.Invoke(connectionToClient.connectionId);
+        ServerOnPlayerDie?.Invoke(connectionToClient.connectionId);
 
         NetworkServer.Destroy(gameObject);
     }

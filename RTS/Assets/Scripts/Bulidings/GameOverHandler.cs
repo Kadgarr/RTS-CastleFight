@@ -12,15 +12,8 @@ public class GameOverHandler : NetworkBehaviour
     public static event Action ServerOnGameOver;
     public static event Action<string> ClientOnGameOver;
 
-    private List<GameObject> bases = new List<GameObject>();
+    private List<UnitBase> bases = new List<UnitBase>();
 
-    private void Start()
-    {
-        for (int i = 0; i < 2; i++)
-        {
-            bases.Add(GameObject.Find($"UnitBase {i + 1}"));
-        }
-    }
     #region Server
 
     public override void OnStartServer()
@@ -38,15 +31,14 @@ public class GameOverHandler : NetworkBehaviour
     [Server]
     private void ServerHandleBaseSpawned(UnitBase unitBase)
     {
-       
-        //bases.Add(unitBase);
+        bases.Add(unitBase);
     }
 
     [Server]
     private void ServerHandleBaseDespawned(UnitBase unitBase)
     {
-        var uBase = bases.FirstOrDefault(x => x.gameObject.name == unitBase.name);
-        bases.Remove(uBase);
+       
+        bases.Remove(unitBase);
       
         if (bases.Count != 1) return;
 

@@ -12,6 +12,7 @@ using UnityEngine.SceneManagement;
 public class RTSNetworkManager : NetworkManager
 {
     [SerializeField] private GameObject unitPlayerPrefab = null;
+    [SerializeField] private GameObject unitBasePrefab = null;
     [SerializeField] private GameOverHandler gameOverHandlerPrefab = null;
 
     private bool isGameInProgress=false;
@@ -109,16 +110,64 @@ public class RTSNetworkManager : NetworkManager
 
             NetworkServer.Spawn(gameOverHandlerInstance.gameObject);
 
+            //спавним 2 базы
             foreach(RTSPlayer player in Players)
             {
-               GameObject builderInstance = Instantiate(
-                   unitPlayerPrefab,
-                   GetStartPosition().position,
+                if (player.GetTeamNumber() == 1)
+                {
+                   GameObject unitBaseInstance = Instantiate(
+                   unitBasePrefab,
+                   new Vector3(-105.4f,0f,0f),
                    Quaternion.identity);
+
+                   unitBaseInstance.name += $" {player.netId}";
+                   NetworkServer.Spawn(unitBaseInstance, player.connectionToClient);
+
+                    foreach(RTSPlayer player2 in Players)
+                    {
+                        if(player2.GetTeamNumber() == 2)
+                        {
+                            GameObject unitBase2Instance = Instantiate(
+                            unitBasePrefab,
+                            new Vector3(105.4f, 0f, 0f),
+                            Quaternion.identity);
+
+                            unitBase2Instance.name += $" {player2.netId}";
+                            NetworkServer.Spawn(unitBase2Instance, player2.connectionToClient);
+                            break;
+                        }
+                    }
+
+                    break;
+                }
+            }
+        }
+
+        //спавним игроков
+        foreach(RTSPlayer player in Players)
+        {
+
+            if(player.GetTeamNumber() == 1)
+            {
+                GameObject builderInstance = Instantiate(
+                 unitPlayerPrefab,
+                 new Vector3(-98f, 0f, 0f),
+                 Quaternion.identity);
 
                 builderInstance.name += $" {player.netId}";
                 NetworkServer.Spawn(builderInstance, player.connectionToClient);
             }
+            else
+            {
+                GameObject builderInstance = Instantiate(
+                unitPlayerPrefab,
+                new Vector3(98f, 0f, 0f),
+                Quaternion.identity);
+
+                builderInstance.name += $" {player.netId}";
+                NetworkServer.Spawn(builderInstance, player.connectionToClient);
+            }
+           
         }
     }
 }

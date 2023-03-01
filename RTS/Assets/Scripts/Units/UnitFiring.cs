@@ -28,7 +28,7 @@ public class UnitFiring : NetworkBehaviour
     {
         for (int i = 0; i < 2; i++)
         {
-            unitBases.Add(GameObject.Find($"UnitBase {i + 1}"));
+            unitBases.Add(GameObject.Find($"UnitBase(Clone) {i + 1}"));
         }
 
     }
@@ -100,16 +100,6 @@ public class UnitFiring : NetworkBehaviour
         foreach (var unitBase in unitBases)
         {
             if (unitBase == null) return;
-
-            //if (unitBase.TryGetComponent<NetworkIdentity>(out NetworkIdentity networkIdentity))
-            //{
-            //    if (networkIdentity.connectionToClient.connectionId != connectionToClient.connectionId)
-            //    {
-            //        gameObject.GetComponent<NavMeshAgent>().SetDestination(unitBase.transform.position);
-            //        activeUnitBase = true;
-            //    }
-
-            //}
 
             if (unitBase.TryGetComponent<TeamNumber>(out TeamNumber teamNumber))
             {
