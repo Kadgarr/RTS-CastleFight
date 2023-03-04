@@ -62,7 +62,6 @@ public class BuildingButton : MonoBehaviour
 
         buildingPreviewInstance.SetActive(false);
 
-
         normColor = buildingRendererInstance.material.color;
     }
 

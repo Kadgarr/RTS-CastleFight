@@ -15,7 +15,7 @@ public class RTSPlayer : NetworkBehaviour
     [SerializeField] private LayerMask floorMask = new LayerMask();
     [SerializeField] private Building[] buildings = new Building[0];
     [SerializeField] private float buildingRangeLimit = 5f;
-    
+
 
     [SyncVar(hook = nameof(ClientHandleResourcesUpdated))]
     private int resources = 500;
@@ -36,13 +36,26 @@ public class RTSPlayer : NetworkBehaviour
 
     private Color teamColor = new Color();
     private List<Unit> myUnits = new List<Unit>();
+    
 
     private List<Building> myBuildings = new List<Building>();
     private Camera mainCamera;
 
+    private Unit unitBuilder;
+    private int idBuildng;
+    private bool checkDistanceBuilderUnit=true;
+
+    private Vector3 placePoint;
+
+
     private void Update()
     {
-      if(mainCamera==null) mainCamera = Camera.main;
+        if (mainCamera == null) mainCamera = Camera.main;
+
+        if (!checkDistanceBuilderUnit)
+        {
+            CheckDistanceToUnitBuilder(placePoint,idBuildng);
+        }
     }
     public string GetDisplayName()
     {
@@ -82,6 +95,26 @@ public class RTSPlayer : NetworkBehaviour
         return resources;
     }
 
+    public void CheckDistanceToUnitBuilder(Vector3 point, int idBuilding)
+    {
+        Debug.Log(unitBuilder.gameObject.transform.position+ "\n"+ point);
+        if (unitBuilder.gameObject.transform.position.x != point.x
+            && unitBuilder.gameObject.transform.position.z != point.z)
+        {
+            Debug.Log("Check false");
+            
+        }
+        else
+        {
+            checkDistanceBuilderUnit = true;
+
+            TryPlaceBuilding(idBuilding,point);
+            
+            Debug.Log("Check " + checkDistanceBuilderUnit);
+           
+        }
+            
+    }
 
     public bool CanPlaceBuilding(BoxCollider buildingCollider, Vector3 point)
     {
@@ -209,7 +242,8 @@ public class RTSPlayer : NetworkBehaviour
     [Command]
     public void CmdTryPlaceBuilding(int idBuilding, Vector3 point)
     {
-     
+      
+
         Building buildingToPlace = null;
 
         foreach (Building building in buildings)
@@ -228,16 +262,41 @@ public class RTSPlayer : NetworkBehaviour
 
         BoxCollider buildingCollider = buildingToPlace.GetComponent<BoxCollider>();
 
-        
-        if (!CanPlaceBuilding(buildingCollider,point)) return;
+        //проверка на дистанцию
+        if (!checkDistanceBuilderUnit)
+        if (!CanPlaceBuilding(buildingCollider,point)) return; //проверка можно ли ставить здание
 
+        placePoint = point;
+
+        idBuildng = idBuilding;
+
+
+
+        foreach (Unit unit in myUnits)
+        {
+            if (unit.gameObject.layer == 12)
+            {
+                if (unitBuilder == null)
+                    checkDistanceBuilderUnit = false;
+
+                unit.gameObject.GetComponent<NavMeshAgent>().SetDestination(point);
+
+                unitBuilder = unit;
+
+                break;
+            }
+        }
+        //проверка дистанции, если билдер не достиг дистанции, то спавн не произойдет
+        if (!checkDistanceBuilderUnit) return;
         
         GameObject buildingInstance=
             Instantiate(buildingToPlace.gameObject, point, buildingToPlace.transform.rotation);
         
+        
         NetworkServer.Spawn(buildingInstance, connectionToClient);
 
-        SetResources(resources - buildingToPlace.GetPrice()); 
+        SetResources(resources - buildingToPlace.GetPrice());
+        unitBuilder = null;
     }
 
     public void TryPlaceBuilding(int idBuilding, Vector3 point)
@@ -260,9 +319,9 @@ public class RTSPlayer : NetworkBehaviour
 
         BoxCollider buildingCollider = buildingToPlace.GetComponent<BoxCollider>();
 
-        Debug.Log($"Check {CanPlaceBuilding(buildingCollider, point)}");
-        if (!CanPlaceBuilding(buildingCollider, point)) return;
-
+        
+        //if (!CanPlaceBuilding(buildingCollider, point)) return;
+        if (!checkDistanceBuilderUnit) return;
 
         GameObject buildingInstance =
             Instantiate(buildingToPlace.gameObject, point, buildingToPlace.transform.rotation);
