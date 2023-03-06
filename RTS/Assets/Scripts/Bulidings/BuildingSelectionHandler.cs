@@ -98,7 +98,7 @@ public class BuildingSelectionHandler : MonoBehaviour
 
         startPosition = Mouse.current.position.ReadValue();
 
-        UpdateSelectionArea();
+       // UpdateSelectionArea();
 
     }
 
@@ -146,25 +146,7 @@ public class BuildingSelectionHandler : MonoBehaviour
             return;
         }
 
-        Vector2 min = buildingSelectionArea.anchoredPosition - (buildingSelectionArea.sizeDelta / 2);
-        Vector2 max = buildingSelectionArea.anchoredPosition + (buildingSelectionArea.sizeDelta / 2);
-
-        foreach(Building buildings in player.GetMyBuildings())
-        {
-            if (SelectedBuildings.Contains(buildings)) continue;
-
-            Vector3 screenPosition = mainCamera.WorldToScreenPoint(buildings.transform.position);
-
-            if(screenPosition.x>min.x 
-                && screenPosition.x<max.x 
-                && screenPosition.y>min.y 
-                && screenPosition.y<max.y)
-            {
-                SelectedBuildings.Add(buildings);
-                buildings.Select();
-                buildings.SetActiveCanvasInfo(true);
-            }
-        }
+       
     }
 
     //удаляет строение из списка выбранных строений

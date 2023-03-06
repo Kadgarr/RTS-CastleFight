@@ -142,7 +142,6 @@ public class RTSPlayer : NetworkBehaviour
                 
                 if(hit.collider.TryGetComponent<TeamNumberArea>(out TeamNumberArea teamNumberArea))
                 {
-                   
                     if (teamNumberArea.GetTeamNumber() != GetTeamNumber())
                     {
                         return false;
@@ -153,13 +152,11 @@ public class RTSPlayer : NetworkBehaviour
                     }
                        
                 }
-                
             }
             if (hit.collider.gameObject.tag == "WallArea")
             {
                 return false;
             }
-
 
         }
 
@@ -242,8 +239,6 @@ public class RTSPlayer : NetworkBehaviour
     [Command]
     public void CmdTryPlaceBuilding(int idBuilding, Vector3 point)
     {
-      
-
         Building buildingToPlace = null;
 
         foreach (Building building in buildings)
@@ -254,7 +249,6 @@ public class RTSPlayer : NetworkBehaviour
                 break;
             }
         }
-     
 
         if (buildingToPlace == null) return;
 
@@ -262,14 +256,14 @@ public class RTSPlayer : NetworkBehaviour
 
         BoxCollider buildingCollider = buildingToPlace.GetComponent<BoxCollider>();
 
-        //проверка на дистанцию
-        if (!checkDistanceBuilderUnit)
+        Debug.LogError("CHECK 1" + checkDistanceBuilderUnit);
+
+       
         if (!CanPlaceBuilding(buildingCollider,point)) return; //проверка можно ли ставить здание
 
         placePoint = point;
 
         idBuildng = idBuilding;
-
 
 
         foreach (Unit unit in myUnits)
@@ -286,6 +280,8 @@ public class RTSPlayer : NetworkBehaviour
                 break;
             }
         }
+
+        Debug.LogError("CHECK 2" + checkDistanceBuilderUnit);
         //проверка дистанции, если билдер не достиг дистанции, то спавн не произойдет
         if (!checkDistanceBuilderUnit) return;
         
@@ -319,9 +315,7 @@ public class RTSPlayer : NetworkBehaviour
 
         BoxCollider buildingCollider = buildingToPlace.GetComponent<BoxCollider>();
 
-        
-        //if (!CanPlaceBuilding(buildingCollider, point)) return;
-        if (!checkDistanceBuilderUnit) return;
+       // if (!CanPlaceBuilding(buildingCollider, point)) return;
 
         GameObject buildingInstance =
             Instantiate(buildingToPlace.gameObject, point, buildingToPlace.transform.rotation);
@@ -329,6 +323,7 @@ public class RTSPlayer : NetworkBehaviour
         NetworkServer.Spawn(buildingInstance, connectionToClient);
 
         SetResources(resources - buildingToPlace.GetPrice());
+        unitBuilder = null;
     }
 
     private void ServerHandleUnitSpawned(Unit unit)

@@ -117,7 +117,7 @@ public class RTSNetworkManager : NetworkManager
                 {
                    GameObject unitBaseInstance = Instantiate(
                    unitBasePrefab,
-                   new Vector3(-105.4f,0f,0f),
+                   new Vector3(-105.4f,1f,0f),
                    Quaternion.identity);
 
                    unitBaseInstance.name += $" {player.netId}";
@@ -129,7 +129,7 @@ public class RTSNetworkManager : NetworkManager
                         {
                             GameObject unitBase2Instance = Instantiate(
                             unitBasePrefab,
-                            new Vector3(105.4f, 0f, 0f),
+                            new Vector3(105.4f, 1f, 0f),
                             Quaternion.identity);
 
                             unitBase2Instance.name += $" {player2.netId}";

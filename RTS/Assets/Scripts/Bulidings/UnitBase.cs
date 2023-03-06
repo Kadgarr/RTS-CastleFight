@@ -7,7 +7,6 @@ using UnityEngine;
 public class UnitBase : NetworkBehaviour
 {
     [SerializeField] private Health health = null;
-    [SerializeField] private Renderer colorRenderer = new Renderer();
 
     public static event Action<int> ServerOnPlayerDie;
     public static event Action<UnitBase> ServerOnBaseSpawned;
