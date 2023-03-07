@@ -22,6 +22,7 @@ public class BuildingButton : MonoBehaviour
     private BoxCollider buildingCollider;
     private RTSPlayer player;
     private GameObject buildingPreviewInstance;
+    private GameObject preBuild;
     private Renderer buildingRendererInstance;
     private Color normColor;
 
@@ -33,8 +34,15 @@ public class BuildingButton : MonoBehaviour
         priceText.text = building.GetPrice().ToString();
 
         player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
-
+        
         buildingCollider = building.GetComponent<BoxCollider>();
+
+        RTSPlayer.SpawnedBuildingPreviewUpdated += HandleSpawnedBuildingPreview;
+    }
+
+    private void OnDisable()
+    {
+        RTSPlayer.SpawnedBuildingPreviewUpdated -= HandleSpawnedBuildingPreview;
     }
 
     private void Update()
@@ -47,7 +55,7 @@ public class BuildingButton : MonoBehaviour
         PlaceBuilding();
 
     }
-
+   
     public void Build()
     {
        
@@ -76,18 +84,31 @@ public class BuildingButton : MonoBehaviour
             
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, floorMask))
             {
-                if(hit.collider.TryGetComponent<TeamNumberArea>(out TeamNumberArea teamNumberArea))
+
+                if (hit.collider.TryGetComponent<TeamNumberArea>(out TeamNumberArea teamNumberArea))
                 {
                     if (teamNumberArea.GetTeamNumber() == player.GetTeamNumber() && hit.collider.gameObject.tag!="WallArea")
                     {
                         RTSPlayer player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
+
+                        if (player.CanPlaceBuilding(buildingCollider, hit.point))
+                        {
+                            if (preBuild != null)
+                                Destroy(preBuild);
+
+                            preBuild =
+                                Instantiate(buildingPreviewInstance, hit.point, buildingPreviewInstance.transform.rotation);
+                        }
+                       
                         player.CmdTryPlaceBuilding(building.GetId(), hit.point);
+
                     }
                 }
 
             }
 
             Destroy(buildingPreviewInstance);
+            
         }
        
         if (Mouse.current.rightButton.wasPressedThisFrame)
@@ -120,5 +141,11 @@ public class BuildingButton : MonoBehaviour
         buildingRendererInstance.material.SetColor("_BaseColor", color);
     }
 
-   
+    private void HandleSpawnedBuildingPreview(bool check)
+    {
+        Debug.Log("CHECK");
+        if(!check) return;
+
+        Destroy(preBuild);
+    }
 }

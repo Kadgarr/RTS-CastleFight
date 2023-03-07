@@ -68,8 +68,12 @@ public class UnitCommandGiver : MonoBehaviour
     {
         foreach(Unit unit in unitSelectionHandler.SelectedUnits)
         {
-            if(unit.gameObject.layer==12) //указываем, что нужно двигатьс€ только билдеру
-              unit.GetUnitMovement().CmdMove(point);
+            if (unit.gameObject.layer == 12)//указываем, что нужно двигатьс€ только билдеру
+            {
+                unit.GetUnitMovement().CmdMove(point);
+                NetworkClient.connection.identity.GetComponent<RTSPlayer>().SetCheckDistanceBuilderUnit(true);
+            } 
+              
         }
     }
 
@@ -78,7 +82,11 @@ public class UnitCommandGiver : MonoBehaviour
         foreach (Unit unit in unitSelectionHandler.SelectedUnits)
         {
             if (unit.gameObject.layer == 12)
+            {
                 unit.GetTargeter().CmdSetTarget(target.gameObject);
+                NetworkClient.connection.identity.GetComponent<RTSPlayer>().SetCheckDistanceBuilderUnit(true);
+            }
+                
         }
     }
 

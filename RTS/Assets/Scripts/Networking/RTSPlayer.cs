@@ -31,6 +31,7 @@ public class RTSPlayer : NetworkBehaviour
 
     public event Action<int> ClientOnResourcesUpdated;
     public static event Action<bool> AuthorityOnPartyOwnerStateUpdated;
+    public static event Action<bool> SpawnedBuildingPreviewUpdated;
     public static event Action ClientOnInfoUpdated;
     public static event Action ClientOnTeamInfoUpdated;
 
@@ -43,6 +44,7 @@ public class RTSPlayer : NetworkBehaviour
 
     private Unit unitBuilder;
     private int idBuildng;
+    [SyncVar(hook = nameof(SpawnedHandleBuildingPreviewUpdated))]
     private bool checkDistanceBuilderUnit=true;
 
     private Vector3 placePoint;
@@ -95,23 +97,27 @@ public class RTSPlayer : NetworkBehaviour
         return resources;
     }
 
+    [Command]
+    public void SetCheckDistanceBuilderUnit(bool check)
+    {
+        checkDistanceBuilderUnit=check;
+        unitBuilder = null;
+    }
+
     public void CheckDistanceToUnitBuilder(Vector3 point, int idBuilding)
     {
         Debug.Log(unitBuilder.gameObject.transform.position+ "\n"+ point);
-        if (unitBuilder.gameObject.transform.position.x != point.x
-            && unitBuilder.gameObject.transform.position.z != point.z)
-        {
-            Debug.Log("Check false");
-            
-        }
-        else
+        if (unitBuilder.gameObject.transform.position.x == point.x
+            && unitBuilder.gameObject.transform.position.z == point.z)
         {
             checkDistanceBuilderUnit = true;
 
-            TryPlaceBuilding(idBuilding,point);
-            
-            Debug.Log("Check " + checkDistanceBuilderUnit);
-           
+            TryPlaceBuilding(idBuilding, point);
+
+        }
+        else
+        {
+            return;
         }
             
     }
@@ -256,8 +262,6 @@ public class RTSPlayer : NetworkBehaviour
 
         BoxCollider buildingCollider = buildingToPlace.GetComponent<BoxCollider>();
 
-        Debug.LogError("CHECK 1" + checkDistanceBuilderUnit);
-
        
         if (!CanPlaceBuilding(buildingCollider,point)) return; //проверка можно ли ставить здание
 
@@ -281,8 +285,9 @@ public class RTSPlayer : NetworkBehaviour
             }
         }
 
-        Debug.LogError("CHECK 2" + checkDistanceBuilderUnit);
+      
         //проверка дистанции, если билдер не достиг дистанции, то спавн не произойдет
+     
         if (!checkDistanceBuilderUnit) return;
         
         GameObject buildingInstance=
@@ -415,6 +420,10 @@ public class RTSPlayer : NetworkBehaviour
         AuthorityOnPartyOwnerStateUpdated?.Invoke(newState);
     }
 
+    private void SpawnedHandleBuildingPreviewUpdated(bool oldState, bool newState)
+    {
+        SpawnedBuildingPreviewUpdated.Invoke(newState);
+    }
 
     private void AuthorityHandleUnitSpawned(Unit unit)
     {
