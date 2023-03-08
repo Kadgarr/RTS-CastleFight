@@ -19,6 +19,8 @@ public class UnitSelectionHandler : MonoBehaviour
     private RTSPlayer player;
     private Camera mainCamera;
 
+    public static event Action ClearBuildingSelectionUpdated;
+
     public List<Unit> SelectedUnits { get; } = new List<Unit> ();
 
     private void Start()
@@ -26,14 +28,17 @@ public class UnitSelectionHandler : MonoBehaviour
         mainCamera = Camera.main;
 
         Unit.AuthorityOnUnitDespawned += AuthorityHadnleUnitDespawned;
+        BuildingSelectionHandler.ClearUnitSelectionUpdated += HandleClearSelectionUpdated;
         player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
         GameOverHandler.ClientOnGameOver += ClientHandleGameOver;
     }
+
 
     private void OnDestroy()
     {
         Unit.AuthorityOnUnitDespawned -= AuthorityHadnleUnitDespawned;
         GameOverHandler.ClientOnGameOver -= ClientHandleGameOver;
+        BuildingSelectionHandler.ClearUnitSelectionUpdated -= HandleClearSelectionUpdated;
     }
     private bool IsOverUI()
     {
@@ -69,7 +74,6 @@ public class UnitSelectionHandler : MonoBehaviour
     private void Update()
     {
       
-
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             if (IsOverUI()) return;
@@ -87,7 +91,7 @@ public class UnitSelectionHandler : MonoBehaviour
             {
                 selectedUnit.Deselect();
                 selectedUnit.SetActiveCanvasInfo(false);
-
+                ClearBuildingSelectionUpdated.Invoke();
             }
             SelectedUnits.Clear();
         }
@@ -140,6 +144,7 @@ public class UnitSelectionHandler : MonoBehaviour
             {
                 selectedUnit.Select();
                 selectedUnit.SetActiveCanvasInfo(true);
+                ClearBuildingSelectionUpdated.Invoke();
             }
 
             return;
@@ -162,6 +167,7 @@ public class UnitSelectionHandler : MonoBehaviour
                 SelectedUnits.Add(unit);
                 unit.Select();
                 unit.SetActiveCanvasInfo(true);
+                ClearBuildingSelectionUpdated.Invoke();
             }
         }
     }
@@ -171,5 +177,16 @@ public class UnitSelectionHandler : MonoBehaviour
     {
         SelectedUnits.Remove(unit);
         unit.SetActiveCanvasInfo(false);
+    }
+
+    private void HandleClearSelectionUpdated()
+    {
+        foreach (Unit selectedUnit in SelectedUnits)
+        {
+            selectedUnit.Deselect();
+            selectedUnit.SetActiveCanvasInfo(false);
+        }
+        SelectedUnits.Clear();
+        Debug.Log("CHECK");
     }
 }

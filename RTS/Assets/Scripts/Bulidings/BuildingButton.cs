@@ -143,7 +143,6 @@ public class BuildingButton : MonoBehaviour
 
     private void HandleSpawnedBuildingPreview(bool check)
     {
-        Debug.Log("CHECK");
         if(!check) return;
 
         Destroy(preBuild);

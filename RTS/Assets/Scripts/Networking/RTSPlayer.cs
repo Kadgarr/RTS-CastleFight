@@ -106,7 +106,7 @@ public class RTSPlayer : NetworkBehaviour
 
     public void CheckDistanceToUnitBuilder(Vector3 point, int idBuilding)
     {
-        Debug.Log(unitBuilder.gameObject.transform.position+ "\n"+ point);
+       // Debug.Log(unitBuilder.gameObject.transform.position+ "\n"+ point);
         if (unitBuilder.gameObject.transform.position.x == point.x
             && unitBuilder.gameObject.transform.position.z == point.z)
         {

@@ -19,6 +19,8 @@ public class BuildingSelectionHandler : MonoBehaviour
     private RTSPlayer player;
     private Camera mainCamera;
 
+    public static event Action ClearUnitSelectionUpdated;
+
     public List<Building> SelectedBuildings { get; } = new List<Building> ();
 
     private void Start()
@@ -26,6 +28,7 @@ public class BuildingSelectionHandler : MonoBehaviour
         mainCamera = Camera.main;
 
         Building.AuthorityOnBuildingDespawned += AuthorityHadnleBuildingDespawned;
+        UnitSelectionHandler.ClearBuildingSelectionUpdated += HandleClearSelectionUpdated;
         player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
         GameOverHandler.ClientOnGameOver += ClientHandleGameOver;
     }
@@ -34,6 +37,7 @@ public class BuildingSelectionHandler : MonoBehaviour
     {
         Building.AuthorityOnBuildingDespawned -= AuthorityHadnleBuildingDespawned;
         GameOverHandler.ClientOnGameOver -= ClientHandleGameOver;
+        UnitSelectionHandler.ClearBuildingSelectionUpdated -= HandleClearSelectionUpdated;
     }
     private bool IsOverUI()
     {
@@ -89,10 +93,10 @@ public class BuildingSelectionHandler : MonoBehaviour
             {
                 selectedBuilding.Deselect();
                 selectedBuilding.SetActiveCanvasInfo(false);
+                ClearUnitSelectionUpdated.Invoke();
             }
             SelectedBuildings.Clear();
         }
-
 
         buildingSelectionArea.gameObject.SetActive(true);
 
@@ -141,6 +145,7 @@ public class BuildingSelectionHandler : MonoBehaviour
             {
                 selectedBuilding.Select();
                 selectedBuilding.SetActiveCanvasInfo(true);
+                ClearUnitSelectionUpdated.Invoke();
             }
 
             return;
@@ -154,5 +159,16 @@ public class BuildingSelectionHandler : MonoBehaviour
     {
         SelectedBuildings.Remove(building);
         building.SetActiveCanvasInfo(false);
+    }
+
+    private void HandleClearSelectionUpdated()
+    {
+        foreach (Building selectedBuilding in SelectedBuildings)
+        {
+            selectedBuilding.Deselect();
+            selectedBuilding.SetActiveCanvasInfo(false);
+        }
+        SelectedBuildings.Clear();
+        Debug.Log("CHECK BUILDING");
     }
 }
