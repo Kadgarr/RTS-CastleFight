@@ -50,7 +50,6 @@ public class UnitSelectionHandler : MonoBehaviour
                 pointerId = -1,
             };
 
-
             pointerData.position = Input.mousePosition;
 
             List<RaycastResult> results = new List<RaycastResult>();
@@ -60,11 +59,12 @@ public class UnitSelectionHandler : MonoBehaviour
             {
                 for (int i = 0; i < results.Count; ++i)
                 {
-                    if (results[i].gameObject.CompareTag("UI"))
+                    if (results[i].gameObject.CompareTag("UI") || (results[i].gameObject.CompareTag("BuildingArea") && SelectedUnits.Count==1))
                         return true;
                 }
 
             }
+
             return false;
         }
 
@@ -73,7 +73,7 @@ public class UnitSelectionHandler : MonoBehaviour
     }
     private void Update()
     {
-      
+
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             if (IsOverUI()) return;
@@ -95,14 +95,12 @@ public class UnitSelectionHandler : MonoBehaviour
             }
             SelectedUnits.Clear();
         }
-     
 
         unitSelectionArea.gameObject.SetActive(true);
 
         startPosition = Mouse.current.position.ReadValue();
 
         UpdateSelectionArea();
-
     }
 
     private void ClientHandleGameOver(string winnerName)
@@ -119,8 +117,6 @@ public class UnitSelectionHandler : MonoBehaviour
 
         unitSelectionArea.sizeDelta = new Vector2(Mathf.Abs(areaWidth), Mathf.Abs(areaHeight));
         unitSelectionArea.anchoredPosition = startPosition + new Vector2(areaWidth/2, areaHeight/2);
-
-
     }
 
 
@@ -187,6 +183,5 @@ public class UnitSelectionHandler : MonoBehaviour
             selectedUnit.SetActiveCanvasInfo(false);
         }
         SelectedUnits.Clear();
-        Debug.Log("CHECK");
     }
 }

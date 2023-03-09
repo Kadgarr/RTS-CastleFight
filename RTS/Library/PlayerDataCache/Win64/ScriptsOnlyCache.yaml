@@ -264,6 +264,12 @@ ScriptsOnlyBuild:
     fullTypeName: UnityEngine.Renderer
     methodName: set_enabled
   - assembly: Assembly-CSharp
+    fullTypeName: BuildingButton
+    methodName: Build
+  - assembly: Assembly-CSharp
+    fullTypeName: BuildingButton
+    methodName: Build
+  - assembly: Assembly-CSharp
     fullTypeName: LobbyMenu
     methodName: ChangeToSecondTeam
   - assembly: UnityEngine.CoreModule
@@ -324,50 +330,8 @@ ScriptsOnlyBuild:
     fullTypeName: UnityEngine.Rendering.UI.DebugUIHandlerPanel
     methodName: ResetDebugManager
   - assembly: Assembly-CSharp
-    fullTypeName: BuildingButton
-    methodName: Build
-  - assembly: Assembly-CSharp
-    fullTypeName: BuildingButton
-    methodName: Build
-  - assembly: Assembly-CSharp
     fullTypeName: GameOverDisplay
     methodName: LeaveGame
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.Renderer
-    methodName: set_enabled
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.Renderer
-    methodName: set_enabled
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.Renderer
-    methodName: set_enabled
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.Renderer
-    methodName: set_enabled
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.Renderer
-    methodName: set_enabled
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.Renderer
-    methodName: set_enabled
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.Renderer
-    methodName: set_enabled
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.Renderer
-    methodName: set_enabled
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitSpawner
-    methodName: SetFalseProducingUnits
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitSpawner
-    methodName: SetTrueProducingUnits
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitSpawner
-    methodName: SetTrueProducingUnits
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitSpawner
-    methodName: SetFalseProducingUnits
   sceneClasses:
     Assets/Scenes/Scene_Map_01.unity:
     - Class: 1
@@ -388,8 +352,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
-    - Class: 54
-      Script: {instanceID: 0}
     - Class: 64
       Script: {instanceID: 0}
     - Class: 65
@@ -409,14 +371,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1928}
     - Class: 114
-      Script: {instanceID: 1932}
-    - Class: 114
-      Script: {instanceID: 2066}
-    - Class: 114
-      Script: {instanceID: 2150}
-    - Class: 114
-      Script: {instanceID: 2416}
-    - Class: 114
       Script: {instanceID: 3188}
     - Class: 114
       Script: {instanceID: 3576}
@@ -425,27 +379,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4458}
     - Class: 114
-      Script: {instanceID: 5306}
-    - Class: 114
       Script: {instanceID: 6590}
     - Class: 114
       Script: {instanceID: 6636}
     - Class: 114
-      Script: {instanceID: 6752}
-    - Class: 114
-      Script: {instanceID: 6832}
-    - Class: 114
       Script: {instanceID: 7348}
     - Class: 114
-      Script: {instanceID: 7946}
-    - Class: 114
-      Script: {instanceID: 7956}
-    - Class: 114
       Script: {instanceID: 8030}
-    - Class: 114
-      Script: {instanceID: 8048}
-    - Class: 114
-      Script: {instanceID: 8868}
     - Class: 114
       Script: {instanceID: 9516}
     - Class: 114
@@ -455,44 +395,26 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10698}
     - Class: 114
-      Script: {instanceID: 11322}
-    - Class: 114
       Script: {instanceID: 11338}
-    - Class: 114
-      Script: {instanceID: 11638}
     - Class: 114
       Script: {instanceID: 11654}
     - Class: 114
       Script: {instanceID: 11752}
     - Class: 114
-      Script: {instanceID: 12028}
-    - Class: 114
-      Script: {instanceID: 12302}
-    - Class: 114
       Script: {instanceID: 12862}
     - Class: 114
       Script: {instanceID: 13290}
-    - Class: 114
-      Script: {instanceID: 13332}
     - Class: 114
       Script: {instanceID: 13490}
     - Class: 114
       Script: {instanceID: 13530}
     - Class: 114
-      Script: {instanceID: 13788}
-    - Class: 114
-      Script: {instanceID: 15148}
-    - Class: 114
       Script: {instanceID: 15280}
-    - Class: 114
-      Script: {instanceID: 15936}
     - Class: 114
       Script: {instanceID: 16032}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
-      Script: {instanceID: 0}
-    - Class: 135
       Script: {instanceID: 0}
     - Class: 154
       Script: {instanceID: 0}
@@ -500,13 +422,9 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
-    - Class: 195
-      Script: {instanceID: 0}
     - Class: 196
       Script: {instanceID: 0}
     - Class: 208
-      Script: {instanceID: 0}
-    - Class: 212
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -591,6 +509,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 4036}
     - Class: 114
       Script: {instanceID: 4700}
+    - Class: 114
+      Script: {instanceID: 5306}
     - Class: 114
       Script: {instanceID: 5362}
     - Class: 114
@@ -898,7 +818,7 @@ ScriptsOnlyBuild:
     className: NetworkStatistics
   - hash:
       serializedVersion: 2
-      Hash: 4592cba22d73f4f082d820ed8c7ceb12
+      Hash: ef7200a345ecf85e40bf945cd48f285d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Unit

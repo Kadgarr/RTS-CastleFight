@@ -35,25 +35,31 @@ public class BuildingButton : MonoBehaviour
 
         player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
         
+        
+        RTSPlayer.SpawnedBuildingPreviewUpdated += HandleSpawnedBuildingPreview;
+    }
+
+    private void OnEnable()
+    {
+        mainCamera = Camera.main;
+
         buildingCollider = building.GetComponent<BoxCollider>();
 
         RTSPlayer.SpawnedBuildingPreviewUpdated += HandleSpawnedBuildingPreview;
     }
-
     private void OnDisable()
     {
         RTSPlayer.SpawnedBuildingPreviewUpdated -= HandleSpawnedBuildingPreview;
+        Destroy(buildingPreviewInstance);
     }
 
     private void Update()
     {
-
         if (buildingPreviewInstance == null) return;
         
         UpdateBuildingPreview();
 
         PlaceBuilding();
-
     }
    
     public void Build()
@@ -77,29 +83,33 @@ public class BuildingButton : MonoBehaviour
     {
         if (buildingPreviewInstance == null) return;
 
-
+        Debug.Log("Log 1");
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+            Debug.Log("Log");
             
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, floorMask))
             {
-
+                Debug.Log("Log 2");
                 if (hit.collider.TryGetComponent<TeamNumberArea>(out TeamNumberArea teamNumberArea))
                 {
+                    Debug.Log("Log 3");
                     if (teamNumberArea.GetTeamNumber() == player.GetTeamNumber() && hit.collider.gameObject.tag!="WallArea")
                     {
+                        Debug.Log("Log 4");
                         RTSPlayer player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
 
                         if (player.CanPlaceBuilding(buildingCollider, hit.point))
                         {
+                            Debug.Log("Log 5");
                             if (preBuild != null)
                                 Destroy(preBuild);
 
                             preBuild =
                                 Instantiate(buildingPreviewInstance, hit.point, buildingPreviewInstance.transform.rotation);
                         }
-                       
+                        Debug.Log("Log 6");
                         player.CmdTryPlaceBuilding(building.GetId(), hit.point);
 
                     }

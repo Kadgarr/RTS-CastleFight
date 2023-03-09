@@ -14,6 +14,7 @@ public class Unit : NetworkBehaviour
     [SerializeField] private UnityEvent onDeselected = null;
     [SerializeField] private UnitMovement unitMovement = null;
     [SerializeField] private GameObject infoUnitCanvas = null;
+    [SerializeField] private GameObject buildMenuCanvas = null;
 
     public static event Action<Unit> ServerOnUnitSpawned;
     public static event Action<Unit> ServerOnUnitDespawned;
@@ -64,12 +65,23 @@ public class Unit : NetworkBehaviour
     public void SetActiveCanvasInfo(bool stateCanvas)
     {
         if (!stateCanvas)
+        {
             infoUnitCanvas.SetActive(false);
+            
+            if(buildMenuCanvas!=null)
+                buildMenuCanvas.SetActive(false);
+        }
         else
+        {
             infoUnitCanvas.SetActive(true);
 
+            if (buildMenuCanvas != null)
+                buildMenuCanvas.SetActive(true);
+        }
+           
         activeCanvasInfo = stateCanvas;
     }
+
 
     public override void OnStartAuthority()
     {

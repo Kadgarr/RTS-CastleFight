@@ -169,6 +169,6 @@ public class BuildingSelectionHandler : MonoBehaviour
             selectedBuilding.SetActiveCanvasInfo(false);
         }
         SelectedBuildings.Clear();
-        Debug.Log("CHECK BUILDING");
+
     }
 }
