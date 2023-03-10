@@ -245,7 +245,6 @@ public class RTSPlayer : NetworkBehaviour
     [Command]
     public void CmdTryPlaceBuilding(int idBuilding, Vector3 point)
     {
-        Debug.Log("Check Place Building");
         Building buildingToPlace = null;
 
         foreach (Building building in buildings)
@@ -285,8 +284,6 @@ public class RTSPlayer : NetworkBehaviour
                 break;
             }
         }
-
-        Debug.Log("Check Place Building 2");
         //проверка дистанции, если билдер не достиг дистанции, то спавн не произойдет
 
         if (!checkDistanceBuilderUnit) return;

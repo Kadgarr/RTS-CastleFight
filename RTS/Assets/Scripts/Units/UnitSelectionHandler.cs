@@ -29,8 +29,9 @@ public class UnitSelectionHandler : MonoBehaviour
 
         Unit.AuthorityOnUnitDespawned += AuthorityHadnleUnitDespawned;
         BuildingSelectionHandler.ClearUnitSelectionUpdated += HandleClearSelectionUpdated;
-        player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
         GameOverHandler.ClientOnGameOver += ClientHandleGameOver;
+
+        player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
     }
 
 
@@ -40,7 +41,7 @@ public class UnitSelectionHandler : MonoBehaviour
         GameOverHandler.ClientOnGameOver -= ClientHandleGameOver;
         BuildingSelectionHandler.ClearUnitSelectionUpdated -= HandleClearSelectionUpdated;
     }
-    private bool IsOverUI()
+    private bool IsOverUIandGROUND()
     {
 
         if (EventSystem.current.IsPointerOverGameObject())
@@ -59,7 +60,7 @@ public class UnitSelectionHandler : MonoBehaviour
             {
                 for (int i = 0; i < results.Count; ++i)
                 {
-                    if (results[i].gameObject.CompareTag("UI") || (results[i].gameObject.CompareTag("BuildingArea") && SelectedUnits.Count==1))
+                    if (results[i].gameObject.CompareTag("UI") ||  results[i].gameObject.CompareTag("BuildingArea"))
                         return true;
                 }
 
@@ -71,12 +72,13 @@ public class UnitSelectionHandler : MonoBehaviour
         return false;
 
     }
+
     private void Update()
     {
 
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            if (IsOverUI()) return;
+            if (IsOverUIandGROUND()) return;
             StartSelectionArea();
         }
         else if (Mouse.current.leftButton.wasReleasedThisFrame) ClearSelectionArea();
@@ -132,15 +134,23 @@ public class UnitSelectionHandler : MonoBehaviour
 
             if (!hit.collider.TryGetComponent<Unit>(out Unit unit)) return;
 
-           // if (!unit.hasAuthority) return;
+            // if (!unit.hasAuthority) return;
+
+            StartSelectionArea();
 
             SelectedUnits.Add(unit);
 
+            int i = 0;
             foreach (Unit selectedUnit in SelectedUnits)
             {
                 selectedUnit.Select();
+
+                if (i != 0)
+                    SelectedUnits[i - 1].SetActiveCanvasInfo(false);
+
                 selectedUnit.SetActiveCanvasInfo(true);
                 ClearBuildingSelectionUpdated.Invoke();
+                i++;
             }
 
             return;
@@ -148,6 +158,10 @@ public class UnitSelectionHandler : MonoBehaviour
 
         Vector2 min = unitSelectionArea.anchoredPosition - (unitSelectionArea.sizeDelta / 2);
         Vector2 max = unitSelectionArea.anchoredPosition + (unitSelectionArea.sizeDelta / 2);
+
+
+        int j = 0;
+        //Debug.Log($"SelectedUnits count: {SelectedUnits.Count};\nplayer.GetMyUnits() count: {player.GetMyUnits().Count}");
 
         foreach(Unit unit in player.GetMyUnits())
         {
@@ -161,9 +175,15 @@ public class UnitSelectionHandler : MonoBehaviour
                 && screenPosition.y<max.y)
             {
                 SelectedUnits.Add(unit);
+
                 unit.Select();
+
+                if (j != 0)
+                    SelectedUnits[j - 1].SetActiveCanvasInfo(false);
+                    
                 unit.SetActiveCanvasInfo(true);
                 ClearBuildingSelectionUpdated.Invoke();
+                j++;
             }
         }
     }

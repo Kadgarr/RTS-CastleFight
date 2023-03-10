@@ -39,7 +39,7 @@ public class BuildingSelectionHandler : MonoBehaviour
         GameOverHandler.ClientOnGameOver -= ClientHandleGameOver;
         UnitSelectionHandler.ClearBuildingSelectionUpdated -= HandleClearSelectionUpdated;
     }
-    private bool IsOverUI()
+    private bool IsOverUIandGROUND()
     {
 
         if (EventSystem.current.IsPointerOverGameObject())
@@ -60,7 +60,7 @@ public class BuildingSelectionHandler : MonoBehaviour
             {
                 for (int i = 0; i < results.Count; ++i)
                 {
-                    if (results[i].gameObject.CompareTag("UI"))
+                    if (results[i].gameObject.CompareTag("UI") )
                         return true;
                 }
 
@@ -78,7 +78,7 @@ public class BuildingSelectionHandler : MonoBehaviour
       
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            if (IsOverUI()) return;
+            if (IsOverUIandGROUND()) return;
             StartSelectionArea();
         }
         else if (Mouse.current.leftButton.wasReleasedThisFrame) ClearSelectionArea();
@@ -92,7 +92,10 @@ public class BuildingSelectionHandler : MonoBehaviour
             foreach (Building selectedBuilding in SelectedBuildings)
             {
                 selectedBuilding.Deselect();
-                selectedBuilding.SetActiveCanvasInfo(false);
+
+                if(selectedBuilding.gameObject.active)
+                    selectedBuilding.SetActiveCanvasInfo(false);
+
                 ClearUnitSelectionUpdated.Invoke();
             }
             SelectedBuildings.Clear();
@@ -121,7 +124,6 @@ public class BuildingSelectionHandler : MonoBehaviour
         buildingSelectionArea.sizeDelta = new Vector2(Mathf.Abs(areaWidth), Mathf.Abs(areaHeight));
         buildingSelectionArea.anchoredPosition = startPosition + new Vector2(areaWidth/2, areaHeight/2);
 
-
     }
 
 
@@ -139,13 +141,20 @@ public class BuildingSelectionHandler : MonoBehaviour
 
             if (!building.hasAuthority) return;
 
+            StartSelectionArea();
+
             SelectedBuildings.Add(building);
 
+            int i = 1;
             foreach (Building selectedBuilding in SelectedBuildings)
             {
                 selectedBuilding.Select();
+
+                SelectedBuildings[i - 1].SetActiveCanvasInfo(false);
+
                 selectedBuilding.SetActiveCanvasInfo(true);
                 ClearUnitSelectionUpdated.Invoke();
+                i++;
             }
 
             return;
@@ -166,7 +175,9 @@ public class BuildingSelectionHandler : MonoBehaviour
         foreach (Building selectedBuilding in SelectedBuildings)
         {
             selectedBuilding.Deselect();
-            selectedBuilding.SetActiveCanvasInfo(false);
+
+            if(selectedBuilding.gameObject.active)
+                selectedBuilding.SetActiveCanvasInfo(false);
         }
         SelectedBuildings.Clear();
 
