@@ -160,10 +160,15 @@ public class UnitSelectionHandler : MonoBehaviour
         Vector2 max = unitSelectionArea.anchoredPosition + (unitSelectionArea.sizeDelta / 2);
 
 
-        int j = 0;
-        //Debug.Log($"SelectedUnits count: {SelectedUnits.Count};\nplayer.GetMyUnits() count: {player.GetMyUnits().Count}");
+        int j = 1;
 
-        foreach(Unit unit in player.GetMyUnits())
+        for (int i = 0; i < SelectedUnits.Count; i++)
+        {
+            if (i != SelectedUnits.Count - 1)
+                SelectedUnits[i].SetActiveCanvasInfo(false);
+        }
+
+        foreach (Unit unit in player.GetMyUnits())
         {
             if (SelectedUnits.Contains(unit)) continue;
 
@@ -178,8 +183,7 @@ public class UnitSelectionHandler : MonoBehaviour
 
                 unit.Select();
 
-                if (j != 0)
-                    SelectedUnits[j - 1].SetActiveCanvasInfo(false);
+                SelectedUnits[j - 1].SetActiveCanvasInfo(false);
                     
                 unit.SetActiveCanvasInfo(true);
                 ClearBuildingSelectionUpdated.Invoke();

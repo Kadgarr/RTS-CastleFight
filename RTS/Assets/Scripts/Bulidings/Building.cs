@@ -2,6 +2,7 @@ using Mirror;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,6 +16,8 @@ public class Building : NetworkBehaviour
     [SerializeField] private UnityEvent onDeselected = null;
     [SerializeField] private int id = -1;
     [SerializeField] private int price = 100;
+
+    [SerializeField] List<GameObject> nextUpgradeBuildings = null;
 
     private bool activeCanvasInfo;
 
@@ -73,6 +76,33 @@ public class Building : NetworkBehaviour
     #endregion
 
     #region Client
+
+    [Command]
+    public void UpgrageBuilding(int buildingnNumber)
+    {   
+        GameObject buildingInstance = null;
+
+        for (int i= 0; i < nextUpgradeBuildings.Count; i++)
+        {
+            if (i == buildingnNumber)
+            {
+                buildingInstance =
+                   Instantiate(nextUpgradeBuildings[i], this.gameObject.transform.position,
+                   this.gameObject.transform.rotation);
+                break;
+            }
+                
+        }
+        
+        NetworkServer.Spawn(buildingInstance, connectionToClient);
+
+        RTSPlayer player = connectionToClient.identity.GetComponent<RTSPlayer>();
+
+        player.SetResources(player.GetResources() - buildingInstance.GetComponent<Building>().GetPrice());
+
+        Destroy(this.gameObject);
+    }
+
 
     public override void OnStartAuthority()
     {

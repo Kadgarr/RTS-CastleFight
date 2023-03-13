@@ -59,6 +59,7 @@ public class RTSPlayer : NetworkBehaviour
             CheckDistanceToUnitBuilder(placePoint,idBuildng);
         }
     }
+
     public string GetDisplayName()
     {
         return displayName;
