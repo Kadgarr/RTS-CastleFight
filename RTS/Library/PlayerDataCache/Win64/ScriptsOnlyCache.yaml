@@ -55,14 +55,12 @@ ScriptsOnlyBuild:
     - Mirror.NetworkIdentity
     - Mirror.NetworkStartPosition
     Unity.2D.Tilemap.Editor.dll:
-    - UnityEditor.Tilemaps.GridBrush
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
     - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
-    - UnityEditor.Tilemaps.TilemapEditorToolPreferences
     - UnityEditor.Tilemaps.TilemapPrefabStageHelper
     Unity.InputSystem.dll:
     - UnityEngine.InputSystem.InputActionAsset
@@ -244,6 +242,24 @@ ScriptsOnlyBuild:
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.Renderer
     methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: Assembly-CSharp
+    fullTypeName: Building
+    methodName: UpgrageBuilding
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitSpawner
+    methodName: SetFalseProducingUnits
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitSpawner
+    methodName: SetTrueProducingUnits
+  - assembly: Assembly-CSharp
+    fullTypeName: Building
+    methodName: UpgrageBuilding
   - assembly: Assembly-CSharp
     fullTypeName: UnitSpawner
     methodName: SetTrueProducingUnits
@@ -253,24 +269,6 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: Building
     methodName: UpgrageBuilding
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitSpawner
-    methodName: SetFalseProducingUnits
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitSpawner
-    methodName: SetTrueProducingUnits
-  - assembly: Assembly-CSharp
-    fullTypeName: Building
-    methodName: UpgrageBuilding
-  - assembly: Assembly-CSharp
-    fullTypeName: Building
-    methodName: UpgrageBuilding
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.Renderer
-    methodName: set_enabled
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.Renderer
-    methodName: set_enabled
   - assembly: Assembly-CSharp
     fullTypeName: Building
     methodName: UpgrageBuilding
@@ -398,29 +396,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4466}
     - Class: 114
-      Script: {instanceID: 6608}
+      Script: {instanceID: 4542}
     - Class: 114
-      Script: {instanceID: 6654}
+      Script: {instanceID: 6610}
     - Class: 114
-      Script: {instanceID: 7366}
+      Script: {instanceID: 6656}
     - Class: 114
-      Script: {instanceID: 8050}
+      Script: {instanceID: 7368}
     - Class: 114
-      Script: {instanceID: 9540}
+      Script: {instanceID: 8052}
     - Class: 114
-      Script: {instanceID: 9740}
+      Script: {instanceID: 9542}
     - Class: 114
-      Script: {instanceID: 10082}
+      Script: {instanceID: 9742}
     - Class: 114
-      Script: {instanceID: 10724}
+      Script: {instanceID: 10084}
     - Class: 114
-      Script: {instanceID: 10762}
+      Script: {instanceID: 10726}
     - Class: 114
-      Script: {instanceID: 11368}
+      Script: {instanceID: 10764}
     - Class: 114
-      Script: {instanceID: 11684}
+      Script: {instanceID: 11370}
     - Class: 114
-      Script: {instanceID: 11782}
+      Script: {instanceID: 11686}
+    - Class: 114
+      Script: {instanceID: 11784}
     - Class: 114
       Script: {instanceID: 12902}
     - Class: 114
@@ -435,8 +435,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 15336}
     - Class: 114
       Script: {instanceID: 16090}
-    - Class: 114
-      Script: {instanceID: 65614}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -533,87 +531,87 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4044}
     - Class: 114
-      Script: {instanceID: 4708}
+      Script: {instanceID: 4710}
     - Class: 114
-      Script: {instanceID: 5316}
+      Script: {instanceID: 5318}
     - Class: 114
-      Script: {instanceID: 5372}
+      Script: {instanceID: 5374}
     - Class: 114
-      Script: {instanceID: 5718}
+      Script: {instanceID: 5720}
     - Class: 114
-      Script: {instanceID: 5794}
+      Script: {instanceID: 5796}
     - Class: 114
-      Script: {instanceID: 6008}
+      Script: {instanceID: 6010}
     - Class: 114
-      Script: {instanceID: 6032}
+      Script: {instanceID: 6034}
     - Class: 114
-      Script: {instanceID: 6396}
+      Script: {instanceID: 6398}
     - Class: 114
-      Script: {instanceID: 6602}
+      Script: {instanceID: 6604}
     - Class: 114
-      Script: {instanceID: 6608}
+      Script: {instanceID: 6610}
     - Class: 114
-      Script: {instanceID: 6690}
+      Script: {instanceID: 6692}
     - Class: 114
-      Script: {instanceID: 6770}
+      Script: {instanceID: 6772}
     - Class: 114
-      Script: {instanceID: 6818}
+      Script: {instanceID: 6820}
     - Class: 114
-      Script: {instanceID: 6850}
+      Script: {instanceID: 6852}
     - Class: 114
-      Script: {instanceID: 6906}
+      Script: {instanceID: 6908}
     - Class: 114
-      Script: {instanceID: 7030}
+      Script: {instanceID: 7032}
     - Class: 114
-      Script: {instanceID: 7356}
+      Script: {instanceID: 7358}
     - Class: 114
-      Script: {instanceID: 7966}
+      Script: {instanceID: 7968}
     - Class: 114
-      Script: {instanceID: 7976}
+      Script: {instanceID: 7978}
     - Class: 114
-      Script: {instanceID: 8050}
+      Script: {instanceID: 8052}
     - Class: 114
-      Script: {instanceID: 8068}
+      Script: {instanceID: 8070}
     - Class: 114
-      Script: {instanceID: 8456}
+      Script: {instanceID: 8458}
     - Class: 114
-      Script: {instanceID: 8480}
+      Script: {instanceID: 8482}
     - Class: 114
-      Script: {instanceID: 8662}
+      Script: {instanceID: 8664}
     - Class: 114
-      Script: {instanceID: 8888}
+      Script: {instanceID: 8890}
     - Class: 114
-      Script: {instanceID: 9268}
+      Script: {instanceID: 9270}
     - Class: 114
-      Script: {instanceID: 9602}
+      Script: {instanceID: 9604}
     - Class: 114
-      Script: {instanceID: 9670}
+      Script: {instanceID: 9672}
     - Class: 114
-      Script: {instanceID: 9848}
+      Script: {instanceID: 9850}
     - Class: 114
-      Script: {instanceID: 10082}
+      Script: {instanceID: 10084}
     - Class: 114
-      Script: {instanceID: 10164}
+      Script: {instanceID: 10166}
     - Class: 114
-      Script: {instanceID: 10724}
+      Script: {instanceID: 10726}
     - Class: 114
-      Script: {instanceID: 10860}
+      Script: {instanceID: 10862}
     - Class: 114
-      Script: {instanceID: 11228}
+      Script: {instanceID: 11230}
     - Class: 114
-      Script: {instanceID: 11352}
+      Script: {instanceID: 11354}
     - Class: 114
-      Script: {instanceID: 11668}
+      Script: {instanceID: 11670}
     - Class: 114
-      Script: {instanceID: 11692}
+      Script: {instanceID: 11694}
     - Class: 114
-      Script: {instanceID: 11832}
+      Script: {instanceID: 11834}
     - Class: 114
-      Script: {instanceID: 11990}
+      Script: {instanceID: 11992}
     - Class: 114
-      Script: {instanceID: 12058}
+      Script: {instanceID: 12060}
     - Class: 114
-      Script: {instanceID: 12082}
+      Script: {instanceID: 12084}
     - Class: 114
       Script: {instanceID: 12336}
     - Class: 114
@@ -1205,6 +1203,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UnitCommandGiver
+  - hash:
+      serializedVersion: 2
+      Hash: e19263cc94c48eac7f1e07f5327e9022
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TeamFogOfWar
   - hash:
       serializedVersion: 2
       Hash: 908b3077da284d11de0450423ca1808e
@@ -3545,12 +3549,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: e19263cc94c48eac7f1e07f5327e9022
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: TeamFogOfWar
   platform: 19
   scenePathNames:
   - Assets/Scenes/Scene_Menu.unity

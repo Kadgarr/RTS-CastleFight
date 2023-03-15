@@ -22,7 +22,14 @@ public class Unit : NetworkBehaviour
     public static event Action<Unit> AuthorityOnUnitSpawned;
     public static event Action<Unit> AuthorityOnUnitDespawned;
 
+    public static event Action<Unit> OnUnitStart;
+
     private bool activeCanvasInfo;
+
+    private void Start()
+    {
+        OnUnitStart.Invoke(this);
+    }
 
     public UnitMovement GetUnitMovement()
     {

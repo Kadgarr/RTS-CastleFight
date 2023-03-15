@@ -26,4 +26,14 @@ public class VisionComponent : MonoBehaviour
     {
         VisionHandler.INSTANCE.RemoveVision(m_Vision);
     }
+
+    public float GetVisionRange()
+    {
+        return m_VisionRange;
+    }
+
+    public void SetVisionRange(float range)
+    {
+        m_VisionRange = range;
+    }
 }

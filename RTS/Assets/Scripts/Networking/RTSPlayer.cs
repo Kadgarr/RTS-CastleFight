@@ -220,6 +220,8 @@ public class RTSPlayer : NetworkBehaviour
         Building.ServerOnBuildingSpawned += ServerHandleBuildingSpawned;
         Building.ServerOnBuildingDespawned += ServerHandleBuildingDespawned;
 
+        Unit.OnUnitStart += OnUnitStartHandle;
+
         DontDestroyOnLoad(gameObject);
     }
 
@@ -229,6 +231,19 @@ public class RTSPlayer : NetworkBehaviour
         Unit.ServerOnUnitDespawned -= ServerHandleUnitDespawned;
         Building.ServerOnBuildingSpawned -= ServerHandleBuildingSpawned;
         Building.ServerOnBuildingDespawned -= ServerHandleBuildingDespawned;
+
+        Unit.OnUnitStart -= OnUnitStartHandle;
+    }
+
+    private void OnUnitStartHandle(Unit unit)
+    {
+        Debug.Log("Check");
+        if (unit.TryGetComponent<TeamNumber>(out TeamNumber teamNumber))
+        {
+            Debug.Log("Check 2 " + teamNumber);
+            if (teamNumber.GetTeamNumber() ==GetTeamNumber())
+                Debug.Log("Check 3");
+        }
     }
 
     [Server]
