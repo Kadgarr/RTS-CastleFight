@@ -54,6 +54,7 @@ public class RTSPlayer : NetworkBehaviour
     {
         if (mainCamera == null) mainCamera = Camera.main;
 
+        if(unitBuilder!=null)
         if (!checkDistanceBuilderUnit)
         {
             CheckDistanceToUnitBuilder(placePoint,idBuildng);
@@ -235,14 +236,14 @@ public class RTSPlayer : NetworkBehaviour
         Unit.OnUnitStart -= OnUnitStartHandle;
     }
 
-    private void OnUnitStartHandle(Unit unit)
+    private void OnUnitStartHandle(GameObject unit)
     {
         Debug.Log("Check");
-        if (unit.TryGetComponent<TeamNumber>(out TeamNumber teamNumber))
+        if (unit.gameObject.TryGetComponent<TeamNumber>(out TeamNumber teamNumber))
         {
             Debug.Log("Check 2 " + teamNumber);
-            if (teamNumber.GetTeamNumber() ==GetTeamNumber())
-                Debug.Log("Check 3");
+            if (teamNumber.GetTeamNumber() == GetTeamNumber())
+                unit.gameObject.GetComponent<VisionComponent>().SetVisionRange(7f);
         }
     }
 

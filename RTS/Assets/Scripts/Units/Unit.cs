@@ -22,13 +22,13 @@ public class Unit : NetworkBehaviour
     public static event Action<Unit> AuthorityOnUnitSpawned;
     public static event Action<Unit> AuthorityOnUnitDespawned;
 
-    public static event Action<Unit> OnUnitStart;
+    public static event Action<GameObject> OnUnitStart;
 
     private bool activeCanvasInfo;
 
     private void Start()
     {
-        OnUnitStart.Invoke(this);
+
     }
 
     public UnitMovement GetUnitMovement()
@@ -92,6 +92,7 @@ public class Unit : NetworkBehaviour
 
     public override void OnStartAuthority()
     {
+      //  OnUnitStart.Invoke(this.gameObject);
         AuthorityOnUnitSpawned?.Invoke(this);
     }
 

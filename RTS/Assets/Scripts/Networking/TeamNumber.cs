@@ -8,11 +8,23 @@ public class TeamNumber : NetworkBehaviour
     [SerializeField] private int teamNumber;
 
     RTSPlayer player;
-    private void Start()
-    {
-        player = connectionToClient.identity.GetComponent<RTSPlayer>();
+    //private void Start()
+    //{
+    //    SetTeamNumber();
+    //}
 
-        teamNumber = player.GetTeamNumber();
+    [ServerCallback]
+    private void Update()
+    {
+        if(teamNumber == 0)
+        {
+            player = connectionToClient.identity.GetComponent<RTSPlayer>();
+
+            teamNumber = player.GetTeamNumber();
+        }
+    }
+    public void SetTeamNumber()
+    {
 
     }
 

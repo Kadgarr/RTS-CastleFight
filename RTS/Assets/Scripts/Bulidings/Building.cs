@@ -106,6 +106,7 @@ public class Building : NetworkBehaviour
 
     public override void OnStartAuthority()
     {
+        if (!hasAuthority) return;
         AuthorityOnBuildingSpawned?.Invoke(this);
     }
 
