@@ -20,7 +20,7 @@ public class InfoUnitDisplay : MonoBehaviour
     {
         projectile = unitFiring.GetProjectilePrefab();
 
-        damageField.text = projectile.GetComponent<UnitProjectile>().GetDamageToDeal().ToString();
+        damageField.text = projectile.GetComponent<UnitProjectile>().GetDamageToDealMin().ToString();
 
         attackSpeedField.text = unitFiring.GetFireRate().ToString();
     }

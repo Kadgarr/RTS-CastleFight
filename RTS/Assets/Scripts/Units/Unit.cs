@@ -9,8 +9,8 @@ public class Unit : NetworkBehaviour
 {
     [SerializeField] private int resourcesCost = 10;
     [SerializeField] private Health health = null; 
-    [SerializeField] private UnityEvent onSelected = null;
     [SerializeField] private Targeter targeter = null;
+    [SerializeField] private UnityEvent onSelected = null;
     [SerializeField] private UnityEvent onDeselected = null;
     [SerializeField] private UnitMovement unitMovement = null;
     [SerializeField] private GameObject infoUnitCanvas = null;
@@ -22,14 +22,14 @@ public class Unit : NetworkBehaviour
     public static event Action<Unit> AuthorityOnUnitSpawned;
     public static event Action<Unit> AuthorityOnUnitDespawned;
 
-    public static event Action<GameObject> OnUnitStart;
+
+    [Header("Type of Unit - air or land")]
+    [SerializeField] private bool isFlying;
+
+    [Header("Can attack air")]
+    [SerializeField] private bool canAttackAir;
 
     private bool activeCanvasInfo;
-
-    private void Start()
-    {
-
-    }
 
     public UnitMovement GetUnitMovement()
     {
@@ -51,7 +51,7 @@ public class Unit : NetworkBehaviour
     {
         health.ServerOnDie += ServerHandleOnDie;
         ServerOnUnitSpawned?.Invoke(this);
-
+        
     }
 
     public override void OnStopServer()
@@ -89,16 +89,14 @@ public class Unit : NetworkBehaviour
         activeCanvasInfo = stateCanvas;
     }
 
-
     public override void OnStartAuthority()
     {
-      //  OnUnitStart.Invoke(this.gameObject);
         AuthorityOnUnitSpawned?.Invoke(this);
     }
 
     public override void OnStopClient()
     {
-        if (!hasAuthority) return;
+        if (!isOwned) return;
 
         AuthorityOnUnitDespawned?.Invoke(this);
     }
