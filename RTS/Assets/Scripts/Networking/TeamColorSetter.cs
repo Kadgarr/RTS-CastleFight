@@ -20,7 +20,6 @@ public class TeamColorSetter : NetworkBehaviour
     #endregion
 
     #region Client
-
     private void HandleTeamColorUpdated(Color oldColor, Color newColor )
     {
         foreach(Renderer renderer in colorRenderers)

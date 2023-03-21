@@ -60,8 +60,13 @@ public class UnitSelectionHandler : MonoBehaviour
             {
                 for (int i = 0; i < results.Count; ++i)
                 {
-                    if (results[i].gameObject.CompareTag("UI") ||  results[i].gameObject.CompareTag("BuildingArea"))
+                    if (results[i].gameObject.CompareTag("UI") || results[i].gameObject.CompareTag("BuildingArea"))
+                    {
+                        unitSelectionArea.sizeDelta = Vector2.zero;
+                        unitSelectionArea.anchoredPosition = Vector2.zero;
                         return true;
+                    }
+                        
                 }
 
             }
@@ -102,7 +107,7 @@ public class UnitSelectionHandler : MonoBehaviour
 
         startPosition = Mouse.current.position.ReadValue();
 
-        UpdateSelectionArea();
+        //UpdateSelectionArea();
     }
 
     private void ClientHandleGameOver(string winnerName)
@@ -190,6 +195,8 @@ public class UnitSelectionHandler : MonoBehaviour
                 j++;
             }
         }
+        min = Vector2.zero;
+        max = Vector2.zero;
     }
 
     //удаляет юниты из списка выбранных юнитов
