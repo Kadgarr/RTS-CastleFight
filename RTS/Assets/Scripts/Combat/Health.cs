@@ -19,7 +19,7 @@ public enum TypeOfArmor
 public class Health : NetworkBehaviour
 {
     [Header("Heal and Armor Settings - ХП и тип брони")]
-    [SerializeField] private TypeOfArmor typeOfDamage = new TypeOfArmor();
+    [SerializeField] private TypeOfArmor typeOfArmor = new TypeOfArmor();
     [SerializeField] private int maxHealth = 100;
 
     [Header("Chance of miss")]
@@ -51,7 +51,7 @@ public class Health : NetworkBehaviour
 
         DealDamage(currentHealth);
 
-       // ServerOnPlayerDie?.Invoke(connectionId);
+        ServerOnPlayerDie?.Invoke(connectionId);
     }
 
 
@@ -59,6 +59,8 @@ public class Health : NetworkBehaviour
     [Server]
     public void DealDamage(int damageAmount)
     {
+        Debug.Log($"Damage: {damageAmount}");
+
         if (currentHealth == 0) return;
 
         currentHealth= Mathf.Max(currentHealth- damageAmount,0);
@@ -66,8 +68,6 @@ public class Health : NetworkBehaviour
         if (currentHealth != 0) return;
 
         ServerOnDie?.Invoke();
-
-       
     }
 
     #endregion
@@ -88,6 +88,11 @@ public class Health : NetworkBehaviour
         return maxHealth;
     }
     #endregion
+
+    public TypeOfArmor GetTypeOfArmor()
+    {
+        return typeOfArmor;
+    }
 
     public int GetChanceOfMiss()
     {

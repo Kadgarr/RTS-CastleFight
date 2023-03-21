@@ -9,7 +9,7 @@ public class TeamNumber : NetworkBehaviour
 
     RTSPlayer player;
 
-    //[ServerCallback]
+    [ServerCallback]
     private void Update()
     {
         if(teamNumber == 0)
@@ -17,8 +17,12 @@ public class TeamNumber : NetworkBehaviour
             player = connectionToClient.identity.GetComponent<RTSPlayer>();
 
             teamNumber = player.GetTeamNumber();
-
         }
+    }
+
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
     }
 
     public int GetTeamNumber()

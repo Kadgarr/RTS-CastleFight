@@ -27,6 +27,14 @@ public class UnitProjectile : NetworkBehaviour
     [SerializeField] private float destroyAfterSeconds = 5f;
     [SerializeField] private float launchForce = 10f;
 
+    private float[,] matrixOfDamage = new float[,] { 
+                                                    {1f, 1.75f, 0.7f, 0.25f, 0.6f, 0.5f, 1.05f },
+                                                    { 1.75f, 0.7f, 1f, 0.25f, 0.6f, 0.4f, 1.05f },
+                                                    { 0.7f, 1f, 1.75f, 0.25f, 0.6f, 0.5f, 1.05f },
+                                                    { 1f, 1f, 1f, 1f, 1f, 1f, 1f },
+                                                    { 0.7f, 0.7f, 0.7f, 0.2f, 0.4f, 1.6f, 1f },
+                                                    { 1.1f, 1.1f, 1.1f, 0.4f, 0.4f, 0.6f, 1.1f} 
+    };
 
     private void Start()
     {
@@ -51,7 +59,8 @@ public class UnitProjectile : NetworkBehaviour
 
         if (other.TryGetComponent<Health>(out Health health))
         {
-           health.DealDamage(Random.Range(damageToDealMin,damageToDealMax));
+           health.DealDamage((int)(matrixOfDamage[((int)typeOfDamage), (int)health.GetTypeOfArmor()]*Random.Range(damageToDealMin,damageToDealMax)));
+            Debug.Log($"Type {typeOfDamage}; Modificator {matrixOfDamage[((int)typeOfDamage), (int)health.GetTypeOfArmor()]}");
         }
 
         DestroySelf();

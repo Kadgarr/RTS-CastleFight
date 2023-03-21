@@ -7,8 +7,6 @@ ScriptsOnlyBuild:
     - CameraController
     - CameraTeamPosition
     - FaceCamera
-    - FogHideComponent
-    - FogOfWarManager
     - GameOverDisplay
     - GameOverHandler
     - Health
@@ -23,12 +21,10 @@ ScriptsOnlyBuild:
     - RTSPlayer
     - ResourceGenerator
     - ResourcesDisplay
-    - ShaderReferencesScriptableObject
     - SteamManager
     - Targetable
     - Targeter
     - TeamColorSetter
-    - TeamFogOfWar
     - TeamNumber
     - TeamNumberArea
     - Unit
@@ -39,7 +35,6 @@ ScriptsOnlyBuild:
     - UnitProjectile
     - UnitSelectionHandler
     - UnitSpawner
-    - VisionComponent
     Cinemachine.dll:
     - Cinemachine.CinemachineBrain
     - Cinemachine.CinemachinePipeline
@@ -249,6 +244,12 @@ ScriptsOnlyBuild:
     fullTypeName: UnityEngine.Renderer
     methodName: set_enabled
   - assembly: Assembly-CSharp
+    fullTypeName: UnitSpawner
+    methodName: SetTrueProducingUnits
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitSpawner
+    methodName: SetFalseProducingUnits
+  - assembly: Assembly-CSharp
     fullTypeName: Building
     methodName: UpgrageBuilding
   - assembly: Assembly-CSharp
@@ -260,12 +261,6 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: Building
     methodName: UpgrageBuilding
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitSpawner
-    methodName: SetTrueProducingUnits
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitSpawner
-    methodName: SetFalseProducingUnits
   - assembly: Assembly-CSharp
     fullTypeName: Building
     methodName: UpgrageBuilding
@@ -371,8 +366,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
-    - Class: 72
-      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 84
@@ -396,8 +389,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4466}
     - Class: 114
-      Script: {instanceID: 4542}
-    - Class: 114
       Script: {instanceID: 6610}
     - Class: 114
       Script: {instanceID: 6656}
@@ -414,8 +405,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10726}
     - Class: 114
-      Script: {instanceID: 10764}
-    - Class: 114
       Script: {instanceID: 11370}
     - Class: 114
       Script: {instanceID: 11686}
@@ -429,8 +418,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13532}
     - Class: 114
       Script: {instanceID: 13572}
-    - Class: 114
-      Script: {instanceID: 14466}
     - Class: 114
       Script: {instanceID: 15336}
     - Class: 114
@@ -545,8 +532,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6034}
     - Class: 114
-      Script: {instanceID: 6398}
-    - Class: 114
       Script: {instanceID: 6604}
     - Class: 114
       Script: {instanceID: 6610}
@@ -618,8 +603,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12576}
     - Class: 114
       Script: {instanceID: 12672}
-    - Class: 114
-      Script: {instanceID: 12784}
     - Class: 114
       Script: {instanceID: 12838}
     - Class: 114
@@ -845,7 +828,7 @@ ScriptsOnlyBuild:
     className: NetworkStatistics
   - hash:
       serializedVersion: 2
-      Hash: ef7200a345ecf85e40bf945cd48f285d
+      Hash: 9858f18f44de0d501a57ccd01ef9d8fc
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Unit
@@ -2489,7 +2472,7 @@ ScriptsOnlyBuild:
     className: PreviewColor
   - hash:
       serializedVersion: 2
-      Hash: c6f3314b14886dc1841dffa9aaf53cc5
+      Hash: 09adadd9570ec0649609effb3a2d2a3f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Health
@@ -2975,7 +2958,7 @@ ScriptsOnlyBuild:
     className: Monster
   - hash:
       serializedVersion: 2
-      Hash: d881f2290d4faa06fee78b509e8e4335
+      Hash: 0f6ad03218a6c903249e67ad39d0a9a1
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UnitProjectile
