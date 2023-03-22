@@ -60,8 +60,14 @@ public class BuildingSelectionHandler : MonoBehaviour
             {
                 for (int i = 0; i < results.Count; ++i)
                 {
-                    if (results[i].gameObject.CompareTag("UI") )
+                    if (results[i].gameObject.CompareTag("UI"))
+                    {
+                        startPosition = Mouse.current.position.ReadValue();
                         return true;
+                    }
+
+                    
+                        
                 }
 
             }

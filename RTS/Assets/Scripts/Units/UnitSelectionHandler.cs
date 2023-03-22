@@ -64,6 +64,7 @@ public class UnitSelectionHandler : MonoBehaviour
                     {
                         unitSelectionArea.sizeDelta = Vector2.zero;
                         unitSelectionArea.anchoredPosition = Vector2.zero;
+                        startPosition = Mouse.current.position.ReadValue();
                         return true;
                     }
                         
@@ -88,6 +89,7 @@ public class UnitSelectionHandler : MonoBehaviour
         }
         else if (Mouse.current.leftButton.wasReleasedThisFrame) ClearSelectionArea();
         else if (Mouse.current.leftButton.isPressed) UpdateSelectionArea(); 
+
     }
 
     private void StartSelectionArea()
