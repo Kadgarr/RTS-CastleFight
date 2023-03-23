@@ -80,6 +80,11 @@ public class UnitProjectile : NetworkBehaviour
 
     public int GetDamageToDealMax()
     {
-        return damageToDealMin;
+        return damageToDealMax;
+    }
+
+    public TypeOfDamage GetTypeOfDamage()
+    {
+        return typeOfDamage;
     }
 }

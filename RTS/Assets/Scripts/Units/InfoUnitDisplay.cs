@@ -5,12 +5,18 @@ using UnityEngine;
 
 public class InfoUnitDisplay : MonoBehaviour
 {
-    [SerializeField] private Health health = null;
+    
     [SerializeField] private UnitFiring unitFiring = null;
-
+    [Header("Health fields")]
+    [SerializeField] private Health health = null;
     [SerializeField] private TMP_Text healthField = null;
     [SerializeField] private TMP_Text fullHealthField = null;
-    [SerializeField] private TMP_Text damageField = null;
+    [SerializeField] private TMP_Text armorTypeField = null;
+    [Header("Damage fields")]
+    [SerializeField] private TMP_Text damageTypeField = null;
+    [SerializeField] private TMP_Text damageMinField = null;
+    [SerializeField] private TMP_Text damageMaxField = null;
+
     [SerializeField] private TMP_Text attackSpeedField = null;
 
     private GameObject projectile;
@@ -20,9 +26,13 @@ public class InfoUnitDisplay : MonoBehaviour
     {
         projectile = unitFiring.GetProjectilePrefab();
 
-        damageField.text = projectile.GetComponent<UnitProjectile>().GetDamageToDealMin().ToString();
+        damageTypeField.text = projectile.GetComponent<UnitProjectile>().GetTypeOfDamage().ToString();
+        damageMinField.text = projectile.GetComponent<UnitProjectile>().GetDamageToDealMin().ToString();
+        damageMaxField.text = projectile.GetComponent<UnitProjectile>().GetDamageToDealMax().ToString();
 
         attackSpeedField.text = unitFiring.GetFireRate().ToString();
+
+        armorTypeField.text = health.GetTypeOfArmor().ToString();
     }
 
 
