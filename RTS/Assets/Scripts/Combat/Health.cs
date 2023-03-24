@@ -21,6 +21,7 @@ public class Health : NetworkBehaviour
     [Header("Heal and Armor Settings - ХП и тип брони")]
     [SerializeField] private TypeOfArmor typeOfArmor = new TypeOfArmor();
     [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int levelOfArmor = 0;
 
     [Header("Chance of miss")]
     [SerializeField] private int miss = 0;
@@ -97,5 +98,14 @@ public class Health : NetworkBehaviour
     public int GetChanceOfMiss()
     {
         return miss;
+    }
+
+    public int GetLevelOfArmor()
+    {
+        return levelOfArmor;
+    }
+    public void SetLevelOfArmor(int number)
+    {
+        levelOfArmor=number;
     }
 }

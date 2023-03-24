@@ -59,7 +59,11 @@ public class UnitProjectile : NetworkBehaviour
 
         if (other.TryGetComponent<Health>(out Health health))
         {
-           health.DealDamage((int)(matrixOfDamage[((int)typeOfDamage), (int)health.GetTypeOfArmor()]*Random.Range(damageToDealMin,damageToDealMax)));
+           int damageToDeal = Random.Range(damageToDealMin, damageToDealMax);
+           int modificator = (int)matrixOfDamage[(int)typeOfDamage, (int)health.GetTypeOfArmor()];
+
+           health.DealDamage(modificator * (damageToDeal-(damageToDeal - ((((100-(health.GetLevelOfArmor()*4+3))* damageToDeal)/100)))));
+
             Debug.Log($"Type {typeOfDamage}; Modificator {matrixOfDamage[((int)typeOfDamage), (int)health.GetTypeOfArmor()]}");
         }
 
