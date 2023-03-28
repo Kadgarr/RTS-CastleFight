@@ -64,7 +64,7 @@ public class UnitProjectile : NetworkBehaviour
 
            health.DealDamage(modificator * (damageToDeal-(damageToDeal - ((((100-(health.GetLevelOfArmor()*4+3))* damageToDeal)/100)))));
 
-            Debug.Log($"Type {typeOfDamage}; Modificator {matrixOfDamage[((int)typeOfDamage), (int)health.GetTypeOfArmor()]}");
+           Debug.Log($"Type {typeOfDamage}; Modificator {matrixOfDamage[((int)typeOfDamage), (int)health.GetTypeOfArmor()]}");
         }
 
         DestroySelf();
