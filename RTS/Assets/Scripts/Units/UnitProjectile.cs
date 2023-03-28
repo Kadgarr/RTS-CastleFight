@@ -59,12 +59,8 @@ public class UnitProjectile : NetworkBehaviour
 
         if (other.TryGetComponent<Health>(out Health health))
         {
-           int damageToDeal = Random.Range(damageToDealMin, damageToDealMax);
-           int modificator = (int)matrixOfDamage[(int)typeOfDamage, (int)health.GetTypeOfArmor()];
-
-           health.DealDamage(modificator * (damageToDeal-(damageToDeal - ((((100-(health.GetLevelOfArmor()*4+3))* damageToDeal)/100)))));
-
-           Debug.Log($"Type {typeOfDamage}; Modificator {matrixOfDamage[((int)typeOfDamage), (int)health.GetTypeOfArmor()]}");
+           health.DealDamage((int)(matrixOfDamage[((int)typeOfDamage), (int)health.GetTypeOfArmor()]*Random.Range(damageToDealMin,damageToDealMax)));
+            Debug.Log($"Type {typeOfDamage}; Modificator {matrixOfDamage[((int)typeOfDamage), (int)health.GetTypeOfArmor()]}");
         }
 
         DestroySelf();
@@ -84,11 +80,6 @@ public class UnitProjectile : NetworkBehaviour
 
     public int GetDamageToDealMax()
     {
-        return damageToDealMax;
-    }
-
-    public TypeOfDamage GetTypeOfDamage()
-    {
-        return typeOfDamage;
+        return damageToDealMin;
     }
 }

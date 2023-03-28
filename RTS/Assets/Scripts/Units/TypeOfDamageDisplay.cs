@@ -26,23 +26,23 @@ public class TypeOfDamageDisplay : MonoBehaviour, IPointerEnterHandler, IPointer
     {
         fieldLevelOfDamage.text = fieldLevelOfDamage.text + $" {projectile.GetDamageToDealMin()} - {projectile.GetDamageToDealMax()}";
 
-        fieldTypeOfDamage.text = fieldTypeOfDamage.text + $" {projectile.GetTypeOfDamage().ToString()}";
+        //fieldTypeOfDamage.text = fieldTypeOfDamage.text + $" {projectile.GetTypeOfDamage().ToString()}";
 
-        int numDamage = (int)projectile.GetTypeOfDamage();
+        //int numDamage = (int)projectile.GetTypeOfDamage();
 
-        for (int i = 0; i < listofTypeArmorFields.Count; i++)
-        {
-            listofTypeArmorFields[i].text = listofTypeArmorFields[i].text.ToString() + $" {matrixOfDamage[numDamage, i] * 100}%";
+        //for (int i = 0; i < listofTypeArmorFields.Count; i++)
+        //{
+        //    listofTypeArmorFields[i].text = listofTypeArmorFields[i].text.ToString() + $" {matrixOfDamage[numDamage, i] * 100}%";
 
-            if (matrixOfDamage[numDamage, i] > 1.05)
-                listofTypeArmorFields[i].color = Color.green;
-            else
-                if (matrixOfDamage[numDamage, i] >= 1 && matrixOfDamage[numDamage, i] <= 1.05f)
-                listofTypeArmorFields[i].color = Color.yellow;
-            else
-                if (matrixOfDamage[numDamage, i] < 1)
-                listofTypeArmorFields[i].color = Color.red;
-        }
+        //    if (matrixOfDamage[numDamage, i] > 1.05)
+        //        listofTypeArmorFields[i].color = Color.green;
+        //    else
+        //        if (matrixOfDamage[numDamage, i] >= 1 && matrixOfDamage[numDamage, i] <= 1.05f)
+        //        listofTypeArmorFields[i].color = Color.yellow;
+        //    else
+        //        if (matrixOfDamage[numDamage, i] < 1)
+        //        listofTypeArmorFields[i].color = Color.red;
+        //}
     }
 
     public void OnPointerEnter(PointerEventData eventData)

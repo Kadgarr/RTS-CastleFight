@@ -23,7 +23,7 @@ public class TypeOfArmorDisplay : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     private void Start()
     {
-        fieldLevelOfArmor.text = fieldLevelOfArmor.text + $" {health.GetLevelOfArmor().ToString()}";
+        //fieldLevelOfArmor.text = fieldLevelOfArmor.text + $" {health.GetLevelOfArmor().ToString()}";
 
         fieldTypeOfArmor.text = fieldTypeOfArmor.text + $" {health.GetTypeOfArmor().ToString()}" ;
 
