@@ -5,19 +5,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.ProBuilder.Shapes;
 
-public enum TypeOfArmor
-{
-    Heavy = 0,
-    Medium = 1,
-    Light = 2,
-    Divine = 3,
-    Hero = 4,
-    Fortified = 5,
-    Unarmored = 6
-}
 
 public class Health : NetworkBehaviour
 {
+    public enum TypeOfArmor
+    {
+        Heavy = 0,
+        Medium = 1,
+        Light = 2,
+        Divine = 3,
+        Hero = 4,
+        Fortified = 5,
+        Unarmored = 6
+    }
+
     [Header("Heal and Armor Settings - ХП и тип брони")]
     [SerializeField] private TypeOfArmor typeOfArmor = new TypeOfArmor();
     [SerializeField] private int maxHealth = 100;

@@ -67,39 +67,23 @@ public class UnitFiring : NetworkBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("TriggerEnter");
-    }
 
     [ServerCallback]
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log($"{other.name}");
 
         if (other.TryGetComponent<NetworkIdentity>(out NetworkIdentity networkIdentity))
         {
             if (networkIdentity.connectionToClient.identity.GetComponent<RTSPlayer>().GetTeamNumber() 
                 == connectionToClient.identity.GetComponent<RTSPlayer>().GetTeamNumber())
             {
-                Debug.Log("Check false");
-                Debug.Log($"{networkIdentity.connectionToClient.identity.GetComponent<RTSPlayer>().GetTeamNumber()}\n" +
-                    $"{connectionToClient.identity.GetComponent<RTSPlayer>().GetTeamNumber()}");
                 return; 
             }
             
         }
-        Debug.Log("Check true");
-        //if( other.TryGetComponent<TeamNumber>(out TeamNumber teamNumber))
-        //{
-        //    RTSPlayer player = connectionToClient.identity.GetComponent<RTSPlayer>();
-        //    if (teamNumber.GetTeamNumber() == player.GetTeamNumber())
-        //        return;
-        //}
-
+       
         if (target != null && !activeUnitBase) return;
 
-        Debug.Log("Check true 2");
         targeter.SetTarget(other.gameObject);
 
         target = targeter.GetTarget();
@@ -114,16 +98,7 @@ public class UnitFiring : NetworkBehaviour
         {
             if (unitBase == null) return;
 
-            //if (unitBase.TryGetComponent<TeamNumber>(out TeamNumber teamNumber))
-            //{
-            //    RTSPlayer player = connectionToClient.identity.GetComponent<RTSPlayer>();
-            //    if (teamNumber.GetTeamNumber() != player.GetTeamNumber())
-            //    {
-            //        gameObject.GetComponent<NavMeshAgent>().SetDestination(unitBase.transform.position);
-            //        activeUnitBase = true;
-            //    }
-
-            //}
+      
 
             if (unitBase.TryGetComponent<NetworkIdentity>(out NetworkIdentity networkIdentity))
             {

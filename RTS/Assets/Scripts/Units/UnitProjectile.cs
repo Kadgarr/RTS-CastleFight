@@ -3,18 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum TypeOfDamage
-{
-    Normal = 0,
-    Magic = 1,
-    Pierce = 2,
-    Chaos = 3,
-    Siege = 4,
-    Hero = 5
-}
+
 
 public class UnitProjectile : NetworkBehaviour
 {
+    public enum TypeOfDamage
+    {
+        Normal = 0,
+        Magic = 1,
+        Pierce = 2,
+        Chaos = 3,
+        Siege = 4,
+        Hero = 5
+    }
 
     [SerializeField] private Rigidbody rbody=null;
 
@@ -64,7 +65,8 @@ public class UnitProjectile : NetworkBehaviour
 
            health.DealDamage(modificator * (damageToDeal-(damageToDeal - ((((100-(health.GetLevelOfArmor()*4+3))* damageToDeal)/100)))));
 
-           Debug.Log($"Type {typeOfDamage}; Modificator {matrixOfDamage[((int)typeOfDamage), (int)health.GetTypeOfArmor()]}");
+           Debug.Log($"Damage: {(modificator * (damageToDeal - (damageToDeal - ((((100 - (health.GetLevelOfArmor() * 4 + 3)) * damageToDeal) / 100)))))}; " +
+               $"Type {typeOfDamage}; Modificator {matrixOfDamage[((int)typeOfDamage), (int)health.GetTypeOfArmor()]}");
         }
 
         DestroySelf();

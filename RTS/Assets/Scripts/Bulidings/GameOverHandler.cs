@@ -42,7 +42,7 @@ public class GameOverHandler : NetworkBehaviour
       
         if (bases.Count != 1) return;
 
-        int winnerTeamId = bases[0].GetComponent<TeamNumber>().GetTeamNumber();
+        int winnerTeamId = bases[0].GetComponent<NetworkIdentity>().GetComponent<RTSPlayer>().GetTeamNumber();
 
         RpcGameOver($"Team {winnerTeamId}");
        
