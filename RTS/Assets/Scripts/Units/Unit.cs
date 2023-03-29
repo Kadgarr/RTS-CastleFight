@@ -24,12 +24,22 @@ public class Unit : NetworkBehaviour
 
 
     [Header("Type of Unit - air or land")]
-    [SerializeField] private bool isFlying;
+    [SerializeField] private bool isFlyingOnly;
 
     [Header("Can attack air")]
-    [SerializeField] private bool canAttackAir;
+    [SerializeField] private bool isGroundOnly;
 
     private bool activeCanvasInfo;
+    
+    public bool GetIsFlyingOnly()
+    {
+       return isFlyingOnly;
+    }
+
+    public bool GetIsGroundOnly()
+    {
+        return isGroundOnly;
+    }
 
     public UnitMovement GetUnitMovement()
     {

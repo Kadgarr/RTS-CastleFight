@@ -59,13 +59,13 @@ public class Health : NetworkBehaviour
 
 
     [Server]
-    public void DealDamage(int damageAmount)
+    public void DealDamage(float damageAmount)
     {
         Debug.Log($"Damage: {damageAmount}");
 
         if (currentHealth == 0) return;
 
-        currentHealth= Mathf.Max(currentHealth- damageAmount,0);
+        currentHealth= Mathf.Max(currentHealth- (int)damageAmount,0);
 
         if (currentHealth != 0) return;
 

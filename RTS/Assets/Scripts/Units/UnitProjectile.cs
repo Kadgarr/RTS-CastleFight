@@ -25,7 +25,10 @@ public class UnitProjectile : NetworkBehaviour
     [SerializeField] private int damageToDealMin = 20;
     [SerializeField] private int damageToDealMax = 30;
     [Space(10)]
-    [SerializeField] private float destroyAfterSeconds = 5f;
+    [SerializeField] private int criticalDamadeChance = 0;
+    [SerializeField] private float criticalDamageModificator = 0f;
+    [Space(10)]
+    [SerializeField] private float destroyAfterSeconds = 1f;
     [SerializeField] private float launchForce = 10f;
 
     private float[,] matrixOfDamage = new float[,] { 
@@ -60,13 +63,27 @@ public class UnitProjectile : NetworkBehaviour
 
         if (other.TryGetComponent<Health>(out Health health))
         {
-           int damageToDeal = Random.Range(damageToDealMin, damageToDealMax);
-           int modificator = (int)matrixOfDamage[(int)typeOfDamage, (int)health.GetTypeOfArmor()];
+           int damage = Random.Range(damageToDealMin, damageToDealMax);
 
-           health.DealDamage(modificator * (damageToDeal-(damageToDeal - ((((100-(health.GetLevelOfArmor()*4+3))* damageToDeal)/100)))));
+           float modificator = (int)matrixOfDamage[(int)typeOfDamage, (int)health.GetTypeOfArmor()];
 
-           Debug.Log($"Damage: {(modificator * (damageToDeal - (damageToDeal - ((((100 - (health.GetLevelOfArmor() * 4 + 3)) * damageToDeal) / 100)))))}; " +
-               $"Type {typeOfDamage}; Modificator {matrixOfDamage[((int)typeOfDamage), (int)health.GetTypeOfArmor()]}");
+           float summaryDamageToDeal = modificator * (damage - (damage - ((((100f - (health.GetLevelOfArmor() * 4f + 3f)) * damage) / 100f))));
+           
+           if (criticalDamadeChance > 0)
+           {
+                int chance = Random.Range(0, criticalDamadeChance);
+
+                if(chance >0 && chance<= criticalDamadeChance)
+                {
+                    summaryDamageToDeal = summaryDamageToDeal * criticalDamageModificator;
+                    Debug.LogError("Critical Check");
+                }
+                    
+           }
+           health.DealDamage(summaryDamageToDeal);
+
+           Debug.Log($"Damage: {summaryDamageToDeal}; " +
+               $"Type {typeOfDamage}; Modificator {modificator}");
         }
 
         DestroySelf();

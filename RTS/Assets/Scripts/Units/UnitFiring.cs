@@ -30,7 +30,6 @@ public class UnitFiring : NetworkBehaviour
         {
             unitBases.Add(GameObject.Find($"UnitBase(Clone) {i + 1}"));
         }
-
     }
 
     [ServerCallback]
@@ -79,7 +78,13 @@ public class UnitFiring : NetworkBehaviour
             {
                 return; 
             }
-            
+        }
+
+        if(other.TryGetComponent<Unit>( out Unit unit))
+        {
+            if ((unit.GetIsFlyingOnly() && this.gameObject.GetComponent<Unit>().GetIsGroundOnly())
+                || (unit.GetIsGroundOnly() && this.gameObject.GetComponent<Unit>().GetIsFlyingOnly()))
+                return;
         }
        
         if (target != null && !activeUnitBase) return;
@@ -97,8 +102,6 @@ public class UnitFiring : NetworkBehaviour
         foreach (var unitBase in unitBases)
         {
             if (unitBase == null) return;
-
-      
 
             if (unitBase.TryGetComponent<NetworkIdentity>(out NetworkIdentity networkIdentity))
             {
