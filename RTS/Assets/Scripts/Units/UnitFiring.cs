@@ -53,7 +53,7 @@ public class UnitFiring : NetworkBehaviour
         transform.rotation = Quaternion.RotateTowards(
             transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-        if (Time.time > (1 / fireRate) + lastFireTime)
+        if (Time.time > /*(1f / fireRate) */fireRate + lastFireTime)
         {
             Quaternion projectileRotation = Quaternion.LookRotation(
                 target.GetAimPoint().position - projectileSpawnPoint.position);

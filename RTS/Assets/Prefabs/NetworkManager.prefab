@@ -54,7 +54,7 @@ MonoBehaviour:
   sendRate: 30
   offlineScene: Assets/Scenes/Scene_Menu.unity
   onlineScene: 
-  transport: {fileID: 0}
+  transport: {fileID: 2664268345659252929}
   networkAddress: localhost
   maxConnections: 4
   authenticator: {fileID: 0}
@@ -62,7 +62,6 @@ MonoBehaviour:
   autoCreatePlayer: 1
   playerSpawnMethod: 1
   spawnPrefabs:
-  - {fileID: 1905891232863627887, guid: f4b5b24bcea76554db8afc5808afb634, type: 3}
   - {fileID: 4982498120403502231, guid: e3f46da3ba790a9438f1565264bc115d, type: 3}
   - {fileID: 1905891232863627887, guid: b22de163656621442b015d4a6f66f4f8, type: 3}
   - {fileID: 581234687218935162, guid: 8a7280f81847faf4eb175bc96bb56687, type: 3}
@@ -71,7 +70,13 @@ MonoBehaviour:
   - {fileID: 2350876118148983483, guid: 7f98eab97eb6151459402fe4a4383171, type: 3}
   - {fileID: 3428152308824618021, guid: 2c556f07c59f91d459e9ba55933e6f55, type: 3}
   - {fileID: 1007537482734789767, guid: 975578b081dabfd49a2ef5d740c04734, type: 3}
+  - {fileID: 4237510712727569272, guid: 0db99711f444f084c84c34e84ccbe852, type: 3}
+  - {fileID: 1905891232863627887, guid: f4b5b24bcea76554db8afc5808afb634, type: 3}
+  - {fileID: 4614512735757397509, guid: 43a88ea2531a4df4c9f202021bc3adbe, type: 3}
+  - {fileID: 4165531424249484020, guid: aa99a343531c1a24ab9f436a69b72f4a, type: 3}
+  - {fileID: 729645789883430758, guid: 4b8a05ca773508f4086ee4c3898f7ef1, type: 3}
   timeInterpolationGui: 0
+  unitPlayerPrefab: {fileID: 4237510712727569272, guid: 0db99711f444f084c84c34e84ccbe852, type: 3}
   unitBasePrefab: {fileID: 1905891232863627887, guid: f4b5b24bcea76554db8afc5808afb634, type: 3}
   gameOverHandlerPrefab: {fileID: 2096890459027525324, guid: e3f46da3ba790a9438f1565264bc115d, type: 3}
 --- !u!114 &7934333400601530519
@@ -105,7 +110,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7934333400601530513}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
   m_Name: 
@@ -132,7 +137,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7934333400601530513}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6e55fca1f4e4844593a3dd65a3ecb39, type: 3}
   m_Name: 
@@ -140,4 +145,4 @@ MonoBehaviour:
   Channels: 0200000001000000
   Timeout: 25
   AllowSteamRelay: 1
-  UseNextGenSteamNetworking: 1
+  UseNextGenSteamNetworking: 0
