@@ -110,4 +110,9 @@ public class UnitProjectile : NetworkBehaviour
     {
         return typeOfDamage;
     }
+
+    public int GetCriticalDamage()
+    {
+        return criticalDamadeChance;
+    }
 }

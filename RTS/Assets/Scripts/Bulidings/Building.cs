@@ -38,6 +38,11 @@ public class Building : NetworkBehaviour
         return activeCanvasInfo;
     }
 
+    public List<GameObject> GetListUpgrades()
+    {
+        return nextUpgradeBuildings;
+    }
+
     public void SetActiveCanvasInfo(bool stateCanvas)
     {
         if(!stateCanvas)

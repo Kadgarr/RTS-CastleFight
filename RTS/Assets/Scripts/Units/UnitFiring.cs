@@ -2,10 +2,12 @@ using Mirror;
 
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class UnitFiring : NetworkBehaviour
 {
@@ -16,6 +18,9 @@ public class UnitFiring : NetworkBehaviour
     [SerializeField] private float fireRate = 1f;
     [SerializeField] private float rotationSpeed = 20f;
     [SerializeField] private LayerMask layerMask = new LayerMask();
+
+    [TextAreaAttribute]
+    [SerializeField] private string descriptionOfAbilites = null;
 
     private List<GameObject> unitBases = new List<GameObject>();
 
@@ -132,5 +137,10 @@ public class UnitFiring : NetworkBehaviour
     public float GetFireRate()
     {
         return fireRate;
+    }
+
+    public string GetDescriptionOfAbilities()
+    {
+        return descriptionOfAbilites;
     }
 }

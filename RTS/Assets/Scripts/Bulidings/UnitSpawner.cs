@@ -155,6 +155,11 @@ public class UnitSpawner : NetworkBehaviour//, IPointerClickHandler
         return (int)unitSpawnDuration;
     }
 
+    public GameObject GetUnit()
+    {
+        return unitPreab.gameObject;
+    }
+
     [Command]
     public void SetTrueProducingUnits()
     {

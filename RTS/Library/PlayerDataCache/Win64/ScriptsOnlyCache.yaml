@@ -12,6 +12,7 @@ ScriptsOnlyBuild:
     - Health
     - HealthDisplay
     - InfoBuildingDisplay
+    - InfoOfUpradeBuilding
     - InfoUnitDisplay
     - JoinLobbyMenu
     - LobbyMenu
@@ -247,6 +248,24 @@ ScriptsOnlyBuild:
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.Renderer
     methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
   - assembly: Assembly-CSharp
     fullTypeName: Building
     methodName: UpgrageBuilding
@@ -271,30 +290,6 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: Building
     methodName: UpgrageBuilding
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.Renderer
-    methodName: set_enabled
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.Renderer
-    methodName: set_enabled
-  - assembly: Assembly-CSharp
-    fullTypeName: BuildingButton
-    methodName: Build
-  - assembly: Assembly-CSharp
-    fullTypeName: BuildingButton
-    methodName: Build
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.Renderer
-    methodName: set_enabled
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.Renderer
-    methodName: set_enabled
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.Renderer
-    methodName: set_enabled
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.Renderer
-    methodName: set_enabled
   - assembly: Assembly-CSharp
     fullTypeName: UnitSpawner
     methodName: SetTrueProducingUnits
@@ -307,6 +302,15 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: BuildingButton
     methodName: Build
+  - assembly: Assembly-CSharp
+    fullTypeName: BuildingButton
+    methodName: Build
+  - assembly: Assembly-CSharp
+    fullTypeName: BuildingButton
+    methodName: Build
+  - assembly: Assembly-CSharp
+    fullTypeName: Building
+    methodName: UpgrageBuilding
   - assembly: Assembly-CSharp
     fullTypeName: LobbyMenu
     methodName: ChangeToSecondTeam
@@ -595,6 +599,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 8666}
     - Class: 114
       Script: {instanceID: 8892}
+    - Class: 114
+      Script: {instanceID: 9262}
     - Class: 114
       Script: {instanceID: 9274}
     - Class: 114
@@ -2150,7 +2156,7 @@ ScriptsOnlyBuild:
     className: UnityOnCollisionStayMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 60ee8de1bc3ad3f0bc3d00e793729956
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: InfoOfUpradeBuilding
@@ -2576,7 +2582,7 @@ ScriptsOnlyBuild:
     className: CinemachineGroupComposer
   - hash:
       serializedVersion: 2
-      Hash: fe7c8f4c580322e5075ecd5cc71f492d
+      Hash: 3642138fe6821117c6479a85b4376970
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UnitFiring
