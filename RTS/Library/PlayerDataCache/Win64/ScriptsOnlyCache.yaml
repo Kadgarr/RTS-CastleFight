@@ -71,6 +71,9 @@ ScriptsOnlyBuild:
     - UnityEngine.InputSystem.UI.InputSystemUIInputModule
     Unity.ProBuilder.Editor.dll:
     - UnityEditor.ProBuilder.ProBuilderEditor
+    Unity.ProBuilder.dll:
+    - UnityEngine.ProBuilder.ProBuilderMesh
+    - UnityEngine.ProBuilder.Shapes.ProBuilderShape
     Unity.RenderPipelines.Core.Runtime.dll:
     - UnityEngine.Rendering.UI.DebugUIHandlerBitField
     - UnityEngine.Rendering.UI.DebugUIHandlerButton
@@ -158,6 +161,12 @@ ScriptsOnlyBuild:
     - UnityEngine.InputSystem.InputBinding
     - UnityEngine.InputSystem.InputControlScheme
     - UnityEngine.InputSystem.InputControlScheme/DeviceRequirement
+    Unity.ProBuilder:
+    - UnityEngine.ProBuilder.AutoUnwrapSettings
+    - UnityEngine.ProBuilder.Face
+    - UnityEngine.ProBuilder.Shapes.Cone
+    - UnityEngine.ProBuilder.SharedVertex
+    - UnityEngine.ProBuilder.UnwrapParameters
     Unity.RenderPipelines.Core.Runtime:
     - UnityEngine.Rendering.UI.DebugUIPrefabBundle
     Unity.RenderPipelines.Universal.Runtime:
@@ -279,15 +288,6 @@ ScriptsOnlyBuild:
     fullTypeName: Building
     methodName: UpgrageBuilding
   - assembly: Assembly-CSharp
-    fullTypeName: UnitSpawner
-    methodName: SetTrueProducingUnits
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitSpawner
-    methodName: SetFalseProducingUnits
-  - assembly: Assembly-CSharp
-    fullTypeName: Building
-    methodName: UpgrageBuilding
-  - assembly: Assembly-CSharp
     fullTypeName: Building
     methodName: UpgrageBuilding
   - assembly: Assembly-CSharp
@@ -300,17 +300,47 @@ ScriptsOnlyBuild:
     fullTypeName: Building
     methodName: UpgrageBuilding
   - assembly: Assembly-CSharp
-    fullTypeName: BuildingButton
-    methodName: Build
+    fullTypeName: Building
+    methodName: UpgrageBuilding
   - assembly: Assembly-CSharp
-    fullTypeName: BuildingButton
-    methodName: Build
+    fullTypeName: UnitSpawner
+    methodName: SetTrueProducingUnits
   - assembly: Assembly-CSharp
-    fullTypeName: BuildingButton
-    methodName: Build
+    fullTypeName: UnitSpawner
+    methodName: SetFalseProducingUnits
   - assembly: Assembly-CSharp
     fullTypeName: Building
     methodName: UpgrageBuilding
+  - assembly: Assembly-CSharp
+    fullTypeName: BuildingButton
+    methodName: Build
+  - assembly: Assembly-CSharp
+    fullTypeName: BuildingButton
+    methodName: Build
+  - assembly: Assembly-CSharp
+    fullTypeName: BuildingButton
+    methodName: Build
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitSpawner
+    methodName: SetTrueProducingUnits
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitSpawner
+    methodName: SetFalseProducingUnits
+  - assembly: Assembly-CSharp
+    fullTypeName: Building
+    methodName: UpgrageBuilding
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
   - assembly: Assembly-CSharp
     fullTypeName: LobbyMenu
     methodName: ChangeToSecondTeam
@@ -505,6 +535,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 54
       Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
     - Class: 81
@@ -612,6 +644,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10088}
     - Class: 114
+      Script: {instanceID: 10164}
+    - Class: 114
       Script: {instanceID: 10170}
     - Class: 114
       Script: {instanceID: 10730}
@@ -637,6 +671,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12090}
     - Class: 114
       Script: {instanceID: 12342}
+    - Class: 114
+      Script: {instanceID: 12488}
     - Class: 114
       Script: {instanceID: 12582}
     - Class: 114

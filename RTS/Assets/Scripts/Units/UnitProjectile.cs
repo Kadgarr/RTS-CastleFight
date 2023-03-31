@@ -69,9 +69,10 @@ public class UnitProjectile : NetworkBehaviour
 
            float summaryDamageToDeal = modificator * (damage - (damage - ((((100f - (health.GetLevelOfArmor() * 4f + 3f)) * damage) / 100f))));
            
+            //проверяем на шанс критического урона
            if (criticalDamadeChance > 0)
            {
-                int chance = Random.Range(0, criticalDamadeChance);
+                int chance = Random.Range(0, 100);
 
                 if(chance >0 && chance<= criticalDamadeChance)
                 {
@@ -80,7 +81,24 @@ public class UnitProjectile : NetworkBehaviour
                 }
                     
            }
+
+            //проверяем на шанс промаха
+           if (health.GetChanceOfMiss() > 0)
+           {
+                int chance = Random.Range(0, 100);
+
+                if(chance>0 && chance <= health.GetChanceOfMiss())
+                {
+                    DestroySelf();
+
+                    Debug.LogError("MISS");
+                }
+                    
+           }
+
            health.DealDamage(summaryDamageToDeal);
+            
+           //health.DealDamage(summaryDamageToDeal);
 
            Debug.Log($"Damage: {summaryDamageToDeal}; " +
                $"Type {typeOfDamage}; Modificator {modificator}");
