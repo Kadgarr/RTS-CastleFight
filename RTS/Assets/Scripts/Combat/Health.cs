@@ -24,8 +24,12 @@ public class Health : NetworkBehaviour
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private int levelOfArmor = 0;
 
-    [Header("Chance of miss")]
+    [Header("Chance of miss (in percentage)")]
     [SerializeField] private int miss = 0;
+
+    [Header("Resistance (in percentage)")]
+    [SerializeField] private int ResistToRangeDamage = 0;
+    [SerializeField] private int ResistToMageDamage = 0;
 
     [SyncVar(hook =nameof(HandleHealtUpdated))]
     private int currentHealth;
@@ -105,6 +109,7 @@ public class Health : NetworkBehaviour
     {
         return levelOfArmor;
     }
+
     public void SetLevelOfArmor(int number)
     {
         levelOfArmor=number;

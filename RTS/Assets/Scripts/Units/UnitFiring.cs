@@ -143,4 +143,9 @@ public class UnitFiring : NetworkBehaviour
     {
         return descriptionOfAbilites;
     }
+
+    public float GetFireRange()
+    {
+        return fireRange;
+    }
 }

@@ -9,9 +9,11 @@ public class TypeOfDamageDisplay : MonoBehaviour, IPointerEnterHandler, IPointer
 {
     [SerializeField] private GameObject infoDamageDisplay = null;
     [SerializeField] private UnitProjectile projectile = null;
+    [SerializeField] private UnitFiring unitFiring = null;
     [SerializeField] private List<TMP_Text> listofTypeArmorFields= null;
     [SerializeField] private TMP_Text fieldTypeOfDamage = null;
     [SerializeField] private TMP_Text fieldLevelOfDamage = null;
+    [SerializeField] private TMP_Text fieldRangeOrMiliOfDamage = null;
 
     private float[,] matrixOfDamage = new float[,] {
                                                     {1f, 1.75f, 0.7f, 0.25f, 0.6f, 0.5f, 1.05f },
@@ -27,6 +29,11 @@ public class TypeOfDamageDisplay : MonoBehaviour, IPointerEnterHandler, IPointer
         fieldLevelOfDamage.text = fieldLevelOfDamage.text + $" {projectile.GetDamageToDealMin()} - {projectile.GetDamageToDealMax()}";
 
         fieldTypeOfDamage.text = fieldTypeOfDamage.text + $" {projectile.GetTypeOfDamage().ToString()}";
+
+        if (unitFiring.GetFireRange() <= 3)
+            fieldRangeOrMiliOfDamage.text = fieldRangeOrMiliOfDamage.text + $"Melee";
+        else
+            fieldRangeOrMiliOfDamage.text = fieldRangeOrMiliOfDamage.text + $"Range";
 
         int numDamage = (int)projectile.GetTypeOfDamage();
 
