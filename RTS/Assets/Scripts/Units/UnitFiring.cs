@@ -1,5 +1,5 @@
 using Mirror;
-
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,6 +8,7 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using static UnitProjectile;
 
 public class UnitFiring : NetworkBehaviour
 {
@@ -23,6 +24,8 @@ public class UnitFiring : NetworkBehaviour
     [SerializeField] private string descriptionOfAbilites = null;
 
     private List<GameObject> unitBases = new List<GameObject>();
+
+    public static event Action<GameObject,float,int> SpawnProjectile;
 
     private float lastFireTime;
     private Targetable target;
@@ -64,8 +67,12 @@ public class UnitFiring : NetworkBehaviour
                 target.GetAimPoint().position - projectileSpawnPoint.position);
 
             GameObject projectileInstance = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileRotation);
+            
+            SpawnProjectile?.Invoke(projectilePrefab,fireRange, target.gameObject.GetInstanceID());
 
-            NetworkServer.Spawn(projectileInstance, connectionToClient);
+            
+
+            NetworkServer.Spawn(projectileInstance, connectionToClient); 
 
             lastFireTime = Time.time;
         }

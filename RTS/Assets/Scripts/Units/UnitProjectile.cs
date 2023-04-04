@@ -31,6 +31,8 @@ public class UnitProjectile : NetworkBehaviour
     [SerializeField] private float destroyAfterSeconds = 1f;
     [SerializeField] private float launchForce = 10f;
 
+    
+
     private float[,] matrixOfDamage = new float[,] { 
                                                     {1f, 1.75f, 0.7f, 0.25f, 0.6f, 0.5f, 1.05f },
                                                     { 1.75f, 0.7f, 1f, 0.25f, 0.6f, 0.4f, 1.05f },
@@ -77,7 +79,7 @@ public class UnitProjectile : NetworkBehaviour
                 if(chance >0 && chance<= criticalDamadeChance)
                 {
                     summaryDamageToDeal = summaryDamageToDeal * criticalDamageModificator;
-                    Debug.LogError("Critical Check");
+                   // Debug.LogError("Critical Check");
                 }
                     
            }
@@ -91,17 +93,18 @@ public class UnitProjectile : NetworkBehaviour
                 {
                     DestroySelf();
 
-                    Debug.LogError("MISS");
+                    //Debug.LogError("MISS");
                 }
                     
            }
 
-           health.DealDamage(summaryDamageToDeal);
-            
-           //health.DealDamage(summaryDamageToDeal);
 
-           Debug.Log($"Damage: {summaryDamageToDeal}; " +
-               $"Type {typeOfDamage}; Modificator {modificator}");
+
+           health.DealDamage(summaryDamageToDeal);
+           
+
+           //Debug.Log($"Damage: {summaryDamageToDeal}; " +
+           //    $"Type {typeOfDamage}; Modificator {modificator}");
         }
 
         DestroySelf();

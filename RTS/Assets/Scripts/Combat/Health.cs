@@ -2,6 +2,7 @@ using Mirror;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.ProBuilder.Shapes;
 
@@ -34,8 +35,11 @@ public class Health : NetworkBehaviour
     [SyncVar(hook =nameof(HandleHealtUpdated))]
     private int currentHealth;
 
+    private float dealDamage;
+
     public event Action ServerOnDie;
     public static event Action<int> ServerOnPlayerDie;
+    public event Action<float> GetDamage;
     public event Action<int, int> ClientOnHealthUpdated;
 
     #region Server
@@ -65,11 +69,20 @@ public class Health : NetworkBehaviour
     [Server]
     public void DealDamage(float damageAmount)
     {
-        Debug.Log($"Damage: {damageAmount}");
+        Debug.Log($"Damage BEFORE: {damageAmount}");
 
         if (currentHealth == 0) return;
 
-        currentHealth= Mathf.Max(currentHealth- (int)damageAmount,0);
+        dealDamage = damageAmount; 
+
+        GetDamage?.Invoke(damageAmount);
+
+        if(damageAmount!=dealDamage)
+            damageAmount = dealDamage;
+
+        Debug.Log($"Damage AFTER: {damageAmount}");
+
+        currentHealth = Mathf.Max(currentHealth - (int)damageAmount,0);
 
         if (currentHealth != 0) return;
 
@@ -113,5 +126,17 @@ public class Health : NetworkBehaviour
     public void SetLevelOfArmor(int number)
     {
         levelOfArmor=number;
+    }
+
+    [Command]
+    public void SetDamage(float dealDamage)
+    {
+        this.dealDamage = dealDamage;
+    }
+
+    [Command]
+    public void SetChanceOfMiss(float dealDamage)
+    {
+        this.dealDamage = dealDamage;
     }
 }
