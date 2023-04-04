@@ -28,10 +28,6 @@ public class Health : NetworkBehaviour
     [Header("Chance of miss (in percentage)")]
     [SerializeField] private int miss = 0;
 
-    [Header("Resistance (in percentage)")]
-    [SerializeField] private int ResistToRangeDamage = 0;
-    [SerializeField] private int ResistToMageDamage = 0;
-
     [SyncVar(hook =nameof(HandleHealtUpdated))]
     private int currentHealth;
 
@@ -69,7 +65,7 @@ public class Health : NetworkBehaviour
     [Server]
     public void DealDamage(float damageAmount)
     {
-        Debug.Log($"Damage BEFORE: {damageAmount}");
+        //Debug.Log($"Damage BEFORE: {damageAmount} object: {gameObject.name}");
 
         if (currentHealth == 0) return;
 
@@ -80,7 +76,7 @@ public class Health : NetworkBehaviour
         if(damageAmount!=dealDamage)
             damageAmount = dealDamage;
 
-        Debug.Log($"Damage AFTER: {damageAmount}");
+        //Debug.Log($"Damage AFTER: {damageAmount}");
 
         currentHealth = Mathf.Max(currentHealth - (int)damageAmount,0);
 

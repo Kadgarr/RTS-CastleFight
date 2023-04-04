@@ -1,6 +1,7 @@
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -65,12 +66,13 @@ public class UnitProjectile : NetworkBehaviour
 
         if (other.TryGetComponent<Health>(out Health health))
         {
-           int damage = Random.Range(damageToDealMin, damageToDealMax);
+           float damage = Random.Range(damageToDealMin, damageToDealMax);
 
-           float modificator = (int)matrixOfDamage[(int)typeOfDamage, (int)health.GetTypeOfArmor()];
+           float modificator = matrixOfDamage[(int)typeOfDamage, (int)health.GetTypeOfArmor()];
 
            float summaryDamageToDeal = modificator * (damage - (damage - ((((100f - (health.GetLevelOfArmor() * 4f + 3f)) * damage) / 100f))));
-           
+
+
             //проверяем на шанс критического урона
            if (criticalDamadeChance > 0)
            {
@@ -79,32 +81,23 @@ public class UnitProjectile : NetworkBehaviour
                 if(chance >0 && chance<= criticalDamadeChance)
                 {
                     summaryDamageToDeal = summaryDamageToDeal * criticalDamageModificator;
-                   // Debug.LogError("Critical Check");
                 }
                     
            }
-
             //проверяем на шанс промаха
-           if (health.GetChanceOfMiss() > 0)
+            if (health.GetChanceOfMiss() > 0)
            {
                 int chance = Random.Range(0, 100);
 
                 if(chance>0 && chance <= health.GetChanceOfMiss())
                 {
                     DestroySelf();
-
-                    //Debug.LogError("MISS");
+                    
                 }
                     
            }
-
-
-
-           health.DealDamage(summaryDamageToDeal);
+            health.DealDamage(summaryDamageToDeal);
            
-
-           //Debug.Log($"Damage: {summaryDamageToDeal}; " +
-           //    $"Type {typeOfDamage}; Modificator {modificator}");
         }
 
         DestroySelf();

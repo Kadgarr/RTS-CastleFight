@@ -70,8 +70,6 @@ public class UnitFiring : NetworkBehaviour
             
             SpawnProjectile?.Invoke(projectilePrefab,fireRange, target.gameObject.GetInstanceID());
 
-            
-
             NetworkServer.Spawn(projectileInstance, connectionToClient); 
 
             lastFireTime = Time.time;
