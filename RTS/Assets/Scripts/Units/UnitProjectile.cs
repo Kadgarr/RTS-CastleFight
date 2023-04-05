@@ -26,6 +26,7 @@ public class UnitProjectile : NetworkBehaviour
     [SerializeField] private int damageToDealMin = 20;
     [SerializeField] private int damageToDealMax = 30;
     [Space(10)]
+    [Header("(chance in percentage)")]
     [SerializeField] private int criticalDamadeChance = 0;
     [SerializeField] private float criticalDamageModificator = 0f;
     [Space(10)]
@@ -68,10 +69,12 @@ public class UnitProjectile : NetworkBehaviour
         {
            float damage = Random.Range(damageToDealMin, damageToDealMax);
 
-           float modificator = matrixOfDamage[(int)typeOfDamage, (int)health.GetTypeOfArmor()];
+            Debug.Log($"Damage: {damage}");
 
-           float summaryDamageToDeal = modificator * (damage - (damage - ((((100f - (health.GetLevelOfArmor() * 4f + 3f)) * damage) / 100f))));
-
+            float modificator = matrixOfDamage[(int)typeOfDamage, (int)health.GetTypeOfArmor()];
+            Debug.Log($"Damage: {modificator}");
+            float summaryDamageToDeal = modificator * (damage - (damage - ((((100f - (health.GetLevelOfArmor() * 4f + 3f)) * damage) / 100f))));
+           Debug.Log($"Summarydamage: {summaryDamageToDeal}");
 
             //проверяем на шанс критического урона
            if (criticalDamadeChance > 0)
