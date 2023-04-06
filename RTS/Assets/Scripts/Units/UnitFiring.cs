@@ -68,7 +68,7 @@ public class UnitFiring : NetworkBehaviour
 
             GameObject projectileInstance = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileRotation);
             
-            SpawnProjectile?.Invoke(projectilePrefab,fireRange, target.gameObject.GetInstanceID());
+            SpawnProjectile?.Invoke(projectileInstance, fireRange, target.gameObject.GetInstanceID());
 
             NetworkServer.Spawn(projectileInstance, connectionToClient); 
 

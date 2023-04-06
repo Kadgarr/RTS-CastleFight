@@ -1,10 +1,10 @@
 using Mirror;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
-
+using Random = UnityEngine.Random;
 
 public class UnitProjectile : NetworkBehaviour
 {
@@ -33,6 +33,7 @@ public class UnitProjectile : NetworkBehaviour
     [SerializeField] private float destroyAfterSeconds = 1f;
     [SerializeField] private float launchForce = 10f;
 
+    public event Action hit;
     
 
     private float[,] matrixOfDamage = new float[,] { 
@@ -100,7 +101,7 @@ public class UnitProjectile : NetworkBehaviour
                     
            }
             health.DealDamage(summaryDamageToDeal);
-           
+            hit?.Invoke();
         }
 
         DestroySelf();
