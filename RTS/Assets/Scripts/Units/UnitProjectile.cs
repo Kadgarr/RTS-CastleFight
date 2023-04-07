@@ -70,12 +70,12 @@ public class UnitProjectile : NetworkBehaviour
         {
            float damage = Random.Range(damageToDealMin, damageToDealMax);
 
-            Debug.Log($"Damage: {damage}");
+            //Debug.Log($"Damage: {damage}");
 
             float modificator = matrixOfDamage[(int)typeOfDamage, (int)health.GetTypeOfArmor()];
-            Debug.Log($"Damage: {modificator}");
+            //Debug.Log($"Damage: {modificator}");
             float summaryDamageToDeal = modificator * (damage - (damage - ((((100f - (health.GetLevelOfArmor() * 4f + 3f)) * damage) / 100f))));
-           Debug.Log($"Summarydamage: {summaryDamageToDeal}");
+          // Debug.Log($"Summarydamage: {summaryDamageToDeal}");
 
             //проверяем на шанс критического урона
            if (criticalDamadeChance > 0)
