@@ -10,7 +10,6 @@ public class CameraTeamPosition : MonoBehaviour
     void Start()
     {
         RTSPlayer.ClientOnTeamInfoUpdated += HandleTeamNumberUpdate;
-       
     }
 
     private void OnDestroy()

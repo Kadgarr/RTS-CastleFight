@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Comment CommentText="								Buildings">
+    <Position X="1.07" Y="0.53" Height="0.321" Width="9.297" />
+  </Comment>
+  <Comment CommentText="						Health">
+    <Position X="9.774" Y="12.25" Height="0.321" Width="6.744" />
+  </Comment>
+  <Comment CommentText="			Cameras">
+    <Position X="14.25" Y="0.5" Height="0.291" Width="4.346" />
+  </Comment>
+  <Comment CommentText="					Resources">
+    <Position X="13.987" Y="7.576" Height="0.291" Width="6.452" />
+  </Comment>
+  <Comment CommentText="									Menus">
+    <Position X="15.5" Y="28.75" Height="0.321" Width="10.698" />
+  </Comment>
+  <Comment CommentText="							Networking">
+    <Position X="6.553" Y="19.814" Height="0.321" Width="8.645" />
+  </Comment>
+  <Comment CommentText="										Units">
+    <Position X="18.692" Y="13" Height="0.291" Width="11.649" />
+  </Comment>
+  <Class Name="Building">
+    <Position X="0.5" Y="1" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>CBAJAAEQAIAAhAAAkAAEAICAAQAAAgAAgQAAQAKYEoA=</HashCode>
+      <FileName>Assets\Scripts\Bulidings\Building.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuildingButton">
+    <Position X="4.75" Y="1" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>EAQgIAABACEAAAAAAgAACAAAAAAAmAALAAAAEAgACAA=</HashCode>
+      <FileName>Assets\Scripts\Bulidings\BuildingButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BuildingSelectionHandler">
+    <Position X="8.5" Y="1" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAAACCAAABBAAAAAAAAAAAAAGAABEEAAAEIEAAA=</HashCode>
+      <FileName>Assets\Scripts\Bulidings\BuildingSelectionHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameOverHandler">
+    <Position X="0.5" Y="8.25" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAIgEAAAAAAAAAIAAAAAAAAAAAAAAgIQAA=</HashCode>
+      <FileName>Assets\Scripts\Bulidings\GameOverHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PreviewColor">
+    <Position X="4.75" Y="9.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAQAAAAAAAAAMQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Bulidings\PreviewColor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InfoBuildingDisplay">
+    <Position X="4.75" Y="6.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAQABAAAAAAAACAAAAAAAQAAAAAAAAAAAAAAIIAAAAg=</HashCode>
+      <FileName>Assets\Scripts\Bulidings\UI Building\InfoBuildingDisplay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InfoOfUpradeBuilding" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="6.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAQCAgAAgAAAAQAoAAABAgAAAAAAAAAQABAAA=</HashCode>
+      <FileName>Assets\Scripts\Bulidings\UI Building\InfoOfUpradeBuilding.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="UnitBase">
+    <Position X="5.75" Y="12.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAgBAAAIAAAAAAAAAAAAAAAQABAAAIAAg=</HashCode>
+      <FileName>Assets\Scripts\Bulidings\UnitBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnitSpawner">
+    <Position X="0.5" Y="11.75" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AFQAIABAgiEQiAAAAAEAgAAAAAEoBABAAAAoAIAIAAg=</HashCode>
+      <FileName>Assets\Scripts\Bulidings\UnitSpawner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CameraController">
+    <Position X="13" Y="1" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAAAAAAAAACAAAAAAAKAAAAyERkACAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Cameras\CameraController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CameraTeamPosition">
+    <Position X="17.5" Y="1" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAACAAAAAAAAAAAAAAAAAAAgABAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Cameras\CameraTeamPosition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FaceCamera">
+    <Position X="13" Y="5.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAIAAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Cameras\FaceCamera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Minimap" BaseTypeListCollapsed="true">
+    <Position X="17.5" Y="3.75" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AASAACAAAAAKAAAAAABgAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Cameras\Minimap.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Health">
+    <Position X="9.25" Y="12.75" Width="3.75" />
+    <NestedTypes>
+      <Enum Name="Health.TypeOfArmor" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Combat\Health.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>BAAAAASIgIgAgghgAAAAgACAAACEAAAAAUgBACAYAAA=</HashCode>
+      <FileName>Assets\Scripts\Combat\Health.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HealthDisplay">
+    <Position X="13.25" Y="12.75" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAABAAAQAEAAAAAABAEAAAAAAAEg=</HashCode>
+      <FileName>Assets\Scripts\Combat\HealthDisplay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Targetable">
+    <Position X="15.75" Y="15.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Combat\Targetable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Targeter">
+    <Position X="13.25" Y="15.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAgAAAAgAAAIAAAAAAAAAAAAAAAAAAAAAAYAAI=</HashCode>
+      <FileName>Assets\Scripts\Combat\Targeter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameOverDisplay">
+    <Position X="18.75" Y="29.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>QAABAAAAACAAAgAAAAAAAEAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Menus\GameOverDisplay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoinLobbyMenu">
+    <Position X="15.5" Y="29.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAKAgAAAAAgAAAAgAAAAQIAAAAAAAACAI=</HashCode>
+      <FileName>Assets\Scripts\Menus\JoinLobbyMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LobbyMenu">
+    <Position X="22.25" Y="29.25" Width="4" />
+    <TypeIdentifier>
+      <HashCode>gAAJAAAAACAAAAAAAAAAAAIgAgBBEAABAAAQAAAAIIE=</HashCode>
+      <FileName>Assets\Scripts\Menus\LobbyMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainMenu">
+    <Position X="15.5" Y="32.75" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAACAAAAAAAgAAAAAAAIBQIAAAAAIAAAIA=</HashCode>
+      <FileName>Assets\Scripts\Menus\MainMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RTSNetworkManager">
+    <Position X="7" Y="20.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AABICAQAAAAIhgQAADAEAAAgAAAgAgAAAAgAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Networking\RTSNetworkManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RTSPlayer">
+    <Position X="7" Y="25.5" Width="5.75" />
+    <TypeIdentifier>
+      <HashCode>NBQBCAAEAJIVhnBRAIIAEFKACAIJHAAAgAEgCwAIARs=</HashCode>
+      <FileName>Assets\Scripts\Networking\RTSPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeamColorSetter">
+    <Position X="10.75" Y="22.25" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAgABAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Assets\Scripts\Networking\TeamColorSetter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeamNumberArea">
+    <Position X="12.25" Y="20.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Networking\TeamNumberArea.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ResourceGenerator">
+    <Position X="14" Y="8" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAgAgAAAAAAACAAAAAAAABAAAAAAAIAIg=</HashCode>
+      <FileName>Assets\Scripts\Resources\ResourceGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ResourcesDisplay">
+    <Position X="17" Y="8" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAACAAAAAAAAAAAAAAAAAAAAABAAAAARAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Resources\ResourcesDisplay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Defend">
+    <Position X="30.25" Y="17.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAgAAAAAAAAAAAAAgAAAAAAAAAwAAIAAg=</HashCode>
+      <FileName>Assets\Scripts\Units\Abilities\Defend.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Splash">
+    <Position X="21" Y="13.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAgCAAAggAAAAAAAAAAAAAAAAAAAAAAAEAIAAA=</HashCode>
+      <FileName>Assets\Scripts\Units\Abilities\Splash.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SplashDamage">
+    <Position X="23.75" Y="13.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAACAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Units\Abilities\SplashDamage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InfoUnitDisplay">
+    <Position X="18.5" Y="13.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>EAQgCAAgACAAAAEAAEAAAQAAQAAAAAAAAAAAAIAAAAg=</HashCode>
+      <FileName>Assets\Scripts\Units\InfoUnitDisplay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TypeOfArmorDisplay" BaseTypeListCollapsed="true">
+    <Position X="18.5" Y="17.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAoAAAAAAAAAAAgAABgAAAAAQABAAg=</HashCode>
+      <FileName>Assets\Scripts\Units\TypeOfArmorDisplay.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TypeOfDamageDisplay" BaseTypeListCollapsed="true">
+    <Position X="20.5" Y="17.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAgCAAAQCAAAAgAAAAAAAABAAAgAABAAAIAAQAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Units\TypeOfDamageDisplay.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Unit">
+    <Position X="22.75" Y="17.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAREIAEhAACACBAIICACAAAwBCAiAAAYYAIEEg=</HashCode>
+      <FileName>Assets\Scripts\Units\Unit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnitCommandGiver">
+    <Position X="27" Y="13.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAAAACAAAAAAAAAAAAAAAIAAEAAAAAAAAEAEIgA=</HashCode>
+      <FileName>Assets\Scripts\Units\UnitCommandGiver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnitFiring">
+    <Position X="26.25" Y="22.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACYAABAIIgBAAAAwAAgwQEAAAABgAEABAEQ=</HashCode>
+      <FileName>Assets\Scripts\Units\UnitFiring.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnitMovement">
+    <Position X="22.75" Y="24.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAAAAAgQAAAAAAAAAAAAAAQAAAAAAABAAIAAA=</HashCode>
+      <FileName>Assets\Scripts\Units\UnitMovement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnitProjectile">
+    <Position X="18.5" Y="21.5" Width="3" />
+    <NestedTypes>
+      <Enum Name="UnitProjectile.TypeOfDamage" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Units\UnitProjectile.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAEABAAAACAAAgAABAIBAAAAACEAIABgQQAAAEAICAA=</HashCode>
+      <FileName>Assets\Scripts\Units\UnitProjectile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnitSelectionHandler">
+    <Position X="26.25" Y="17.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAAACiAAABAAAAQAABAAAAAAGAABEAAAAGAEAAA=</HashCode>
+      <FileName>Assets\Scripts\Units\UnitSelectionHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

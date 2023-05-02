@@ -54,7 +54,6 @@ public class JoinLobbyMenu : MonoBehaviour
         this.gameObject.SetActive(false);
         landingPagePanel.SetActive(false);
 
-
     }
 
     private void HandleClientDisconnected()
