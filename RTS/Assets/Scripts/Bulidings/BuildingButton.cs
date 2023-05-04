@@ -67,7 +67,7 @@ public class BuildingButton : MonoBehaviour
        
         //if (!Mouse.current.leftButton.wasPressedThisFrame) return;
 
-        if (player.GetResources() < building.GetPrice()) return;
+        if (player.GetGoldResources() < building.GetPrice()) return;
        
         buildingPreviewInstance = Instantiate(building.GetBuildingPreview());
 

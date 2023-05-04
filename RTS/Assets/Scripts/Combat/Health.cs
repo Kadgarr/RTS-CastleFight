@@ -28,6 +28,9 @@ public class Health : NetworkBehaviour
     [Header("Chance of miss (in percentage)")]
     [SerializeField] private int miss = 0;
 
+    [Header("Cost for killing")]
+    [SerializeField] private int price;
+
     [SyncVar(hook =nameof(HandleHealtUpdated))]
     private int currentHealth;
 
@@ -113,7 +116,10 @@ public class Health : NetworkBehaviour
     {
         return miss;
     }
-
+    public int GetPriceForKilling()
+    {
+        return price;
+    } 
     public int GetLevelOfArmor()
     {
         return levelOfArmor;

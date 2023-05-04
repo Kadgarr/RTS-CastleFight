@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ResourceGenerator : NetworkBehaviour
 {
-    [SerializeField] private Health health = null;
+    //[SerializeField] private Health health = null;
     [SerializeField] private int resourcesPerInterval = 10;
     [SerializeField] private float interval = 2f;
 
@@ -18,16 +18,28 @@ public class ResourceGenerator : NetworkBehaviour
         timer = interval;
         player = connectionToClient.identity.GetComponent<RTSPlayer>();
 
-        health.ServerOnDie += ServerHandleDie;
+        //health.ServerOnDie += ServerHandleDie;
         GameOverHandler.ServerOnGameOver += ServerHandleGameOver;
+        
     }
 
     public override void OnStopServer()
     {
-        health.ServerOnDie -= ServerHandleDie;
+        //health.ServerOnDie -= ServerHandleDie;
         GameOverHandler.ServerOnGameOver -= ServerHandleGameOver;
+       
     }
 
+    public override void OnStartAuthority()
+    {
+        Building.AuthorityOnBuildingSpawned += HandleOnBuildingSpawned;
+    }
+
+    public override void OnStopAuthority()
+    {
+        Building.AuthorityOnBuildingSpawned -= HandleOnBuildingSpawned;
+
+    }
     [ServerCallback]
     private void Update()
     {
@@ -35,10 +47,16 @@ public class ResourceGenerator : NetworkBehaviour
 
         if (timer < 0)
         {
-            player.SetResources(player.GetResources() + resourcesPerInterval);
+            player.SetResourcesGold(player.GetGoldResources() + resourcesPerInterval);
 
             timer += interval;
         }
+    }
+
+    [Command]
+    private void HandleOnBuildingSpawned(Building building)
+    {
+        player.SetResourcesWood(player.GetWoodResources()+building.GetPrice());
     }
 
     private void ServerHandleDie()

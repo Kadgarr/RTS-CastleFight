@@ -18,8 +18,10 @@ public class RTSPlayer : NetworkBehaviour
     [SerializeField] private float buildingRangeLimit = 5f;
 
 
-    [SyncVar(hook = nameof(ClientHandleResourcesUpdated))]
-    private int resources = 500;
+    [SyncVar(hook = nameof(ClientHandleResourcesGoldUpdated))]
+    private int gold = 500;
+    [SyncVar(hook = nameof(ClientHandleResourcesWoodUpdated))]
+    private int wood = 150;
     [SyncVar(hook=nameof(AuthorityHandlePartyOwnerStateUpdated))]
     private bool isPartyOwner=false;
     [SyncVar(hook =nameof(ClientHandleDisplayNameUpdated))]
@@ -30,7 +32,8 @@ public class RTSPlayer : NetworkBehaviour
     private int teamNumber;
 
 
-    public event Action<int> ClientOnResourcesUpdated;
+    public event Action<int> ClientOnResourcesGoldUpdated;
+    public event Action<int> ClientOnResourcesWoodUpdated;
     public static event Action<bool> AuthorityOnPartyOwnerStateUpdated;
     public static event Action<bool> SpawnedBuildingPreviewUpdated;
     public static event Action ClientOnInfoUpdated;
@@ -66,7 +69,6 @@ public class RTSPlayer : NetworkBehaviour
 
         
         SetDisplayName(File.ReadAllText(playerNamePath));
-        Debug.Log("NAME: " + GetDisplayName());
     }
     private void Update()
     {
@@ -88,10 +90,12 @@ public class RTSPlayer : NetworkBehaviour
     {
         return teamNumber;
     }
+
     public bool GetIsPartyOwenr()
     {
         return isPartyOwner;
     }
+
     public Transform GetCameraTransform()
     {
         return cameraTransform;
@@ -112,9 +116,14 @@ public class RTSPlayer : NetworkBehaviour
         return myBuildings;
     }
 
-    public int GetResources()
+    public int GetGoldResources()
     {
-        return resources;
+        return gold;
+    }
+
+    public int GetWoodResources()
+    {
+        return wood;
     }
 
     [Command]
@@ -123,7 +132,7 @@ public class RTSPlayer : NetworkBehaviour
         checkDistanceBuilderUnit=check;
         unitBuilder = null;
     }
-
+    
     public void CheckDistanceToUnitBuilder(Vector3 point, int idBuilding)
     {
        // Debug.Log(unitBuilder.gameObject.transform.position+ "\n"+ point);
@@ -268,9 +277,14 @@ public class RTSPlayer : NetworkBehaviour
     }
 
     [Server]
-    public void SetResources(int newResources)
+    public void SetResourcesGold(int newResources)
     {
-        resources = newResources;
+        gold = newResources;
+    }
+    [Server]
+    public void SetResourcesWood(int newResources)
+    {
+        wood = newResources;
     }
 
     [Command]
@@ -289,7 +303,7 @@ public class RTSPlayer : NetworkBehaviour
 
         if (buildingToPlace == null) return;
 
-        if (resources < buildingToPlace.GetPrice()) return; 
+        if (gold < buildingToPlace.GetPrice()) return; 
 
         BoxCollider buildingCollider = buildingToPlace.GetComponent<BoxCollider>();
 
@@ -325,7 +339,7 @@ public class RTSPlayer : NetworkBehaviour
         
         NetworkServer.Spawn(buildingInstance, connectionToClient);
 
-        SetResources(resources - buildingToPlace.GetPrice());
+        SetResourcesGold(gold - buildingToPlace.GetPrice());
         unitBuilder = null;
     }
 
@@ -345,7 +359,7 @@ public class RTSPlayer : NetworkBehaviour
 
         if (buildingToPlace == null) return;
 
-        if (resources < buildingToPlace.GetPrice()) return;
+        if (gold < buildingToPlace.GetPrice()) return;
 
         BoxCollider buildingCollider = buildingToPlace.GetComponent<BoxCollider>();
 
@@ -356,7 +370,7 @@ public class RTSPlayer : NetworkBehaviour
 
         NetworkServer.Spawn(buildingInstance, connectionToClient);
 
-        SetResources(resources - buildingToPlace.GetPrice());
+        SetResourcesGold(gold - buildingToPlace.GetPrice());
         unitBuilder = null;
     }
 
@@ -437,9 +451,13 @@ public class RTSPlayer : NetworkBehaviour
     {
         ClientOnInfoUpdated?.Invoke();
     }
-    private void ClientHandleResourcesUpdated(int oldResources, int newResources)
+    private void ClientHandleResourcesGoldUpdated(int oldResources, int newResources)
     {
-        ClientOnResourcesUpdated?.Invoke(newResources);
+        ClientOnResourcesGoldUpdated?.Invoke(newResources);
+    }
+    private void ClientHandleResourcesWoodUpdated(int oldResources, int newResources)
+    {
+        ClientOnResourcesWoodUpdated?.Invoke(newResources);
     }
 
     private void AuthorityHandlePartyOwnerStateUpdated(bool oldState, bool newState)

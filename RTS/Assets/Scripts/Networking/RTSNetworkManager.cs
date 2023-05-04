@@ -14,6 +14,7 @@ public class RTSNetworkManager : NetworkManager
 {
     [SerializeField] private GameObject unitPlayerPrefab = null;
     [SerializeField] private GameObject unitBasePrefab = null;
+    [SerializeField] private GameObject generatorPrefab = null;
     [SerializeField] private GameOverHandler gameOverHandlerPrefab = null;
 
     private bool isGameInProgress=false;
@@ -136,6 +137,16 @@ public class RTSNetworkManager : NetworkManager
                         }
                     }
 
+                    foreach(RTSPlayer playerGen in Players)
+                    {
+                        GameObject genBuild = Instantiate(
+                            generatorPrefab,
+                            new Vector3(0, 0f, 0f),
+                            Quaternion.identity);
+
+                        genBuild.name += $" {playerGen.netIdentity}";
+                        NetworkServer.Spawn(genBuild, playerGen.connectionToClient);
+                    }
                     break;
                 }
             }

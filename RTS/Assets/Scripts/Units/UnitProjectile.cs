@@ -101,6 +101,14 @@ public class UnitProjectile : NetworkBehaviour
                     
            }
             health.DealDamage(summaryDamageToDeal);
+
+            if (health.GetCurrentHealth() <= 0)
+            {
+                var playerObj = this.gameObject.GetComponent<NetworkIdentity>();
+                    playerObj.connectionToClient.identity.GetComponent<RTSPlayer>().SetResourcesGold(
+                    playerObj.connectionToClient.identity.GetComponent<RTSPlayer>().GetGoldResources()+health.GetPriceForKilling());
+
+            }
             hit?.Invoke();
         }
 

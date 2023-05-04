@@ -7,26 +7,33 @@ using UnityEngine;
 
 public class ResourcesDisplay : MonoBehaviour
 {
-    [SerializeField] private TMP_Text resourcesText = null;
+    [SerializeField] private TMP_Text goldResourcesText = null;
+    [SerializeField] private TMP_Text woodResourcesText = null;
 
     private RTSPlayer player;
 
     private void Start()
     {
         player = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
-        ClientHandleResourcesUpdated(player.GetResources());
-        player.ClientOnResourcesUpdated += ClientHandleResourcesUpdated;
+        ClientHandleGoldResourcesUpdated(player.GetGoldResources());
+        ClientHandleWoodResourcesUpdated(player.GetWoodResources());
+        player.ClientOnResourcesGoldUpdated += ClientHandleGoldResourcesUpdated;
+        player.ClientOnResourcesWoodUpdated += ClientHandleWoodResourcesUpdated;
     }
 
 
     private void OnDestroy()
     {
-        player.ClientOnResourcesUpdated -= ClientHandleResourcesUpdated;
-
+        player.ClientOnResourcesGoldUpdated -= ClientHandleGoldResourcesUpdated;
+        player.ClientOnResourcesWoodUpdated -= ClientHandleWoodResourcesUpdated;
     }
 
-    private void ClientHandleResourcesUpdated(int resources)
+    private void ClientHandleGoldResourcesUpdated(int resources)
     {
-        resourcesText.text = $"Resources: {resources}";
+        goldResourcesText.text = $"Gold: {resources}";
+    }
+    private void ClientHandleWoodResourcesUpdated(int resources)
+    {
+        woodResourcesText.text = $"Wood: {resources}";
     }
 }

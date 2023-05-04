@@ -26,14 +26,12 @@ public class CameraTeamPosition : MonoBehaviour
             this.transform.position = new Vector3
              (-110f, player.GetCameraTransform().position.y, player.GetCameraTransform().position.z);
 
-
         }
         else if (player.GetTeamNumber() == 2)
         {
 
             this.transform.position = (new Vector3
                 (98f, player.GetCameraTransform().position.y, player.GetCameraTransform().position.z));
-
         }
     }
 }

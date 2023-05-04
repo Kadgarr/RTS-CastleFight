@@ -103,7 +103,7 @@ public class Building : NetworkBehaviour
 
         RTSPlayer player = connectionToClient.identity.GetComponent<RTSPlayer>();
 
-        player.SetResources(player.GetResources() - buildingInstance.GetComponent<Building>().GetPrice());
+        player.SetResourcesGold(player.GetGoldResources() - buildingInstance.GetComponent<Building>().GetPrice());
 
         Destroy(this.gameObject);
     }
@@ -111,26 +111,25 @@ public class Building : NetworkBehaviour
 
     public override void OnStartAuthority()
     {
-        if (!hasAuthority) return;
+        if (!isOwned) return;
         AuthorityOnBuildingSpawned?.Invoke(this);
     }
 
     public override void OnStopClient()
     {
-        if (!hasAuthority) return;
-
+        if (!isOwned) return;
         AuthorityOnBuildingDespawned?.Invoke(this);
     }
 
     public void Select()
     {
-        if (!hasAuthority) return;
+        if (!isOwned) return;
         onSelected?.Invoke();
     }
 
     public void Deselect()
     {
-        if (!hasAuthority) return;
+        if (!isOwned) return;
         onDeselected?.Invoke();
     }
 
