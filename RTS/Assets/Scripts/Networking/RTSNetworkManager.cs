@@ -88,23 +88,6 @@ public class RTSNetworkManager : NetworkManager
     
         Players.Add(player);
 
-       // PlayerName nameObj = new PlayerName();
-
-        //if (!File.Exists(playerNamePath))
-        //{
-
-        //    //nameObj.playerName = "DefaultName";
-
-        //    //string nameText = JsonUtility.ToJson(nameObj);
-        //    string nameText = "DefaultName";
-
-        //    File.WriteAllText(playerNamePath, nameText);
-        //}
-
-        //var name = File.ReadAllText(playerNamePath);
-       // nameObj = JsonUtility.FromJson<PlayerName>(name);
-      
-       // player.SetDisplayName($"{player.GetDisplayName()}");
 
         player.SetTeamColor(new Color(
             UnityEngine.Random.Range(0f,1f),
