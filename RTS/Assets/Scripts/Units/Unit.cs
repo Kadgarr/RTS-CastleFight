@@ -16,6 +16,9 @@ public class Unit : NetworkBehaviour
     [SerializeField] private GameObject infoUnitCanvas = null;
     [SerializeField] private GameObject buildMenuCanvas = null;
 
+    [Header("Corpse prefab")]
+    [SerializeField] private GameObject corpse = null;
+
     public static event Action<Unit> ServerOnUnitSpawned;
     public static event Action<Unit> ServerOnUnitDespawned;
 
@@ -73,7 +76,14 @@ public class Unit : NetworkBehaviour
     [Server]
     private void ServerHandleOnDie()
     {
+        GameObject unitInstance = null;
+
+        unitInstance = Instantiate(corpse, this.gameObject.transform.position, this.gameObject.transform.rotation);
+
+        NetworkServer.Spawn(unitInstance, connectionToClient);
+
         NetworkServer.Destroy(gameObject);
+        
     }
     #endregion
 

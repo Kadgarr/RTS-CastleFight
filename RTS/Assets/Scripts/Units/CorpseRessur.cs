@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class CorpseRessur : NetworkBehaviour
 {
-
     [SerializeField]
     private GameObject unitToSpawn = null;
 
@@ -17,6 +16,8 @@ public class CorpseRessur : NetworkBehaviour
         unitInstance = Instantiate(unitToSpawn, this.gameObject.transform.position, this.gameObject.transform.rotation);
 
         NetworkServer.Spawn(unitInstance, connectionToClient);
+
+        NetworkServer.Destroy(this.gameObject);
     }
 
 }

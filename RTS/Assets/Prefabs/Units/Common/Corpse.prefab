@@ -205,9 +205,10 @@ GameObject:
   - component: {fileID: 7790530027488888761}
   - component: {fileID: -6061632375952544615}
   - component: {fileID: 6532208936596523754}
+  - component: {fileID: 704437315938047055}
   m_Layer: 0
   m_Name: Corpse
-  m_TagString: Untagged
+  m_TagString: Corpse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -262,7 +263,20 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  unitToSpawn: {fileID: 0}
+  unitToSpawn: {fileID: 2350876118148983483, guid: 7f98eab97eb6151459402fe4a4383171, type: 3}
+--- !u!65 &704437315938047055
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4986677762594839774}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.47271413, y: 0.35914487, z: 0.53355503}
+  m_Center: {x: -0.14196157, y: 0.020280182, z: 0.107485116}
 --- !u!1 &6290103237442229241
 GameObject:
   m_ObjectHideFlags: 0

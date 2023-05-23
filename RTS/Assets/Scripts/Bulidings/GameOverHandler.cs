@@ -32,6 +32,7 @@ public class GameOverHandler : NetworkBehaviour
     private void ServerHandleBaseSpawned(UnitBase unitBase)
     {
         bases.Add(unitBase);
+        Debug.Log($"Count of bases: {bases.Count}");
     }
 
     [Server]
@@ -42,7 +43,7 @@ public class GameOverHandler : NetworkBehaviour
       
         if (bases.Count != 1) return;
 
-        int winnerTeamId = bases[0].GetComponent<NetworkIdentity>().GetComponent<RTSPlayer>().GetTeamNumber();
+        int winnerTeamId = bases[0].GetComponent<NetworkIdentity>().connectionToClient.identity.GetComponent<RTSPlayer>().GetTeamNumber();
 
         RpcGameOver($"Team {winnerTeamId}");
        
