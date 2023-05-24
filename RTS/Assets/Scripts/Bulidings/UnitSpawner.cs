@@ -98,11 +98,11 @@ public class UnitSpawner : NetworkBehaviour//, IPointerClickHandler
 
         RTSPlayer player = connectionToClient.identity.GetComponent<RTSPlayer>();
 
-        if (player.GetGoldResources()< unitPreab.GetResourceCost()) return;
+       // if (player.GetGoldResources()< unitPreab.GetResourceCost()) return;
 
         queuedUnits++;
 
-        player.SetResourcesGold(player.GetGoldResources() - unitPreab.GetResourceCost());
+        //player.SetResourcesGold(player.GetGoldResources() - unitPreab.GetResourceCost());
     }
 
     
