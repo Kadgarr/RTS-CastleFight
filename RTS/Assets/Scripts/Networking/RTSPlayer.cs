@@ -158,7 +158,7 @@ public class RTSPlayer : NetworkBehaviour
            Quaternion.identity,
            buildingBlockLayer))
         {
-            
+            Debug.Log("FALSE BUILDINGBLOCLAYER");
             return false;
         }
 
@@ -167,7 +167,11 @@ public class RTSPlayer : NetworkBehaviour
         if (Physics.Raycast(ray, out RaycastHit hitt, Mathf.Infinity, buildingBlockLayer))
         {
             if (hitt.collider.gameObject.tag == "RoadArea")
+            {
+                Debug.Log("FALSE ROADAREA");
                 return false;
+            }
+               
         }
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, floorMask))
         {
@@ -179,10 +183,12 @@ public class RTSPlayer : NetworkBehaviour
                 {
                     if (teamNumberArea.GetTeamNumber() != GetTeamNumber())
                     {
+                        Debug.Log("FALSE TEAM NUMBER");
                         return false;
                     }
                     else if (teamNumberArea.GetTeamNumber() == GetTeamNumber())
                     {
+                        Debug.Log("TRUE TEAMNUMBER");
                         return true;
                     }
                        
@@ -190,7 +196,9 @@ public class RTSPlayer : NetworkBehaviour
             }
             if (hit.collider.gameObject.tag == "WallArea")
             {
+                Debug.Log("FALSE WALLAREA");
                 return false;
+
             }
 
         }

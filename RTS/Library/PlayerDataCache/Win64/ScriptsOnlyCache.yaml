@@ -28,7 +28,6 @@ ScriptsOnlyBuild:
     - ResourceGenerator
     - ResourcesDisplay
     - Splash
-    - SplashDamage
     - SteamManager
     - Targetable
     - Targeter
@@ -53,8 +52,6 @@ ScriptsOnlyBuild:
     - Mirror.FizzySteam.FizzySteamworks
     Mirror.Components.dll:
     - Mirror.NetworkTransformReliable
-    Mirror.Editor.dll:
-    - Mirror.NetworkBehaviourInspector
     Mirror.Transports.dll:
     - Mirror.TelepathyTransport
     - kcp2k.KcpTransport
@@ -80,6 +77,9 @@ ScriptsOnlyBuild:
     - UnityEngine.InputSystem.UI.InputSystemUIInputModule
     Unity.ProBuilder.Editor.dll:
     - UnityEditor.ProBuilder.ProBuilderEditor
+    - UnityEditor.ProBuilder.ProbuilderMoveTool
+    - UnityEditor.ProBuilder.ProbuilderRotateTool
+    - UnityEditor.ProBuilder.ProbuilderScaleTool
     Unity.ProBuilder.dll:
     - UnityEngine.ProBuilder.ProBuilderMesh
     - UnityEngine.ProBuilder.Shapes.ProBuilderShape
@@ -242,6 +242,15 @@ ScriptsOnlyBuild:
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.Renderer
     methodName: set_enabled
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitSpawner
+    methodName: SetTrueProducingUnits
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitSpawner
+    methodName: SetFalseProducingUnits
+  - assembly: Assembly-CSharp
+    fullTypeName: Building
+    methodName: UpgrageBuilding
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.Renderer
     methodName: set_enabled
@@ -260,12 +269,72 @@ ScriptsOnlyBuild:
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.Renderer
     methodName: set_enabled
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitSpawner
+    methodName: SetTrueProducingUnits
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitSpawner
+    methodName: SetFalseProducingUnits
+  - assembly: Assembly-CSharp
+    fullTypeName: Building
+    methodName: UpgrageBuilding
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.Renderer
     methodName: set_enabled
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.Renderer
     methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitSpawner
+    methodName: SetTrueProducingUnits
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitSpawner
+    methodName: SetFalseProducingUnits
+  - assembly: Assembly-CSharp
+    fullTypeName: Building
+    methodName: UpgrageBuilding
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitSpawner
+    methodName: SetTrueProducingUnits
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitSpawner
+    methodName: SetFalseProducingUnits
+  - assembly: Assembly-CSharp
+    fullTypeName: Building
+    methodName: UpgrageBuilding
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: UnityEngine.CoreModule
+    fullTypeName: UnityEngine.Renderer
+    methodName: set_enabled
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitSpawner
+    methodName: SetTrueProducingUnits
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitSpawner
+    methodName: SetFalseProducingUnits
+  - assembly: Assembly-CSharp
+    fullTypeName: Building
+    methodName: UpgrageBuilding
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.Renderer
     methodName: set_enabled
@@ -309,20 +378,17 @@ ScriptsOnlyBuild:
     fullTypeName: UnityEngine.Renderer
     methodName: set_enabled
   - assembly: Assembly-CSharp
+    fullTypeName: UnitSpawner
+    methodName: SetTrueProducingUnits
+  - assembly: Assembly-CSharp
+    fullTypeName: UnitSpawner
+    methodName: SetFalseProducingUnits
+  - assembly: Assembly-CSharp
     fullTypeName: Building
     methodName: UpgrageBuilding
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.Renderer
-    methodName: set_enabled
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.Renderer
-    methodName: set_enabled
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.Renderer
-    methodName: set_enabled
-  - assembly: UnityEngine.CoreModule
-    fullTypeName: UnityEngine.Renderer
-    methodName: set_enabled
+  - assembly: Assembly-CSharp
+    fullTypeName: Building
+    methodName: UpgrageBuilding
   - assembly: Assembly-CSharp
     fullTypeName: UnitSpawner
     methodName: SetFalseProducingUnits
@@ -335,24 +401,6 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: Building
     methodName: UpgrageBuilding
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitSpawner
-    methodName: SetTrueProducingUnits
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitSpawner
-    methodName: SetFalseProducingUnits
-  - assembly: Assembly-CSharp
-    fullTypeName: Building
-    methodName: UpgrageBuilding
-  - assembly: Assembly-CSharp
-    fullTypeName: Building
-    methodName: UpgrageBuilding
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitSpawner
-    methodName: SetTrueProducingUnits
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitSpawner
-    methodName: SetFalseProducingUnits
   - assembly: Assembly-CSharp
     fullTypeName: Building
     methodName: UpgrageBuilding
@@ -369,32 +417,8 @@ ScriptsOnlyBuild:
     fullTypeName: BuildingButton
     methodName: Build
   - assembly: Assembly-CSharp
-    fullTypeName: UnitSpawner
-    methodName: SetTrueProducingUnits
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitSpawner
-    methodName: SetFalseProducingUnits
-  - assembly: Assembly-CSharp
-    fullTypeName: Building
-    methodName: UpgrageBuilding
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitSpawner
-    methodName: SetTrueProducingUnits
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitSpawner
-    methodName: SetFalseProducingUnits
-  - assembly: Assembly-CSharp
-    fullTypeName: Building
-    methodName: UpgrageBuilding
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitSpawner
-    methodName: SetTrueProducingUnits
-  - assembly: Assembly-CSharp
-    fullTypeName: UnitSpawner
-    methodName: SetFalseProducingUnits
-  - assembly: Assembly-CSharp
-    fullTypeName: Building
-    methodName: UpgrageBuilding
+    fullTypeName: BuildingButton
+    methodName: Build
   - assembly: Assembly-CSharp
     fullTypeName: LobbyMenu
     methodName: ChangeToSecondTeam
@@ -704,8 +728,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 7372}
     - Class: 114
-      Script: {instanceID: 7604}
-    - Class: 114
       Script: {instanceID: 7984}
     - Class: 114
       Script: {instanceID: 7994}
@@ -994,7 +1016,7 @@ ScriptsOnlyBuild:
     className: NetworkStatistics
   - hash:
       serializedVersion: 2
-      Hash: 4f4cc4b1fb5a270459a2b4c5ca7391b8
+      Hash: 488ba321fc8b9b4095ef1308fb07c8c5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Unit
