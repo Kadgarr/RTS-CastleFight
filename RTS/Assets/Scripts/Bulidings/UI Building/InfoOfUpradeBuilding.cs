@@ -16,9 +16,16 @@ public class InfoOfUpradeBuilding : MonoBehaviour, IPointerEnterHandler, IPointe
     [SerializeField] private TMP_Text fieldLevelOfDamage = null;
     [SerializeField] private TMP_Text fieldDescriptionAbilities = null;
 
+    [SerializeField] private bool upgrade=false;
+
     private void Start()
     {
-        var unit = building.GetListUpgrades()[numberOfUpgrade].gameObject.GetComponent<UnitSpawner>().GetUnit();
+        GameObject unit = null;
+        if(upgrade)
+        unit = building.GetListUpgrades()[numberOfUpgrade].gameObject.GetComponent<UnitSpawner>().GetUnit();
+        else
+            unit = building.gameObject.GetComponent<UnitSpawner>().GetUnit();
+
         var health = unit.GetComponent<Health>();
         var projectile = unit.GetComponent<UnitFiring>().GetProjectilePrefab().GetComponent<UnitProjectile>();
 
@@ -48,6 +55,7 @@ public class InfoOfUpradeBuilding : MonoBehaviour, IPointerEnterHandler, IPointe
     public void OnPointerExit(PointerEventData eventData)
     {
         infoBuildingDisplay.SetActive(false);
+        
     }
 
     public int GetNumberOfUpdgrade()
