@@ -9,8 +9,6 @@ public class Unit : NetworkBehaviour
 {
     [SerializeField] private Health health = null; 
     [SerializeField] private Targeter targeter = null;
-    [SerializeField] private UnityEvent onSelected = null;
-    [SerializeField] private UnityEvent onDeselected = null;
     [SerializeField] private UnitMovement unitMovement = null;
     [SerializeField] private GameObject infoUnitCanvas = null;
     [SerializeField] private GameObject buildMenuCanvas = null;
@@ -30,6 +28,9 @@ public class Unit : NetworkBehaviour
 
     [Header("Can attack air")]
     [SerializeField] private bool isGroundOnly;
+
+    [SerializeField] private UnityEvent onSelected = null;
+    [SerializeField] private UnityEvent onDeselected = null;
 
     private bool activeCanvasInfo;
     

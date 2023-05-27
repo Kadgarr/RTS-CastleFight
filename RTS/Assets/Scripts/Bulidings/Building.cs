@@ -15,7 +15,12 @@ public class Building : NetworkBehaviour
     [SerializeField] private UnityEvent onSelected = null;
     [SerializeField] private UnityEvent onDeselected = null;
     [SerializeField] private int id = -1;
-    [SerializeField] private int price = 100;
+
+    [Header("Cost in gold")]
+    [SerializeField] private int priceGold = 100;
+
+    [Header("Cost in wood")]
+    [SerializeField] private int priceWood = 50;
 
     [SerializeField] List<GameObject> nextUpgradeBuildings = null;
 
@@ -65,7 +70,12 @@ public class Building : NetworkBehaviour
 
     public int GetPrice()
     {
-        return price;
+        return priceGold;
+    }
+
+    public int GetWood()
+    {
+        return priceWood;
     }
 
     #region Server
@@ -104,6 +114,7 @@ public class Building : NetworkBehaviour
         RTSPlayer player = connectionToClient.identity.GetComponent<RTSPlayer>();
 
         player.SetResourcesGold(player.GetGoldResources() - buildingInstance.GetComponent<Building>().GetPrice());
+        player.SetResourcesWood(player.GetWoodResources() - buildingInstance.GetComponent<Building>().GetWood());
 
         Destroy(this.gameObject);
     }

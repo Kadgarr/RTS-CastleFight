@@ -786,7 +786,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -84, y: -405}
+  m_AnchoredPosition: {x: -52, y: -405}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8277582593982728974
@@ -1860,6 +1860,8 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 256
+  fullMana: 0
+  currentMana: 0
   descriptionOfAbilites: Defend
 --- !u!114 &660099292860494363
 MonoBehaviour:
@@ -1894,9 +1896,14 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  resourcesCost: 10
   health: {fileID: -5199283524406866521}
   targeter: {fileID: 8242491619392559209}
+  unitMovement: {fileID: 660099292860494363}
+  infoUnitCanvas: {fileID: 6602996766630345131}
+  buildMenuCanvas: {fileID: 0}
+  corpse: {fileID: 4986677762594839774, guid: ba1a9972b7311cf4488e269067073a2c, type: 3}
+  isFlyingOnly: 0
+  isGroundOnly: 1
   onSelected:
     m_PersistentCalls:
       m_Calls:
@@ -1927,12 +1934,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  unitMovement: {fileID: 660099292860494363}
-  infoUnitCanvas: {fileID: 6602996766630345131}
-  buildMenuCanvas: {fileID: 0}
-  corpse: {fileID: 4986677762594839774, guid: ba1a9972b7311cf4488e269067073a2c, type: 3}
-  isFlyingOnly: 0
-  isGroundOnly: 1
 --- !u!114 &4570751249346672796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2890,7 +2891,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -66, y: -405}
+  m_AnchoredPosition: {x: -17, y: -405}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8145766378920327772
@@ -3501,8 +3502,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -146, y: -405}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -43.556274, y: -405}
+  m_SizeDelta: {x: 404.8875, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3148674070789390649
 CanvasRenderer:
@@ -5099,6 +5100,8 @@ MonoBehaviour:
   damageMinField: {fileID: 6420840674448313975}
   damageMaxField: {fileID: 7621492620306173109}
   attackSpeedField: {fileID: 6453964085173289710}
+  currentManaField: {fileID: 811467310526965489}
+  fullManaField: {fileID: 8095141306880028032}
 --- !u!1 &6755141686906752870
 GameObject:
   m_ObjectHideFlags: 0

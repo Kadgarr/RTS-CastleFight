@@ -5,13 +5,18 @@ using UnityEngine;
 
 public class PaladinRessurection : NetworkBehaviour
 {
+    [SerializeField] private UnitFiring unitFiring = null;
+
     [Server]
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag!="Corpse")
+        if ((int)unitFiring.GetCurrenStateOfMana() != unitFiring.GetFullMana())
             return;
 
-        if(other.TryGetComponent<NetworkIdentity>(out NetworkIdentity networkIdentity))
+        if (other.gameObject.tag != "Corpse")
+            return;
+
+        if (other.TryGetComponent<NetworkIdentity>(out NetworkIdentity networkIdentity))
         {
             if (networkIdentity.connectionToClient.identity.GetComponent<RTSPlayer>().GetTeamNumber() != 
                 connectionToClient.identity.GetComponent<RTSPlayer>().GetTeamNumber())
@@ -22,6 +27,7 @@ public class PaladinRessurection : NetworkBehaviour
             if(other.TryGetComponent<CorpseRessur>(out CorpseRessur corpse))
             {
                 corpse.Ressurection();
+                unitFiring.SetCurrentMana(0f);
             }
 
         }

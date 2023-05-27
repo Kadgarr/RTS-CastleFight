@@ -8,6 +8,9 @@ public class CorpseRessur : NetworkBehaviour
     [SerializeField]
     private GameObject unitToSpawn = null;
 
+    private int fullTimeToDestroy = 30;
+    private float currentTimeToDestroy = 0;
+
     [Server]
     public void Ressurection()
     {
@@ -20,4 +23,16 @@ public class CorpseRessur : NetworkBehaviour
         NetworkServer.Destroy(this.gameObject);
     }
 
+    private void Update()
+    {
+        if (currentTimeToDestroy < fullTimeToDestroy)
+        {
+            currentTimeToDestroy += Time.deltaTime;
+            return;
+        }
+            
+
+        Debug.LogError("Corpse destroyed");
+        NetworkServer.Destroy(this.gameObject);
+    }
 }

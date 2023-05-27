@@ -19,6 +19,10 @@ public class InfoUnitDisplay : MonoBehaviour
 
     [SerializeField] private TMP_Text attackSpeedField = null;
 
+    [Header("Mana fields")]
+    [SerializeField] private TMP_Text currentManaField = null;
+    [SerializeField] private TMP_Text fullManaField = null;
+
     private GameObject projectile;
 
 
@@ -33,12 +37,18 @@ public class InfoUnitDisplay : MonoBehaviour
         attackSpeedField.text = unitFiring.GetFireRate().ToString();
 
         armorTypeField.text = health.GetTypeOfArmor().ToString();
+
+        fullHealthField.text = health.GetHealth().ToString();
+
+        if (unitFiring.GetFullMana() != 0)
+            fullManaField.text = unitFiring.GetFullMana().ToString();
     }
 
 
     void Update()
     {
         healthField.text = health.GetCurrentHealth().ToString();
-        fullHealthField.text = health.GetHealth().ToString();
+
+        currentManaField.text = unitFiring.GetCurrenStateOfMana().ToString();
     }
 }

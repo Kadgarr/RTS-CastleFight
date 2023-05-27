@@ -7,8 +7,8 @@ using UnityEngine;
 public class ResourceGenerator : NetworkBehaviour
 {
     //[SerializeField] private Health health = null;
-    [SerializeField] private int resourcesPerInterval = 10;
-    [SerializeField] private float interval = 2f;
+    [SerializeField] private int resourcesPerInterval = 5;
+    [SerializeField] private float interval = 10f;
 
     private float timer;
     private RTSPlayer player;
@@ -56,6 +56,7 @@ public class ResourceGenerator : NetworkBehaviour
     [Command]
     private void HandleOnBuildingSpawned(Building building)
     {
+        if(building.GetWood()==0)
         player.SetResourcesWood(player.GetWoodResources()+building.GetPrice());
     }
 

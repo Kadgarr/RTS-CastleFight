@@ -284,6 +284,7 @@ public class RTSPlayer : NetworkBehaviour
     {
         gold = newResources;
     }
+
     [Server]
     public void SetResourcesWood(int newResources)
     {
@@ -343,6 +344,9 @@ public class RTSPlayer : NetworkBehaviour
         NetworkServer.Spawn(buildingInstance, connectionToClient);
 
         SetResourcesGold(gold - buildingToPlace.GetPrice());
+
+        SetResourcesWood(wood - buildingToPlace.GetWood());
+
         unitBuilder = null;
     }
 
@@ -374,6 +378,8 @@ public class RTSPlayer : NetworkBehaviour
         NetworkServer.Spawn(buildingInstance, connectionToClient);
 
         SetResourcesGold(gold - buildingToPlace.GetPrice());
+        SetResourcesWood(wood - buildingToPlace.GetWood());
+
         unitBuilder = null;
     }
 

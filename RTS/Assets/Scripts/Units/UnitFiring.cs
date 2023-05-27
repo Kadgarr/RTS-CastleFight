@@ -2,6 +2,7 @@ using Mirror;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
@@ -19,6 +20,10 @@ public class UnitFiring : NetworkBehaviour
     [SerializeField] private float fireRate = 1f;
     [SerializeField] private float rotationSpeed = 20f;
     [SerializeField] private LayerMask layerMask = new LayerMask();
+
+    [Header("Mana fields")]
+    [SerializeField] private int fullMana  = 0;
+    [SerializeField] private float currentMana = 0;
 
     [TextAreaAttribute]
     [SerializeField] private string descriptionOfAbilites = null;
@@ -43,6 +48,13 @@ public class UnitFiring : NetworkBehaviour
     [ServerCallback]
     private void Update()
     {
+
+        if (currentMana < fullMana)
+        {
+            currentMana += Time.deltaTime;
+        }
+
+
         target = targeter.GetTarget();
 
         if (target == null)
@@ -115,7 +127,6 @@ public class UnitFiring : NetworkBehaviour
 
             if (unitBase.TryGetComponent<NetworkIdentity>(out NetworkIdentity networkIdentity))
             {
-                 
                 if (networkIdentity.connectionToClient.identity.GetComponent<RTSPlayer>().GetTeamNumber() 
                     != connectionToClient.identity.GetComponent<RTSPlayer>().GetTeamNumber())
                 {
@@ -152,5 +163,21 @@ public class UnitFiring : NetworkBehaviour
     public float GetFireRange()
     {
         return fireRange;
+    }
+
+    public float GetCurrenStateOfMana()
+    {
+        return (int)currentMana;
+    }
+
+    public int GetFullMana()
+    {
+        return fullMana;
+    }
+
+    [Command]
+    public void SetCurrentMana(float mana)
+    {
+        currentMana = mana;
     }
 }
